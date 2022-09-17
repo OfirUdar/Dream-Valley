@@ -1,45 +1,85 @@
-﻿using UnityEngine;
+﻿using Udar;
+using UnityEngine;
 using Zenject;
 
 namespace Game
 {
     public class PlaceSnapping : ITickable
     {
+        private readonly IUserInput _input;
         private readonly IGrid<Transform> _grid;
-        private Transform _transform;
-        private BuildData _buildData;
+        private readonly PlaceHandler<Transform> _placeHandler;
+        private readonly PlacementBehaviour.Factory _placementFactory;
 
-        public PlaceSnapping(IGrid<Transform> grid)
+        private Transform _ghost;
+        private BuildingSO _placementSO;
+
+        public PlaceSnapping(IUserInput userInput,
+            IGrid<Transform> grid,
+            PlaceHandler<Transform> placeHandler,
+            PlacementBehaviour.Factory placementFactory)
         {
+            _input = userInput;
             _grid = grid;
+            _placeHandler = placeHandler;
+            _placementFactory = placementFactory;
         }
 
-        public void SetTransform(Transform transform, BuildData buildData)
+        public void SetTransform(BuildingSO buildData)
         {
-            _transform = transform;
-            _buildData = buildData;
+            _placementSO = buildData;
+            _ghost = _placementFactory.Create(_placementSO.Pfb).transform;
         }
 
         public void Tick()
         {
-            if (_transform == null)
+            if (_ghost == null)
                 return;
 
-            var Plane = new Plane(Vector3.up, Vector3.forward);
+            SnapHandler();
 
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (_input.IsPointerDown())
+            {
 
-            if (Plane.Raycast(ray, out float point))
+                var pos = _ghost.position;
+
+                if (_placeHandler.CanPlace(pos, _placementSO.Data.Width, _placementSO.Data.Height))
+                {
+                    var ob = _placementFactory.Create(_placementSO.Pfb).transform;
+                    _placeHandler.PlaceObject(pos, _placementSO.Data.Width, _placementSO.Data.Height, ob);
+                    ob.transform.position = pos;
+                }
+                else
+                {
+                    Debug.Log("Cannot");
+                }
+
+
+
+            }
+        }
+
+        private void SnapHandler()
+        {
+            var plane = new Plane(Vector3.up, Vector3.forward);
+
+            var ray = CameraUtils.Cam.ScreenPointToRay(_input.GetPointerPosition());
+            var buildData = _placementSO.Data;
+
+            if (plane.Raycast(ray, out float point))
             {
                 var hitPoint = ray.GetPoint(point);
                 _grid.GetIndexes(hitPoint, out int row, out int column);
-                row -= _buildData.Width / 2;
-                column -= _buildData.Height / 2;
 
-                row = Mathf.Clamp(row, 0, _grid.GetRows() - _buildData.Width);
-                column = Mathf.Clamp(column, 0, _grid.GetColumns() - _buildData.Height);
+                //Substruct some offset in order to center the pointer
+                row -= buildData.Width / 2;
+                column -= buildData.Height / 2;
 
-                _transform.position = _grid.GetWorldPosition(row, column);
+                //Keep the object on the grid
+                row = Mathf.Clamp(row, 0, _grid.GetRows() - buildData.Width);
+                column = Mathf.Clamp(column, 0, _grid.GetColumns() - buildData.Height);
+
+                _ghost.position = _grid.GetWorldPosition(row, column);
 
             }
         }

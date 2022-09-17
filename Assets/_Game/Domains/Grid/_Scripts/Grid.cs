@@ -12,15 +12,15 @@ namespace Game
         private readonly Vector3 _offset;
 
 
-        public Grid(int rows, int columns, float cellSize)
+        public Grid(GridSettings settings)
         {
-            _cells = new TCell[rows, columns];
+            _cells = new TCell[settings.Rows, settings.Columns];
 
-            _rows = rows;
-            _columns = columns;
-            _cellSize = cellSize;
+            _rows = settings.Rows;
+            _columns = settings.Columns;
+            _cellSize = settings.CellSize;
 
-            _offset = new Vector3(rows, 0, columns) * _cellSize / 2f;
+            _offset = new Vector3(_rows, 0, _columns) * _cellSize / 2f;
         }
 
 
@@ -29,7 +29,7 @@ namespace Game
             if (!IsOnRange(row, column))
                 return false;
 
-            return _cells[row, column].Equals(default(TCell));
+            return _cells[row, column]==null;
         }
         public bool IsEmpty(Vector3 worldPosition)
         {
@@ -114,27 +114,6 @@ namespace Game
             return row >= 0 && column >= 0 && row < _rows && column < _columns;
         }
 
-
-    }
-    public interface IGrid<TCell>
-    {
-        public bool IsEmpty(int row, int column);
-        public bool IsEmpty(Vector3 worldPosition);
-
-        #region GET
-        public int GetRows();
-        public int GetColumns();
-        public void GetIndexes(Vector3 worldPosition, out int row, out int column);
-        public Vector2Int GetIndexes(Vector3 worldPosition);
-        public TCell GetValue(int row, int column);
-        public TCell GetValue(Vector3 worldPosition);
-        public Vector3 GetWorldPosition(int row, int column);
-        #endregion
-
-        #region SET
-        public bool SetValue(int row, int column, TCell value);
-        public bool SetValue(Vector3 worldPosition, TCell value);
-        #endregion
     }
 }
 

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e9c73f7efae0a45aeb954faa5a10dd, type: 3}
+  m_Name: Buildings List
+  m_EditorClassIdentifier: 
+  <PlacementsList>k__BackingField:
+  - {fileID: 11400000, guid: 8c6fafd1c31daef438e20e3ff7d56956, type: 2}
+  - {fileID: 11400000, guid: ccf4994748b87f2488cc1ac1dfd95021, type: 2}
