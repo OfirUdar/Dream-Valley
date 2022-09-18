@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using Zenject;
+﻿using Zenject;
 
-namespace Game
+namespace Game.Camera
 {
+    using UnityEngine;
     public class TouchCameraZoom : ITickable
     {
         private readonly Camera _cam;
@@ -17,7 +17,7 @@ namespace Game
         }
         public void Tick()
         {
-            if(Input.touchCount==2)
+            if (Input.touchCount == 2)
             {
                 var touchZero = Input.GetTouch(0);
                 var touchOne = Input.GetTouch(1);
@@ -39,8 +39,9 @@ namespace Game
         private void Zoom(float increment)
         {
             var nextZoom = _cam.orthographicSize - increment * _settings.Speed * Time.deltaTime;
-            _cam.orthographicSize = Mathf.Clamp
+            nextZoom = Mathf.Clamp
                 (nextZoom, _settings.Min, _settings.Max);
+            _cam.orthographicSize = Mathf.Lerp(_cam.orthographicSize, nextZoom, 0.5f);
         }
     }
 }

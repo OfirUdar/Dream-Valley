@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Grid Settings
   m_EditorClassIdentifier: 
   <Settings>k__BackingField:
-    <Rows>k__BackingField: 40
-    <Columns>k__BackingField: 40
+    <Rows>k__BackingField: 50
+    <Columns>k__BackingField: 50
     <CellSize>k__BackingField: 0.3

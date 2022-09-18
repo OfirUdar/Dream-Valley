@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using Zenject;
+﻿using Zenject;
 
-namespace Game
+namespace Game.Camera
 {
+    using UnityEngine;
     public class MouseCameraZoom : ITickable
     {
         private readonly Camera _cam;
@@ -14,6 +14,8 @@ namespace Game
             _cam = camera;
             _input = input;
             _settings = zoomSettings;
+
+
         }
         public void Tick()
         {

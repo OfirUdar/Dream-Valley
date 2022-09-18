@@ -29,7 +29,7 @@ namespace Game
             Container.BindInterfacesAndSelfTo<PlaceSnapping>().AsSingle().NonLazy();
 
             Container
-                .BindFactory<Object,PlacementBehaviour, PlacementBehaviour.Factory>()
+                .BindFactory<Object, PlacementBehaviour, PlacementBehaviour.Factory>()
                 .FromFactory<PrefabFactory<PlacementBehaviour>>();
 
 
@@ -37,7 +37,6 @@ namespace Game
             snapping.SetTransform(buildingSO);
 
             UnityEngine.SceneManagement.SceneManager.LoadScene("MainUI", UnityEngine.SceneManagement.LoadSceneMode.Additive);
-            
 
         }
 

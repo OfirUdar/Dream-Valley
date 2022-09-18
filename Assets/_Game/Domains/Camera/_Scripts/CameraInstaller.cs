@@ -1,13 +1,11 @@
-using UnityEngine;
 using Zenject;
 
-namespace Game
+namespace Game.Camera
 {
+    using UnityEngine;
     public class CameraInstaller : MonoInstaller
     {
         [SerializeField] private Camera _camera;
-        [SerializeField] private MoveSettings _moveSettings;
-        [SerializeField] private ZoomSettings _zoomSettings;
 
         public override void InstallBindings()
         {
@@ -20,26 +18,26 @@ namespace Game
 
         private void InstallMobile()
         {
-            Container.BindInterfacesAndSelfTo<MouseCameraMove>()
+            Container.BindInterfacesAndSelfTo<TouchCameraMove>()
                    .AsSingle()
-                  .WithArguments(_camera.transform, _moveSettings)
+                  .WithArguments(_camera.transform)
                   .NonLazy();
 
             Container.BindInterfacesAndSelfTo<TouchCameraZoom>()
                .AsSingle()
-               .WithArguments(_camera, _zoomSettings)
+               .WithArguments(_camera)
                .NonLazy();
         }
         private void InstallPC()
         {
             Container.BindInterfacesAndSelfTo<MouseCameraMove>()
                      .AsSingle()
-                    .WithArguments(_camera.transform, _moveSettings)
+                    .WithArguments(_camera.transform)
                     .NonLazy();
 
             Container.BindInterfacesAndSelfTo<MouseCameraZoom>()
                .AsSingle()
-               .WithArguments(_camera, _zoomSettings)
+               .WithArguments(_camera)
                .NonLazy();
         }
     }

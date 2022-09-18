@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Game
+namespace Game.Camera
 {
     public class MouseCameraMove : ITickable
     {
@@ -16,6 +16,7 @@ namespace Game
             _camTran = camTran;
             _input = input;
             _settings = moveSettings;
+
         }
 
         public void Tick()
@@ -33,9 +34,11 @@ namespace Game
 
                 var diff = currentPosition - _lastPosition;
                 diff.z = 0;
+                Debug.Log("currentPosition= " + currentPosition);
                 var nextPos = _camTran.localPosition - diff;
 
-                Move(nextPos);
+               //Move(nextPos);
+                Move2(diff);
 
                  _lastPosition = currentPosition;
             }
@@ -45,6 +48,15 @@ namespace Game
 
         private void Move(Vector3 nextPos)
         {
+            nextPos.x = Mathf.Clamp(nextPos.x, _settings.HorizontalLimits.x, _settings.HorizontalLimits.y);
+            nextPos.y = Mathf.Clamp(nextPos.y, _settings.VerticalLimits.x, _settings.VerticalLimits.y);
+
+            _camTran.localPosition = Vector3.Lerp(_camTran.localPosition, nextPos, .8f);
+        }
+        private void Move2(Vector3 diff)
+        {
+            var nextPos = _camTran.localPosition- diff;
+
             nextPos.x = Mathf.Clamp(nextPos.x, _settings.HorizontalLimits.x, _settings.HorizontalLimits.y);
             nextPos.y = Mathf.Clamp(nextPos.y, _settings.VerticalLimits.x, _settings.VerticalLimits.y);
 

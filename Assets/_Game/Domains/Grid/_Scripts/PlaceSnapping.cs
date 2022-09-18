@@ -10,16 +10,18 @@ namespace Game
         private readonly IGrid<Transform> _grid;
         private readonly PlaceHandler<Transform> _placeHandler;
         private readonly PlacementBehaviour.Factory _placementFactory;
+        private readonly CamPointerUtility _camPointer;
 
         private Transform _ghost;
         private BuildingSO _placementSO;
 
-        public PlaceSnapping(IUserInput userInput,
+        public PlaceSnapping(IUserInput userInput,CamPointerUtility camPointer,
             IGrid<Transform> grid,
             PlaceHandler<Transform> placeHandler,
             PlacementBehaviour.Factory placementFactory)
         {
             _input = userInput;
+            _camPointer = camPointer;
             _grid = grid;
             _placeHandler = placeHandler;
             _placementFactory = placementFactory;
@@ -61,14 +63,11 @@ namespace Game
 
         private void SnapHandler()
         {
-            var plane = new Plane(Vector3.up, Vector3.forward);
-
-            var ray = CameraUtils.Cam.ScreenPointToRay(_input.GetPointerPosition());
+            
             var buildData = _placementSO.Data;
 
-            if (plane.Raycast(ray, out float point))
+            if (_camPointer.RaycastPointer(out Vector3 hitPoint))
             {
-                var hitPoint = ray.GetPoint(point);
                 _grid.GetIndexes(hitPoint, out int row, out int column);
 
                 //Substruct some offset in order to center the pointer
