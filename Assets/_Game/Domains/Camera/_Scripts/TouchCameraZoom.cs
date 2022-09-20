@@ -39,9 +39,8 @@ namespace Game.Camera
         private void Zoom(float increment)
         {
             var nextZoom = _cam.orthographicSize - increment * _settings.Speed * Time.deltaTime;
-            nextZoom = Mathf.Clamp
-                (nextZoom, _settings.Min, _settings.Max);
-            _cam.orthographicSize = Mathf.Lerp(_cam.orthographicSize, nextZoom, 0.5f);
+            nextZoom = Mathf.Clamp(nextZoom, _settings.Min, _settings.Max);
+            _cam.orthographicSize = Mathf.Lerp(_cam.orthographicSize, nextZoom, 0.8f);
         }
     }
 }

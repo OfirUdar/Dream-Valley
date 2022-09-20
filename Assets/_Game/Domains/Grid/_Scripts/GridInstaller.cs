@@ -23,18 +23,18 @@ namespace Game
 
             //Container.Bind<GridDebug<Transform>>().ToSelf().AsSingle().NonLazy();
 
-            Container.Bind<PlaceHandler<Transform>>().ToSelf().AsSingle()
-                .NonLazy();
+            //Container.Bind<PlaceHandler<Transform>>().ToSelf().AsSingle()
+            //    .NonLazy();
 
-            Container.BindInterfacesAndSelfTo<PlaceSnapping>().AsSingle().NonLazy();
+            //Container.BindInterfacesAndSelfTo<PlaceSnapping>().AsSingle().NonLazy();
 
-            Container
-                .BindFactory<Object, PlacementBehaviour, PlacementBehaviour.Factory>()
-                .FromFactory<PrefabFactory<PlacementBehaviour>>();
+            //Container
+            //    .BindFactory<Object, PlacementBehaviour, PlacementBehaviour.Factory>()
+            //    .FromFactory<PrefabFactory<PlacementBehaviour>>();
 
 
-            var snapping = Container.Resolve<PlaceSnapping>();
-            snapping.SetTransform(buildingSO);
+            //var snapping = Container.Resolve<PlaceSnapping>();
+            //snapping.SetTransform(buildingSO);
 
             UnityEngine.SceneManagement.SceneManager.LoadScene("MainUI", UnityEngine.SceneManagement.LoadSceneMode.Additive);
 

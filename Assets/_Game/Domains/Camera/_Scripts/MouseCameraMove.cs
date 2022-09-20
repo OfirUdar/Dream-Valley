@@ -1,67 +1,42 @@
-﻿using Udar;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 namespace Game.Camera
 {
-    public class MouseCameraMove : ITickable
+    public class MouseCameraMove : CameraMoveBase, ITickable
     {
-        private readonly Transform _camTran;
-        private readonly IUserInput _input;
-        private readonly MoveSettings _settings;
+       
 
-        private Vector3 _lastPosition;
-        public MouseCameraMove(Transform camTran, IUserInput input,MoveSettings moveSettings)
+        private Vector3 _dragOrigin;
+
+        public MouseCameraMove(Transform camTran, IUserInput input, MoveSettings moveSettings) : base(camTran, input, moveSettings)
         {
-            _camTran = camTran;
-            _input = input;
-            _settings = moveSettings;
-
         }
 
         public void Tick()
         {
             if (_input.IsPointerDown())
             {
-                _lastPosition = CameraUtils.Cam
-                    .ScreenToWorldPoint(_input.GetPointerPosition());
+                _dragOrigin = GetWorldPointerPosition();
             }
 
             if (_input.IsPointerPressing())
             {
-                var currentPosition = CameraUtils.Cam
-                    .ScreenToWorldPoint(_input.GetPointerPosition());
+                var currentPosition = GetWorldPointerPosition();
 
-                var diff = currentPosition - _lastPosition;
-                diff.z = 0;
-                Debug.Log("currentPosition= " + currentPosition);
-                var nextPos = _camTran.localPosition - diff;
+                var delta = _dragOrigin - currentPosition;
 
-               //Move(nextPos);
-                Move2(diff);
+                var nextPos = _camTran.position + delta;
+                nextPos = ConvertToValidPosition(nextPos);
 
-                 _lastPosition = currentPosition;
+                Move(nextPos);
+
+                _dragOrigin = currentPosition;
             }
 
-            
+
         }
-
-        private void Move(Vector3 nextPos)
-        {
-            nextPos.x = Mathf.Clamp(nextPos.x, _settings.HorizontalLimits.x, _settings.HorizontalLimits.y);
-            nextPos.y = Mathf.Clamp(nextPos.y, _settings.VerticalLimits.x, _settings.VerticalLimits.y);
-
-            _camTran.localPosition = Vector3.Lerp(_camTran.localPosition, nextPos, .8f);
-        }
-        private void Move2(Vector3 diff)
-        {
-            var nextPos = _camTran.localPosition- diff;
-
-            nextPos.x = Mathf.Clamp(nextPos.x, _settings.HorizontalLimits.x, _settings.HorizontalLimits.y);
-            nextPos.y = Mathf.Clamp(nextPos.y, _settings.VerticalLimits.x, _settings.VerticalLimits.y);
-
-            _camTran.localPosition = Vector3.Lerp(_camTran.localPosition, nextPos, .8f);
-        }
+       
     }
 
 }
