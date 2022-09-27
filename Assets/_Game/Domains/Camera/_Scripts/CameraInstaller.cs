@@ -14,28 +14,29 @@ namespace Game.Camera
             else
                 InstallPC();
 
+            Container.BindInterfacesAndSelfTo<CameraController>().AsSingle().NonLazy();
         }
 
         private void InstallMobile()
         {
-            Container.BindInterfacesAndSelfTo<TouchCameraMove>()
+            Container.Bind<CameraMoveBase>().To<TouchCameraMove>()
                    .AsSingle()
                   .WithArguments(_camera.transform)
                   .NonLazy();
 
-            Container.BindInterfacesAndSelfTo<TouchCameraZoom>()
+            Container.Bind<CameraZoomBase>().To<TouchCameraZoom>()
                .AsSingle()
                .WithArguments(_camera)
                .NonLazy();
         }
         private void InstallPC()
         {
-            Container.BindInterfacesAndSelfTo<MouseCameraMove>()
+            Container.Bind<CameraMoveBase>().To<MouseCameraMove>()
                      .AsSingle()
                     .WithArguments(_camera.transform)
                     .NonLazy();
 
-            Container.BindInterfacesAndSelfTo<MouseCameraZoom>()
+            Container.Bind<CameraZoomBase>().To<MouseCameraZoom>()
                .AsSingle()
                .WithArguments(_camera)
                .NonLazy();

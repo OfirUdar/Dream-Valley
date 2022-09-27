@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Game
 {
-    public class Grid<TCell> : IGrid<TCell>
+    public class Grid : IGrid
     {
-        private readonly TCell[,] _cells;
+        private readonly IPlaceable[,] _cells;
 
         private readonly int _rows;
         private readonly int _columns;
@@ -14,7 +14,7 @@ namespace Game
 
         public Grid(GridSettings settings)
         {
-            _cells = new TCell[settings.Rows, settings.Columns];
+            _cells = new IPlaceable[settings.Rows, settings.Columns];
 
             _rows = settings.Rows;
             _columns = settings.Columns;
@@ -37,7 +37,54 @@ namespace Game
             return IsEmpty(row, column);
         }
 
+        public bool CanPlace(int row, int column, int width, int height)
+        {
+            for (int r = row; r < row + width; r++)
+            {
+                for (int c = column; c < column + height; c++)
+                {
+                    if (!IsEmpty(r, c))
+                        return false;
+                }
+            }
+            return true;
+        }
+        public bool CanPlace(Vector3 worldPosition, int width, int height)
+        {
+            GetIndexes(worldPosition, out int row, out int column);
+            return CanPlace(row, column, width, height);
+        }
+        public void PlaceObject(int row, int column, int width, int height, IPlaceable cell)
+        {
+            for (int r = row; r < row + width; r++)
+            {
+                for (int c = column; c < column + height; c++)
+                {
+                   SetValue(r, c, cell);
+                }
+            }
+        }
+        public void PlaceObject(Vector3 worldPosition, int width, int height, IPlaceable cell)
+        {
+            GetIndexes(worldPosition, out int row, out int column);
+            PlaceObject(row, column, width, height, cell);
+        }
+        public void RemoveObject(int row, int column, int width, int height)
+        {
+            for (int r = row; r < row + width; r++)
+            {
+                for (int c = column; c < column + height; c++)
+                {
+                    SetValue(r, c, null);
+                }
+            }
+        }
 
+        public void RemoveObject(Vector3 worldPosition, int width, int height)
+        {
+            GetIndexes(worldPosition, out int row, out int column);
+            RemoveObject(row, column, width, height);
+        }
         #region GET
         public int GetRows()
         {
@@ -57,14 +104,14 @@ namespace Game
             GetIndexes(worldPosition, out int row, out int column);
             return new Vector2Int(row, column);
         }
-        public TCell GetValue(int row, int column)
+        public IPlaceable GetValue(int row, int column)
         {
             if (IsOnRange(row, column))
                 return _cells[row, column];
 
             return default;
         }
-        public TCell GetValue(Vector3 worldPosition)
+        public IPlaceable GetValue(Vector3 worldPosition)
         {
             GetIndexes(worldPosition, out int row, out int column);
             return _cells[row, column];
@@ -72,6 +119,12 @@ namespace Game
         public Vector3 GetWorldPosition(int row, int column)
         {
             return new Vector3(row, 0, column) * _cellSize - _offset;
+        }
+
+        public Vector3 WorldPositionToGridPosition(Vector3 worldPosition)
+        {
+            GetIndexes(worldPosition, out int row, out int column);
+            return GetWorldPosition(row, column);
         }
         #endregion
 
@@ -84,7 +137,7 @@ namespace Game
         /// <param name="column"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public bool SetValue(int row, int column, TCell value)
+        public bool SetValue(int row, int column, IPlaceable value)
         {
             if (IsOnRange(row, column))
             {
@@ -100,7 +153,7 @@ namespace Game
         /// <param name="column"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public bool SetValue(Vector3 worldPosition, TCell value)
+        public bool SetValue(Vector3 worldPosition, IPlaceable value)
         {
             GetIndexes(worldPosition, out int row, out int column);
             Debug.Log($"row= {row} column= {column}");
@@ -114,6 +167,7 @@ namespace Game
             return row >= 0 && column >= 0 && row < _rows && column < _columns;
         }
 
+       
     }
 }
 

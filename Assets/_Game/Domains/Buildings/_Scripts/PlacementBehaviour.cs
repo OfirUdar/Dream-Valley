@@ -3,13 +3,30 @@ using Zenject;
 
 namespace Game
 {
-    public class PlacementBehaviour : MonoBehaviour
+    public class PlacementBehaviour : MonoBehaviour, IPlaceable
     {
         [SerializeField] private BuildingSO _placementSO;
         [SerializeField] private Transform _area;
+        [SerializeField] private MeshRenderer _editAreaRenderer;
         [SerializeField] private Transform _gfx;
 
+
+        public int Width => _placementSO.Data.Width;
+        public int Height => _placementSO.Data.Height;
+        public Vector3 Position
+        {
+            get
+            {
+                return transform.position;
+            }
+            set
+            {
+                transform.position = value;
+            }
+        }
+
         private GridSettings _gridSettings;
+
 
         [Inject]
         public void Init(GridSettings gridSettings)
@@ -28,14 +45,17 @@ namespace Game
 
             _area.localPosition = position;
             _gfx.localPosition = position;
+
+            _editAreaRenderer.material.mainTextureScale =
+                new Vector2(_placementSO.Data.Width, _placementSO.Data.Height) / 2f;
         }
+     
 
-
-        public class Factory : PlaceholderFactory<Object,PlacementBehaviour>
+        public class Factory : PlaceholderFactory<Object, PlacementBehaviour>
         {
 
         }
 
     }
-    
+
 }

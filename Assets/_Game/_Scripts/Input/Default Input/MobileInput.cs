@@ -6,7 +6,7 @@ namespace Game
     {
         public Vector3 GetPointerPosition()
         {
-            return Input.mousePosition;
+            return Input.GetTouch(0).position;
         }
 
         public Vector2 GetScroll()
