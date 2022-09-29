@@ -27,5 +27,16 @@ namespace Game
             point = Vector3.zero;
             return false;
         }
+        public Collider RaycastPointer()
+        {
+            var ray = CameraUtils.Cam.ScreenPointToRay(_input.GetPointerPosition());
+
+            if (Physics.Raycast(ray,out RaycastHit hit, Mathf.Infinity))
+            {
+                return hit.collider;
+            }
+
+            return null;
+        }
     }
 }

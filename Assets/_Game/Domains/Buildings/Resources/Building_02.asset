@@ -15,7 +15,15 @@ MonoBehaviour:
   <Pfb>k__BackingField: {fileID: 7005175345325445451, guid: dc962ddf7e816e244a11f25bda64caea,
     type: 3}
   <Data>k__BackingField:
-    <Name>k__BackingField: wdsfdsfg
+    <Name>k__BackingField: Building 02
     <Description>k__BackingField: sdfsdfffffffff
-    <Width>k__BackingField: 6
-    <Height>k__BackingField: 2
+    <Sprite>k__BackingField: {fileID: 21300000, guid: e432cd04cd15dcf4b812f6d01db129f1,
+      type: 3}
+    <Width>k__BackingField: 5
+    <Height>k__BackingField: 3
+    <ResourcePrice>k__BackingField:
+      <Resource>k__BackingField:
+        <Name>k__BackingField: Diamond
+        <Sprite>k__BackingField: {fileID: 21300000, guid: dab9b8d011825fb42aa43fa0d5ab2144,
+          type: 3}
+      <Price>k__BackingField: 50

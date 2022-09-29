@@ -1,8 +1,7 @@
-﻿using Zenject;
-
-namespace Game.Camera
+﻿namespace Game.Camera
 {
     using UnityEngine;
+
     public class MouseCameraZoom : CameraZoomBase
     {
         private readonly IUserInput _input;
@@ -16,7 +15,7 @@ namespace Game.Camera
         {
             var scroll = _input.GetScroll();
 
-            if (scroll != Vector2.zero)
+            if (scroll != Vector2.zero && !_input.IsPointerOverUI())
             {
                 Zoom(Mathf.Sign(scroll.y));
             }

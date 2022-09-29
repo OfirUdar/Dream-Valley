@@ -5,11 +5,10 @@ namespace Game
 {
     public class PlacementBehaviour : MonoBehaviour, IPlaceable
     {
-        [SerializeField] private BuildingSO _placementSO;
+        [SerializeField] private PlacementSO _placementSO;
         [SerializeField] private Transform _area;
         [SerializeField] private MeshRenderer _editAreaRenderer;
         [SerializeField] private Transform _gfx;
-
 
         public int Width => _placementSO.Data.Width;
         public int Height => _placementSO.Data.Height;
@@ -49,7 +48,15 @@ namespace Game
             _editAreaRenderer.material.mainTextureScale =
                 new Vector2(_placementSO.Data.Width, _placementSO.Data.Height) / 2f;
         }
-     
+        
+        public void Approve()
+        {
+
+        }
+        public void Cancel()
+        {
+            Destroy(this.gameObject);
+        }
 
         public class Factory : PlaceholderFactory<Object, PlacementBehaviour>
         {

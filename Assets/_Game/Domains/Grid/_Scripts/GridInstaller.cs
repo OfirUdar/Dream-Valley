@@ -5,7 +5,7 @@ namespace Game
 {
     public class GridInstaller : MonoInstaller
     {
-        [SerializeField] private BuildingSO buildingSO;
+        [SerializeField] private PlacementSO buildingSO;
         [Space]
         [SerializeField] private GridSettingsSO _settings;
 
@@ -18,24 +18,16 @@ namespace Game
             Container.Bind<IGrid>().To<Grid>()
                 .AsSingle().NonLazy();
 
-            Container.Bind<ISelectionManager>()
+            Container.Bind(typeof(ISelectionManager),typeof(ITickable))
                 .To<GridSelectionManager>()
                 .AsSingle().NonLazy();
 
-            //Container.Bind<GridPlacer<Transform>>().ToSelf().AsSingle()
-            //    .NonLazy();
 
-            //Container.BindInterfacesAndSelfTo<GridEditor>().AsSingle().NonLazy();
+            Container.BindFactory
+                <Object, PlacementBehaviour, PlacementBehaviour.Factory>()
+                .FromFactory<PrefabFactory<PlacementBehaviour>>();
 
-            //Container
-            //    .BindFactory<Object, PlacementBehaviour, PlacementBehaviour.Factory>()
-            //    .FromFactory<PrefabFactory<PlacementBehaviour>>();
-
-
-            //var snapping = Container.Resolve<GridEditor>();
-            //snapping.SetPlacement(buildingSO);
-
-           //UnityEngine.SceneManagement.SceneManager.LoadScene("MainUI", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("MainUI", UnityEngine.SceneManagement.LoadSceneMode.Additive);
         }
 
 

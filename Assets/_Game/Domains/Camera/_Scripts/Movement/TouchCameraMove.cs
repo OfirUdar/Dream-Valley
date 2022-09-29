@@ -1,6 +1,6 @@
 ﻿using Udar;
 using UnityEngine;
-using Zenject;
+using UnityEngine.EventSystems;
 
 namespace Game.Camera
 {
@@ -12,7 +12,7 @@ namespace Game.Camera
 
         public override void Tick()
         {
-            if (Input.touchCount >= 1)
+            if (Input.touchCount >= 1 && !_input.IsPointerOverUI())
             {
                 var touch = Input.GetTouch(0);
                 if (touch.phase == TouchPhase.Moved)
@@ -37,7 +37,7 @@ namespace Game.Camera
 
             return beforeTouchWorldPos - currentTouchWorldPos;
         }
-       
+
     }
 
 }

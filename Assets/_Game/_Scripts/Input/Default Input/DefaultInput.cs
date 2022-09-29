@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Game
 {
@@ -18,10 +19,19 @@ namespace Game
         {
             return Input.GetMouseButtonDown(0);
         }
+        public bool IsPointerUp()
+        {
+            return Input.GetMouseButtonUp(0);
+        }
 
         public bool IsPointerPressing()
         {
             return Input.GetMouseButton(0);
+        }
+
+        public bool IsPointerOverUI()
+        {
+            return EventSystem.current.IsPointerOverGameObject();
         }
     }
 }

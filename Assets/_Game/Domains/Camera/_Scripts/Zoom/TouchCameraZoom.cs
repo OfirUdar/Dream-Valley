@@ -1,17 +1,18 @@
-﻿using Zenject;
-
-namespace Game.Camera
+﻿namespace Game.Camera
 {
     using UnityEngine;
+
     public class TouchCameraZoom : CameraZoomBase
     {
-        public TouchCameraZoom(Camera camera, ZoomSettings zoomSettings) : base(camera, zoomSettings)
+        private readonly IUserInput _input;
+        public TouchCameraZoom(IUserInput input, Camera camera, ZoomSettings zoomSettings) : base(camera, zoomSettings)
         {
+            _input = input;
         }
 
         public override void Tick()
         {
-            if (Input.touchCount == 2)
+            if (Input.touchCount == 2 && !_input.IsPointerOverUI())
             {
                 var touchZero = Input.GetTouch(0);
                 var touchOne = Input.GetTouch(1);

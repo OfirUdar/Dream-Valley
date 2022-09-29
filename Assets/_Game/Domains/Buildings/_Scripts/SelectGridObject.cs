@@ -18,12 +18,13 @@ namespace Game
             _selectionManager = selectionManager;
         }
 
-
-        private void OnMouseUpAsButton()
+        public void OnPointerUp(float pressedTime)
         {
-            Debug.Log("OnMouseUpAsButton");
+            if (pressedTime > 0.2f)
+                return;
             TriggerSelection();
         }
+
         public void TriggerSelection()
         {
             if (IsSelected)

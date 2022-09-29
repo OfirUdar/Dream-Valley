@@ -19,6 +19,8 @@ namespace Game
         private int _width;
         private int _height;
 
+
+        private Vector3 _dragOffsetPosition;
         private Vector3 _beforePosition;
         private bool _isDragging;
         private bool _isPlacing;
@@ -58,6 +60,9 @@ namespace Game
         {
             StartEditPlacing();
 
+            _camPointer.RaycastPointer(out Vector3 hitPoint);
+            _dragOffsetPosition = hitPoint - _dragTransform.position;
+
             _camController.SetActive(false);
 
             _isDragging = true;
@@ -84,9 +89,8 @@ namespace Game
         {
             if (!TryPlace())
             {
-                var placePosition = _grid.WorldPositionToGridPosition(_beforePosition);
-                _grid.PlaceObject(placePosition, _width, _height, _placeable);
-                _dragTransform.transform.position = placePosition;
+                _grid.PlaceObject(_beforePosition, _width, _height, _placeable);
+                _dragTransform.transform.position = _beforePosition;
                 _editPlaceVisual.SetEditingVisual(false);
                 _isPlacing = false;
             }
@@ -95,9 +99,7 @@ namespace Game
         {
             if (_grid.CanPlace(_dragTransform.position, _width, _height))
             {
-                var placePosition = _grid.WorldPositionToGridPosition(_dragTransform.position);
-                _grid.PlaceObject(placePosition, _width, _height, _placeable);
-                _dragTransform.transform.position = placePosition;
+                _grid.PlaceObject(_dragTransform.position, _width, _height, _placeable);
                 _editPlaceVisual.SetEditingVisual(false);
                 _isPlacing = false;
 
@@ -111,11 +113,9 @@ namespace Game
         {
             if (_camPointer.RaycastPointer(out Vector3 hitPoint))
             {
-                _grid.GetIndexes(hitPoint, out int row, out int column);
+                hitPoint -= _dragOffsetPosition;
 
-                //Substruct some offset in order to center the pointer
-                row -= _width / 2;
-                column -= _height / 2;
+                _grid.GetIndexes(hitPoint, out int row, out int column);
 
                 //Keep the object on the grid
                 row = Mathf.Clamp(row, 0, _grid.GetRows() - _width);
