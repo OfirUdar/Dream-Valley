@@ -1,4 +1,5 @@
 using Game.Camera;
+using System;
 using System.Collections;
 using UnityEngine;
 using Zenject;
@@ -9,7 +10,7 @@ namespace Game
     {
         [SerializeField] private Transform _dragTransform;
         [Space]
-        [SerializeField] private EditPlaceVisual _editPlaceVisual;
+        [SerializeField] private PlaceGridObject _placeGridObject;
 
         private IPlaceable _placeable;
         private IGrid _grid;
@@ -19,11 +20,8 @@ namespace Game
         private int _width;
         private int _height;
 
-
         private Vector3 _dragOffsetPosition;
-        private Vector3 _beforePosition;
         private bool _isDragging;
-        private bool _isPlacing;
         private bool _isSelected;
 
         [Inject]
@@ -39,29 +37,29 @@ namespace Game
         }
 
 
-        private void OnMouseDown()
-        {
-            if (_isSelected && !_isDragging)
-                StartDrag();
-        }
-        private void OnMouseUp()
-        {
-            if (_isDragging)
-                StopDrag();
-        }
-        private void OnMouseDrag()
-        {
-            if (_isDragging)
-                SnapHandler();
-        }
+        //private void OnMouseDown()
+        //{
+        //    if (_isSelected && !_isDragging)
+        //        StartDrag();
+        //}
+        //private void OnMouseUp()
+        //{
+        //    if (_isDragging)
+        //        StopDrag();
+        //}
+        //private void OnMouseDrag()
+        //{
+        //    if (_isDragging)
+        //        SnapToPointer();
+        //}
 
 
         public void StartDrag()
         {
-            StartEditPlacing();
+            _placeGridObject.StartEditPlacing();
 
-            _camPointer.RaycastPointer(out Vector3 hitPoint);
-            _dragOffsetPosition = hitPoint - _dragTransform.position;
+            _camPointer.RaycastPointer(out Vector3 pointerPoint);
+            _dragOffsetPosition = pointerPoint - _dragTransform.position;
 
             _camController.SetActive(false);
 
@@ -69,77 +67,35 @@ namespace Game
         }
         public void StopDrag()
         {
-            TryPlace();
+            if (_placeGridObject.IsAlreadyPlaced)
+                _placeGridObject.TryPlace();
 
             _camController.SetActive(true);
 
             _isDragging = false;
         }
-
-        public void StartEditPlacing()
+        public void SnapToPointer()
         {
-            _beforePosition = _dragTransform.position;
-            _grid.RemoveObject(_beforePosition, _width, _height);
-
-            _editPlaceVisual.SetEditingVisual(true);
-
-            _isPlacing = true;
-        }
-        public void StopEditPlacing()
-        {
-            if (!TryPlace())
+            if (_camPointer.RaycastPointer(out Vector3 pointerPoint))
             {
-                _grid.PlaceObject(_beforePosition, _width, _height, _placeable);
-                _dragTransform.transform.position = _beforePosition;
-                _editPlaceVisual.SetEditingVisual(false);
-                _isPlacing = false;
-            }
-        }
-        public bool TryPlace()
-        {
-            if (_grid.CanPlace(_dragTransform.position, _width, _height))
-            {
-                _grid.PlaceObject(_dragTransform.position, _width, _height, _placeable);
-                _editPlaceVisual.SetEditingVisual(false);
-                _isPlacing = false;
+                pointerPoint -= _dragOffsetPosition;
 
-                return true;
-            }
-            return false;
-        }
-
-
-        private void SnapHandler()
-        {
-            if (_camPointer.RaycastPointer(out Vector3 hitPoint))
-            {
-                hitPoint -= _dragOffsetPosition;
-
-                _grid.GetIndexes(hitPoint, out int row, out int column);
+                _grid.GetIndexes(pointerPoint, out int row, out int column);
 
                 //Keep the object on the grid
-                row = Mathf.Clamp(row, 0, _grid.GetRows() - _width);
-                column = Mathf.Clamp(column, 0, _grid.GetColumns() - _height);
-
-
-                if (_grid.CanPlace(row, column, _width, _height))
-                    _editPlaceVisual.SetPlaceAvailbility(true);
-                else
-                    _editPlaceVisual.SetPlaceAvailbility(false);
-
+                row = Mathf.Clamp(row, 0, _grid.GetRowsAmount() - _width);
+                column = Mathf.Clamp(column, 0, _grid.GetColumnsAmount() - _height);
 
                 var snappedPosition = _grid.GetWorldPosition(row, column);
-
                 _dragTransform.position = snappedPosition;
+
+                _placeGridObject.ValidatePlace(row, column);
             }
         }
-
 
         public void OnSelectionChanged(bool isSelected)
         {
             _isSelected = isSelected;
-            if (_isPlacing && !_isSelected)
-                StopEditPlacing();
         }
 
     }

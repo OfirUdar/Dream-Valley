@@ -7,8 +7,8 @@ namespace Game
 
         public GridDebug(IGrid grid)
         {
-            var rows = grid.GetRows();
-            var columns = grid.GetColumns();
+            var rows = grid.GetRowsAmount();
+            var columns = grid.GetColumnsAmount();
 
             for (int x = 0; x < rows; x++)
             {

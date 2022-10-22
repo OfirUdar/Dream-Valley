@@ -31,8 +31,7 @@ namespace Game.Shop.UI
         public void CreatePlacement(PlacementSO placement)
         {
             var placementInstance = _placementFactory.Create(placement.Pfb);
-            var selectable = placementInstance.GetComponentInChildren<ISelectable>();
-            selectable.Select();
+           // placementInstance.Select();
             gameObject.SetActive(false);
         }
 

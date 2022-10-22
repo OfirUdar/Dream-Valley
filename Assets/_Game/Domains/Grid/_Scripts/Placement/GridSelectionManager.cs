@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -8,11 +9,12 @@ namespace Game
     {
         private readonly IUserInput _input;
         private readonly CamPointerUtility _camPointer;
-        private ISelectable _currentSelected;
 
         private float _timer = 0;
 
-        public event Action<ISelectable> OnSelectionChanged;
+        public List<ISelectable> Selection { get; } = new List<ISelectable>();
+
+        public event Action<ISelectable> SelectionChanged;
 
         public GridSelectionManager(IUserInput input, CamPointerUtility camPointer)
         {
@@ -28,39 +30,45 @@ namespace Game
 
         private void CheckForUnselection()
         {
-            if (_input.IsPointerDown())
+            if (_input.IsPointerDown() && !_input.IsPointerOverUI())
             {
-                if (_input.IsPointerOverUI())
-                {
-                    if (_currentSelected != null)
-                        Unselect(_currentSelected);
-                    return;
-                }
                 _timer = 0;
             }
-            if (_input.IsPointerUp() && _currentSelected != null && _timer < 0.2f)
+            if (_input.IsPointerUp()
+                && Selection.Count > 0
+                && _timer < 0.1f)
             {
+                var selection = Selection[0];
+
                 var collider = _camPointer.RaycastPointer();
                 if (collider == null)
                 {
-                    Unselect(_currentSelected);
+                    Unselect(selection);
                     return;
                 }
                 if (collider.TryGetComponent(out ISelectable selectable))
                 {
-                    if (selectable != _currentSelected)
-                        Unselect(_currentSelected);
+                    if (selectable != selection)
+                        Unselect(selection);
                 }
             }
         }
 
         public bool TrySelect(ISelectable selectable)
         {
-            _currentSelected?.Unselect();
-            _currentSelected = selectable;
-            _currentSelected.Select();
+            if (Selection.Count > 0)
+            {
+                Selection[0].Unselect();
+                Selection[0] = selectable;
+            }
+            else
+            {
+                Selection.Add(selectable);
+            }
 
-            OnSelectionChanged?.Invoke(selectable);
+            Selection[0].Select();
+
+            SelectionChanged?.Invoke(selectable);
 
             return true;
         }
@@ -68,15 +76,18 @@ namespace Game
         public void Unselect(ISelectable selectable)
         {
             selectable.Unselect();
-            _currentSelected = null;
+            Selection.Remove(selectable);
 
-            OnSelectionChanged?.Invoke(null);
+            SelectionChanged?.Invoke(null);
 
         }
     }
+
+
     public interface ISelectionManager
     {
-        public event Action<ISelectable> OnSelectionChanged;
+        public List<ISelectable> Selection { get; }
+        public event Action<ISelectable> SelectionChanged;
         public bool TrySelect(ISelectable selectable);
         public void Unselect(ISelectable selectable);
     }

@@ -54,7 +54,15 @@ namespace Game
             GetIndexes(worldPosition, out int row, out int column);
             return CanPlace(row, column, width, height);
         }
-        public void PlaceObject(int row, int column, int width, int height, IPlaceable cell)
+        public bool CanPlace(IPlaceable cell)
+        {
+            return CanPlace(cell.Position,cell.Width, cell.Height);
+        }
+        public void Place(IPlaceable cell)
+        {
+            Place(cell.Position, cell.Width, cell.Height, cell);
+        }
+        public void Place(int row, int column, int width, int height, IPlaceable cell)
         {
             for (int r = row; r < row + width; r++)
             {
@@ -64,12 +72,12 @@ namespace Game
                 }
             }
         }
-        public void PlaceObject(Vector3 worldPosition, int width, int height, IPlaceable cell)
+        public void Place(Vector3 worldPosition, int width, int height, IPlaceable cell)
         {
             GetIndexes(worldPosition, out int row, out int column);
-            PlaceObject(row, column, width, height, cell);
+            Place(row, column, width, height, cell);
         }
-        public void RemoveObject(int row, int column, int width, int height)
+        public void Remove(int row, int column, int width, int height)
         {
             for (int r = row; r < row + width; r++)
             {
@@ -79,18 +87,22 @@ namespace Game
                 }
             }
         }
-
-        public void RemoveObject(Vector3 worldPosition, int width, int height)
+        public void Remove(Vector3 worldPosition, int width, int height)
         {
             GetIndexes(worldPosition, out int row, out int column);
-            RemoveObject(row, column, width, height);
+            Remove(row, column, width, height);
         }
+        public void Remove(IPlaceable cell)
+        {
+            Remove(cell.Position, cell.Width, cell.Height);
+        }
+
         #region GET
-        public int GetRows()
+        public int GetRowsAmount()
         {
             return _rows;
         }
-        public int GetColumns()
+        public int GetColumnsAmount()
         {
             return _columns;
         }
@@ -167,7 +179,7 @@ namespace Game
             return row >= 0 && column >= 0 && row < _rows && column < _columns;
         }
 
-       
+      
     }
 }
 

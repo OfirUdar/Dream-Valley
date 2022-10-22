@@ -4,10 +4,10 @@ using Zenject;
 
 namespace Game
 {
-    public class SelectGridObject : MonoBehaviour, ISelectable
+    public class SelectTrigger : MonoBehaviour, ISelectable
     {
         private ISelectionManager _selectionManager;
-
+        private float _timer;
         public bool IsSelected { get; private set; }
 
         public UnityEvent<bool> OnSelectionChanged;
@@ -18,12 +18,22 @@ namespace Game
             _selectionManager = selectionManager;
         }
 
-        public void OnPointerUp(float pressedTime)
+        private void OnMouseDown()
         {
-            if (pressedTime > 0.2f)
+            _timer = 0;
+        }
+        private void OnMouseUpAsButton()
+        {
+            if (_timer > 0.1f)
                 return;
             TriggerSelection();
         }
+
+        private void Update()
+        {
+            _timer += Time.deltaTime;
+        }
+       
 
         public void TriggerSelection()
         {

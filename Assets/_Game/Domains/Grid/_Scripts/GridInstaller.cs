@@ -22,6 +22,9 @@ namespace Game
                 .To<GridSelectionManager>()
                 .AsSingle().NonLazy();
 
+            Container.Bind<IDragController>()
+                .To<DragController>().AsSingle().NonLazy();
+
 
             Container.BindFactory
                 <Object, PlacementBehaviour, PlacementBehaviour.Factory>()
