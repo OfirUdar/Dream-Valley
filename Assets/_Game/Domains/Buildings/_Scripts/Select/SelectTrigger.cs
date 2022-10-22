@@ -6,16 +6,16 @@ namespace Game
 {
     public class SelectTrigger : MonoBehaviour, ISelectable
     {
-        private ISelectionManager _selectionManager;
+        private SelectionEventAggragator _selectionEventAggragator;
         private float _timer;
         public bool IsSelected { get; private set; }
 
         public UnityEvent<bool> OnSelectionChanged;
 
         [Inject]
-        public void Init(ISelectionManager selectionManager)
+        public void Init(SelectionEventAggragator selectionEventAggragator)
         {
-            _selectionManager = selectionManager;
+            _selectionEventAggragator = selectionEventAggragator;
         }
 
         private void OnMouseDown()
@@ -33,14 +33,13 @@ namespace Game
         {
             _timer += Time.deltaTime;
         }
-       
 
         public void TriggerSelection()
         {
             if (IsSelected)
-                _selectionManager.Unselect(this);
+                _selectionEventAggragator.Unselect(this);
             else
-                _selectionManager.TrySelect(this);
+                _selectionEventAggragator.RequestSelect(this);
         }
         public void Select()
         {

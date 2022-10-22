@@ -9,7 +9,6 @@ namespace Game
         [SerializeField] private MeshRenderer _editAreaRenderer;
         [SerializeField] private GameObject _idleArea;
         [Space]
-        [SerializeField] private GameObject _purchaseButtons;
         [SerializeField] private UdarCanvasGroup _approveActivator;
 
         [Space]
@@ -66,21 +65,14 @@ namespace Game
             _gfx.position = gfxPos;
             _editAreaRenderer.gameObject.SetActive(false);
             _idleArea.SetActive(true);
-
-            _purchaseButtons.SetActive(false);
-
         }
-        public void ChangeToEditMode(bool isAlreadyPlaced)
+        public void ChangeToEditMode()
         {
             var gfxPos = _gfx.position;
             gfxPos.y = 0.3f;
             _gfx.position = gfxPos;
             _editAreaRenderer.gameObject.SetActive(true);
              _idleArea.SetActive(false);
-
-            if (!isAlreadyPlaced)
-                _purchaseButtons.SetActive(true);
-
         }
     }
 }

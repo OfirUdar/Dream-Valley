@@ -1,31 +1,47 @@
 ﻿using Game.Camera;
 using UnityEngine;
+using Zenject;
 
 namespace Game
 {
-    public class DragController : IDragController
+    public class PurchaseDragController : IInitializable, ILateDisposable
     {
         private readonly IGrid _grid;
         private readonly CameraController _camController;
         private readonly CamPointerUtility _camPointer;
+        private readonly DragEventAggragator _dragEventAggragator;
 
         private Vector3 _offsetPosition;
         private Vector3 _placementStartPosition;
         private PlacementFacade _dragPlacement;
 
 
-        public DragController(IGrid grid,
+        public PurchaseDragController(IGrid grid,
             CameraController camController,
-            CamPointerUtility camPointer)
+            CamPointerUtility camPointer,
+            DragEventAggragator dragEventAggragator)
         {
             _grid = grid;
             _camController = camController;
             _camPointer = camPointer;
+            _dragEventAggragator = dragEventAggragator;
 
         }
 
+        public void Initialize()
+        {
+            _dragEventAggragator.StartDragRequested += OnStartDragRequested;
+            _dragEventAggragator.EndDragRequested += OnEndDragRequested;
+            _dragEventAggragator.DragRequested += OnDragRequested;
+        }
 
-        public void RequestStartDrag(PlacementFacade placeableFacade)
+        public void LateDispose()
+        {
+            _dragEventAggragator.StartDragRequested -= OnStartDragRequested;
+            _dragEventAggragator.EndDragRequested -= OnEndDragRequested;
+            _dragEventAggragator.DragRequested -= OnDragRequested;
+        }
+        public void OnStartDragRequested(PlacementFacade placeableFacade)
         {
             if (placeableFacade.Selectable.IsSelected)
             {
@@ -33,13 +49,13 @@ namespace Game
             }
 
         }
-        public void RequestEndDrag()
+        public void OnEndDragRequested()
         {
             if (_dragPlacement == null)
                 return;
             EndDrag();
         }
-        public void RequestDrag()
+        public void OnDragRequested()
         {
             if (_dragPlacement == null)
                 return;
@@ -63,21 +79,7 @@ namespace Game
         }
         private void EndDrag()
         {
-            var placement = _dragPlacement.Placeable;
-
-            if (_grid.CanPlace(placement))
-            {
-                _grid.Place(placement);
-            }
-            else
-            {
-                //Returns back to orignal place:
-                _grid.Place(_placementStartPosition, placement.Width, placement.Height, placement);
-                placement.Position = _placementStartPosition;
-            }
-
             _camController.SetActive(true);
-            _dragPlacement.Draggable.EndDrag();
             _dragPlacement = null;
         }
         private void Drag()
@@ -108,7 +110,6 @@ namespace Game
                 return pointerPoint - placeable.Position;
             return Vector3.zero;
         }
-
 
     }
 }

@@ -18,19 +18,13 @@ namespace Game
             Container.Bind<IGrid>().To<Grid>()
                 .AsSingle().NonLazy();
 
-            Container.Bind(typeof(ISelectionManager),typeof(ITickable))
-                .To<GridSelectionManager>()
-                .AsSingle().NonLazy();
-
-            Container.Bind<IDragController>()
-                .To<DragController>().AsSingle().NonLazy();
-
+            Container.Bind<SelectionEventAggragator>().ToSelf().AsSingle();
+            Container.Bind<DragEventAggragator>().ToSelf().AsSingle();
 
             Container.BindFactory
                 <Object, PlacementBehaviour, PlacementBehaviour.Factory>()
                 .FromFactory<PrefabFactory<PlacementBehaviour>>();
 
-            UnityEngine.SceneManagement.SceneManager.LoadScene("MainUI", UnityEngine.SceneManagement.LoadSceneMode.Additive);
         }
 
 

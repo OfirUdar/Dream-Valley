@@ -216,6 +216,8 @@ GameObject:
   m_Component:
   - component: {fileID: 281631645}
   - component: {fileID: 281631644}
+  - component: {fileID: 281631646}
+  - component: {fileID: 281631647}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -273,6 +275,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &281631646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281631643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4a121359035a224bb3bb08f619a2111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MainUI>k__BackingField:
+    _sceneOB: {fileID: 102900000, guid: 115d0ae5f06e06945b95210a30fbf342, type: 3}
+    _sceneName: MainUI
+    _scenePath: Assets/_Game/Scenes/MainUI.unity
+    _buildIndex: 1
+  <IdleEditState>k__BackingField:
+    _sceneOB: {fileID: 102900000, guid: 7da0cee34510e8f459bb5e9952b34e79, type: 3}
+    _sceneName: IdleEditState
+    _scenePath: Assets/_Game/Scenes/IdleEditState.unity
+    _buildIndex: 2
+  <PurchaseEditState>k__BackingField:
+    _sceneOB: {fileID: 102900000, guid: c3224967fa3c25f488f37b8e29bf506b, type: 3}
+    _sceneName: PurchaseEditState
+    _scenePath: Assets/_Game/Scenes/PurchaseEditState.unity
+    _buildIndex: 3
+--- !u!114 &281631647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281631643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 281631646}
+  _identifier: 
+  _useSceneContext: 0
+  _context: {fileID: 0}
+  _bindType: 0
 --- !u!1 &290464473
 GameObject:
   m_ObjectHideFlags: 0

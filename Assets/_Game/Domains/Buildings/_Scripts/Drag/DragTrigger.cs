@@ -6,7 +6,7 @@ namespace Game
 {
     public class DragTrigger : MonoBehaviour, IDraggable
     {
-        private IDragController _dragController;
+        private DragEventAggragator _dragEventAggragator;
         private PlacementFacade _placementFacade;
 
         public UnityEvent DragStarted;
@@ -14,9 +14,9 @@ namespace Game
         public UnityEvent<bool> Dragging; // bool - can place?
 
         [Inject]
-        public void Init(IDragController controller, PlacementFacade placementFacade)
+        public void Init(DragEventAggragator eventAggragator, PlacementFacade placementFacade)
         {
-            _dragController = controller;
+            _dragEventAggragator = eventAggragator;
             _placementFacade = placementFacade;
         }
         public void StartDrag()
@@ -34,16 +34,16 @@ namespace Game
 
         private void OnMouseDown()
         {
-            _dragController.RequestStartDrag(_placementFacade);
+            _dragEventAggragator.RequestStartDrag(_placementFacade);
         }
 
         private void OnMouseDrag()
         {
-            _dragController.RequestDrag();
+            _dragEventAggragator.RequestDrag();
         }
         private void OnMouseUp()
         {
-            _dragController.RequestEndDrag();
+            _dragEventAggragator.RequestEndDrag();
         }
     }
 }

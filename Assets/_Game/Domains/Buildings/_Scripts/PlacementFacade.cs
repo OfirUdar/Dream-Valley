@@ -4,15 +4,17 @@ namespace Game
 {
     public class PlacementFacade
     {
-        public IPlaceable Placeable { get; private set; }
-        public ISelectable Selectable { get; private set; }
-        [Inject] //injected like this in order to prevent ciruclar dependcanies
-        public IDraggable Draggable; 
+        //Injected like this in order to prevent ciruclar dependcanies
 
-        public PlacementFacade(IPlaceable placeable, ISelectable selectable)
-        {
-            Placeable = placeable;
-            Selectable = selectable;
-        }
+        [Inject]
+        public IPlaceable Placeable { get; private set; }
+        [Inject]
+        public ISelectable Selectable { get; private set; }
+        [Inject] 
+        public IDraggable Draggable { get; private set; }
+
+        [Inject]
+        public IPlaceApprover PlaceApprover{ get; private set; }
+
     }
 }

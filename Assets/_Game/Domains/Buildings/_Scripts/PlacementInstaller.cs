@@ -9,6 +9,8 @@ namespace Game.Placement
         [SerializeField] private PlacementBehaviour _placementBehaviour;
         [SerializeField] private SelectTrigger _selectTrigger;
         [SerializeField] private DragTrigger _dragTrigger;
+        [Space]
+        [SerializeField] private PlaceApprover _placeApprover;
 
         public override void InstallBindings()
         {
@@ -19,7 +21,8 @@ namespace Game.Placement
             Container.Bind<IPlaceable>().FromInstance(_placementBehaviour).AsSingle();
             Container.Bind<ISelectable>().FromInstance(_selectTrigger).AsSingle();
             Container.Bind<IDraggable>().FromInstance(_dragTrigger).AsSingle();
-           
+
+            Container.Bind<IPlaceApprover>().FromInstance(_placeApprover).AsSingle();
         }
 
     }

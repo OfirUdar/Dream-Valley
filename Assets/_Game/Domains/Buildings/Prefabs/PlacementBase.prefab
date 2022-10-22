@@ -163,6 +163,7 @@ MonoBehaviour:
   _placementBehaviour: {fileID: 9037278917788359320}
   _selectTrigger: {fileID: 5166525549515891269}
   _dragTrigger: {fileID: 8259464380241181342}
+  _placeApprover: {fileID: 309457115804908762}
 --- !u!1 &7950982976392927354
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +249,6 @@ MonoBehaviour:
   _gfx: {fileID: 7032601529968261214}
   _editAreaRenderer: {fileID: 7542141111537084422}
   _idleArea: {fileID: 8578733098007400037}
-  _purchaseButtons: {fileID: 2336469185478269991}
   _approveActivator: {fileID: 7490917886115710615}
   _availableColor: {r: 0, g: 1, b: 0, a: 1}
   _unavailableColor: {r: 1, g: 0, b: 0, a: 1}
@@ -311,7 +311,7 @@ MonoBehaviour:
       - m_Target: {fileID: 304062368225940441}
         m_TargetAssemblyTypeName: Game.EditPlaceVisual, Assembly-CSharp
         m_MethodName: ChangeToEditMode
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -491,76 +491,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7032601529968261214}
     m_Modifications:
-    - target: {fileID: 697156979612159395, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 697156979612159395, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 697156979612159395, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 697156979612159395, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 697156979612159395, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Destroy
-      objectReference: {fileID: 0}
-    - target: {fileID: 697156979612159395, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Game.PlaceGridObject, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 697156979612159395, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2524940853734220244, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2524940853734220244, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2524940853734220244, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2524940853734220244, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2524940853734220244, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Place
-      objectReference: {fileID: 0}
-    - target: {fileID: 2524940853734220244, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Game.PlaceGridObject, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2524940853734220244, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 5294556701864309515, guid: 88a1ab870fd64fa448cac1b61c0139a5,
         type: 3}
       propertyPath: m_Pivot.x
@@ -673,12 +603,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88a1ab870fd64fa448cac1b61c0139a5, type: 3}
---- !u!1 &2336469185478269991 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5426321833011366029, guid: 88a1ab870fd64fa448cac1b61c0139a5,
+--- !u!114 &309457115804908762 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8028103074575181936, guid: 88a1ab870fd64fa448cac1b61c0139a5,
     type: 3}
   m_PrefabInstance: {fileID: 7719984144431895722}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33fcab26f75d6e4d958d6a0ec0308a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2474991781818394529 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5294556701864309515, guid: 88a1ab870fd64fa448cac1b61c0139a5,
