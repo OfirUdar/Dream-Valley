@@ -11,10 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Game/Scenes/MainUI.unity
     guid: 115d0ae5f06e06945b95210a30fbf342
-  - enabled: 1
-    path: Assets/_Game/Scenes/IdleEditState.unity
-    guid: 7da0cee34510e8f459bb5e9952b34e79
-  - enabled: 1
-    path: Assets/_Game/Scenes/PurchaseEditState.unity
-    guid: c3224967fa3c25f488f37b8e29bf506b
   m_configObjects: {}

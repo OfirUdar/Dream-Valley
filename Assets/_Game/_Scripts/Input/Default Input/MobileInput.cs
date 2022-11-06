@@ -30,7 +30,13 @@ namespace Game
 
         public bool IsPointerOverUI()
         {
-            return EventSystem.current.IsPointerOverGameObject(0);
+            for (int i = 0; i < Input.touches.Length; i++)
+            {
+                if (EventSystem.current.IsPointerOverGameObject(i))
+                    return true;
+            }
+            return false;
+           
         }
     }
 }

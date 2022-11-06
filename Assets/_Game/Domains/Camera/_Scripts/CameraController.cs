@@ -1,8 +1,12 @@
-﻿using Zenject;
+﻿using DG.Tweening;
+using System.Collections;
+using System.Threading.Tasks;
+using UnityEngine;
+using Zenject;
 
 namespace Game.Camera
 {
-    public class CameraController : ITickable
+    public class CameraController : ICameraController, ITickable
     {
         private readonly CameraMoveBase _moveHandler;
         private readonly CameraZoomBase _zoomHandler;
@@ -10,6 +14,7 @@ namespace Game.Camera
 
         private bool _canMove;
         private bool _canZoom;
+
         public CameraController(CameraMoveBase moveHandler, CameraZoomBase zoomHandler)
         {
             _moveHandler = moveHandler;
@@ -39,6 +44,30 @@ namespace Game.Camera
         public void SetCanZoom(bool isCanZoom)
         {
             _canZoom = isCanZoom;
+        }
+
+
+     
+        public async Task FocusAsync(Vector3 position, float zoom)
+        {
+            //Saves the last permissions and activate it at the end
+            bool canMove = _canMove;
+            bool canZoom = _canZoom;
+
+            SetActive(false);
+
+            if (_zoomHandler.IsCurrentLarger(zoom))
+                await _zoomHandler.FocusAsync(15f, 0.3f, Ease.OutSine);
+
+            var tasks = new Task[2];
+            tasks[0] = _moveHandler.FocusAsync(position);
+            tasks[1] = _zoomHandler.FocusAsync(zoom);
+
+            await Task.WhenAll(tasks);
+
+            SetCanMove(canMove);
+            SetCanZoom(canZoom);
+
         }
     }
 }

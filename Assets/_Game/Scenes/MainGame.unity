@@ -237,11 +237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableObjectInstallers:
-  - {fileID: 11400000, guid: a07f3371e44cab746824660c56d3d63a, type: 2}
+  _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 2115710341}
-  - {fileID: 1522179284}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -284,24 +282,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 281631643}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4a121359035a224bb3bb08f619a2111, type: 3}
+  m_Script: {fileID: 11500000, guid: c8ab8d36a20602149b89b3dd4b5379ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <MainUI>k__BackingField:
     _sceneOB: {fileID: 102900000, guid: 115d0ae5f06e06945b95210a30fbf342, type: 3}
-    _sceneName: MainUI
-    _scenePath: Assets/_Game/Scenes/MainUI.unity
+    _name: MainUI
+    _path: Assets/_Game/Scenes/MainUI.unity
     _buildIndex: 1
-  <IdleEditState>k__BackingField:
-    _sceneOB: {fileID: 102900000, guid: 7da0cee34510e8f459bb5e9952b34e79, type: 3}
-    _sceneName: IdleEditState
-    _scenePath: Assets/_Game/Scenes/IdleEditState.unity
-    _buildIndex: 2
-  <PurchaseEditState>k__BackingField:
-    _sceneOB: {fileID: 102900000, guid: c3224967fa3c25f488f37b8e29bf506b, type: 3}
-    _sceneName: PurchaseEditState
-    _scenePath: Assets/_Game/Scenes/PurchaseEditState.unity
-    _buildIndex: 3
 --- !u!114 &281631647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,7 +416,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316620168}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000047683716, y: 0.0000019073486, z: -10.000002}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0000001, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1741,6 +1729,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1522179286}
+  - component: {fileID: 1522179287}
   - component: {fileID: 1522179284}
   m_Layer: 0
   m_Name: CameraInstaller
@@ -1762,6 +1751,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 316620170}
+  _pcSettings: {fileID: 11400000, guid: a2eac7c38d0f5214ba77da6627c5b0d3, type: 2}
+  _mobileSettings: {fileID: 11400000, guid: a07f3371e44cab746824660c56d3d63a, type: 2}
 --- !u!4 &1522179286
 Transform:
   m_ObjectHideFlags: 0
@@ -1777,6 +1768,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
+--- !u!114 &1522179287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522179283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 1522179284}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
 --- !u!1 &1617170319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2205,6 +2214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -2370,7 +2380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909408417716ca439221937461e542f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingSO: {fileID: 11400000, guid: ccf4994748b87f2488cc1ac1dfd95021, type: 2}
   _settings: {fileID: 11400000, guid: 86aeee9e5876f0543bf136ab638ea0e9, type: 2}
 --- !u!4 &2115710342
 Transform:

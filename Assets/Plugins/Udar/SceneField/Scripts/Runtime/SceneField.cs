@@ -6,17 +6,17 @@ namespace Udar.SceneField
     [System.Serializable]
     public class SceneField : ISerializationCallbackReceiver
     {
-         [SerializeField] private Object _sceneOB;
+        [SerializeField] private Object _sceneOB;
 
 
-        [SerializeField] private string _sceneName;
-        [SerializeField] private string _scenePath;
+        [SerializeField] private string _name;
+        [SerializeField] private string _path;
         [SerializeField] private int _buildIndex;
-        public bool HasScene => !string.IsNullOrEmpty(_sceneName);
+        public bool HasScene => !string.IsNullOrEmpty(_name);
         /// <summary>
         /// This returns a string equals to the Scene name
         /// </summary>
-        public string SceneName => _sceneName;
+        public string Name => _name;
         /// <summary>
         /// This returns a int (the index of the scene in the build settings) if it won't find - it will return -1
         /// </summary>
@@ -25,7 +25,7 @@ namespace Udar.SceneField
         /// This returns a string represent the scene path in Unity project folders.
         /// If scene is not found in build settings -> it returns ""
         /// </summary>
-        public string ScenePath => _scenePath;
+        public string Path => _path;
 
 
 
@@ -56,12 +56,12 @@ namespace Udar.SceneField
         {
             if (_sceneOB != null)
             {
-                _sceneName = _sceneOB.name;
-                _buildIndex = GetBuildIndexFromName(_sceneName);
-                _scenePath = SceneUtility.GetScenePathByBuildIndex(_buildIndex);
+                _name = _sceneOB.name;
+                _buildIndex = GetBuildIndexFromName(_name);
+                _path = SceneUtility.GetScenePathByBuildIndex(_buildIndex);
             }
             else
-                _sceneName = null;
+                _name = null;
 
         }
     }

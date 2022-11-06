@@ -1,11 +1,14 @@
 ﻿using Udar;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Game.Camera
 {
     public class TouchCameraMove : CameraMoveBase
     {
+        private const float STOP_PAN_VELOCITY = 0.0025f;
+        private Vector3 _panVelocity;
+        private bool _startInertia;
+
         public TouchCameraMove(Transform camTran, IUserInput input, MoveSettings moveSettings) : base(camTran, input, moveSettings)
         {
         }
@@ -21,7 +24,24 @@ namespace Game.Camera
                     var nextPos = _camTran.position + delta;
                     nextPos = ConvertToValidPosition(nextPos);
                     Move(nextPos);
+
+                    _panVelocity = delta;
                 }
+            }
+            if (_input.IsPointerUp())
+            {
+                _startInertia = true;
+            }
+
+            if (_startInertia)
+            {
+                if (_panVelocity.sqrMagnitude < STOP_PAN_VELOCITY)
+                    _startInertia = false;
+
+                _panVelocity = Vector3.Lerp(_panVelocity, Vector3.zero, _settings.InertiaInterpolation);
+                var nextPos = _camTran.position + _panVelocity;
+                nextPos = ConvertToValidPosition(nextPos);
+                Move(nextPos);
             }
 
         }

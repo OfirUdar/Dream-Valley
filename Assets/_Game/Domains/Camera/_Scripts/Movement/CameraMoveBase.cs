@@ -1,13 +1,14 @@
-﻿using Udar;
+﻿using DG.Tweening;
+using System.Threading.Tasks;
+using Udar;
 using UnityEngine;
-
 namespace Game.Camera
 {
     public abstract class CameraMoveBase
     {
         protected readonly Transform _camTran;
         protected readonly IUserInput _input;
-        private readonly MoveSettings _settings;
+        protected readonly MoveSettings _settings;
 
         public abstract void Tick();
 
@@ -33,7 +34,15 @@ namespace Game.Camera
         }
         protected void Move(Vector3 nextPos)
         {
-            _camTran.position = Vector3.Lerp(_camTran.position, nextPos, .8f);
+            _camTran.position = Vector3.Lerp(_camTran.position, nextPos, _settings.LerpAmount * Time.deltaTime);
+        }
+
+
+        public async Task FocusAsync(Vector3 nextPosition, float duration = 0.5f, Ease ease = Ease.InOutSine)
+        {
+            var tween = _camTran.DOMove(nextPosition, duration).SetEase(ease).Play();
+            while (tween.IsPlaying())
+                await Task.Yield();
         }
 
     }
