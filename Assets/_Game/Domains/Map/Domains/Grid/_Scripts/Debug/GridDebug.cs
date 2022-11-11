@@ -5,7 +5,7 @@ namespace Game.Map.Grid
     public class GridDebug
     {
 
-        public GridDebug(IGrid grid)
+        public GridDebug(IMapGrid grid)
         {
             var rows = grid.GetRowsAmount();
             var columns = grid.GetColumnsAmount();

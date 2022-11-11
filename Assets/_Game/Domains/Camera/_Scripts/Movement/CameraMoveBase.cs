@@ -22,7 +22,7 @@ namespace Game.Camera
         protected Vector3 GetWorldPointerPosition()
         {
             var pointerPos = _input.GetPointerPosition();
-            var position = CameraUtils.Cam.ScreenToWorldPoint(pointerPos);
+            var position = CameraUtils.Main.ScreenToWorldPoint(pointerPos);
             return position;
         }
         protected Vector3 ConvertToValidPosition(Vector3 position)
@@ -40,9 +40,7 @@ namespace Game.Camera
 
         public async Task FocusAsync(Vector3 nextPosition, float duration = 0.5f, Ease ease = Ease.InOutSine)
         {
-            var tween = _camTran.DOMove(nextPosition, duration).SetEase(ease).Play();
-            while (tween.IsPlaying())
-                await Task.Yield();
+            await _camTran.DOMove(nextPosition, duration).SetEase(ease).AsyncWaitForCompletion();
         }
 
     }

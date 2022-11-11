@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Map.Grid
 {
-    public class Grid : IGrid
+    public class Grid : IMapGrid
     {
         private readonly IMapElement[,] _cells;
 
@@ -29,7 +29,7 @@ namespace Game.Map.Grid
             if (!IsOnRange(row, column))
                 return false;
 
-            return _cells[row, column]==null;
+            return _cells[row, column] == null;
         }
         public bool IsEmpty(Vector3 worldPosition)
         {
@@ -56,7 +56,7 @@ namespace Game.Map.Grid
         }
         public bool CanPlace(IMapElement cell)
         {
-            return CanPlace(cell.Position,cell.Width, cell.Height);
+            return CanPlace(cell.Position, cell.Width, cell.Height);
         }
         public void Place(IMapElement cell)
         {
@@ -68,7 +68,7 @@ namespace Game.Map.Grid
             {
                 for (int c = column; c < column + height; c++)
                 {
-                   SetValue(r, c, cell);
+                    SetValue(r, c, cell);
                 }
             }
         }
@@ -132,6 +132,8 @@ namespace Game.Map.Grid
         {
             return new Vector3(row, 0, column) * _cellSize - _offset;
         }
+       
+
 
         public Vector3 WorldPositionToGridPosition(Vector3 worldPosition)
         {
@@ -179,7 +181,7 @@ namespace Game.Map.Grid
             return row >= 0 && column >= 0 && row < _rows && column < _columns;
         }
 
-      
+
     }
 }
 

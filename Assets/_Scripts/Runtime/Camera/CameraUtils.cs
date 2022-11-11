@@ -5,7 +5,7 @@ namespace Udar
     public static class CameraUtils
     {
         private static Camera _mainCamera;
-        public static Camera Cam
+        public static Camera Main
         {
             get
             {

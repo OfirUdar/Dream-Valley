@@ -32,9 +32,7 @@
       
         public async Task FocusAsync(float nextZoom, float duration = 0.5f, Ease ease = Ease.InOutSine)
         {
-            var tween = _cam.DOOrthoSize(nextZoom, duration).SetEase(ease).Play();
-            while (tween.IsPlaying())
-                await Task.Yield();
+            await _cam.DOOrthoSize(nextZoom, duration).SetEase(ease).AsyncWaitForCompletion();
         }
     }
 }

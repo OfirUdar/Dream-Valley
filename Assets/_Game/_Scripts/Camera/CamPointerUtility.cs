@@ -16,7 +16,7 @@ namespace Game
 
         public bool RaycastPointer(out Vector3 point)
         {
-            var ray = CameraUtils.Cam.ScreenPointToRay(_input.GetPointerPosition());
+            var ray = CameraUtils.Main.ScreenPointToRay(_input.GetPointerPosition());
 
             if(_planeZ.Raycast(ray, out float enter))
             {
@@ -29,7 +29,7 @@ namespace Game
         }
         public Collider RaycastPointer()
         {
-            var ray = CameraUtils.Cam.ScreenPointToRay(_input.GetPointerPosition());
+            var ray = CameraUtils.Main.ScreenPointToRay(_input.GetPointerPosition());
 
             if (Physics.Raycast(ray,out RaycastHit hit, Mathf.Infinity))
             {

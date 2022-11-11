@@ -8,7 +8,7 @@ namespace Udar
 
         private void Awake()
         {
-            _camTransform = CameraUtils.Cam.transform;
+            _camTransform = CameraUtils.Main.transform;
         }
         private void LateUpdate()
         {

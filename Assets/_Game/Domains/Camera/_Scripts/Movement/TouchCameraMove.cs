@@ -5,7 +5,7 @@ namespace Game.Camera
 {
     public class TouchCameraMove : CameraMoveBase
     {
-        private const float STOP_PAN_VELOCITY = 0.0025f;
+        private const float STOP_PAN_VELOCITY = 0.008f;
         private Vector3 _panVelocity;
         private bool _startInertia;
 
@@ -27,6 +27,8 @@ namespace Game.Camera
 
                     _panVelocity = delta;
                 }
+                else if (touch.phase == TouchPhase.Stationary)
+                    _panVelocity = Vector3.zero;
             }
             if (_input.IsPointerUp())
             {
@@ -52,8 +54,8 @@ namespace Game.Camera
                 return Vector3.zero;
 
             //delta
-            var beforeTouchWorldPos = CameraUtils.Cam.ScreenToWorldPoint(touch.position - touch.deltaPosition);
-            var currentTouchWorldPos = CameraUtils.Cam.ScreenToWorldPoint(touch.position);
+            var beforeTouchWorldPos = CameraUtils.Main.ScreenToWorldPoint(touch.position - touch.deltaPosition);
+            var currentTouchWorldPos = CameraUtils.Main.ScreenToWorldPoint(touch.position);
 
             return beforeTouchWorldPos - currentTouchWorldPos;
         }

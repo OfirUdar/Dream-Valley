@@ -4,7 +4,7 @@ namespace Game.Camera
 {
     public class MouseCameraMove : CameraMoveBase
     {
-        private const float STOP_PAN_VELOCITY = 0.00025f;
+        private const float STOP_PAN_VELOCITY = 0.0008f;
 
         private bool _isDragging;
         private Vector3 _dragOrigin;
