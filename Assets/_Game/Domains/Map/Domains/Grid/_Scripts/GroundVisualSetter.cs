@@ -8,7 +8,7 @@ namespace Game.Map.Grid
         [SerializeField] private MeshRenderer _gridPlane;
 
         [Inject]
-        public void Init(GridSettings settings)
+        public void Init(GridSettingsSO settings)
         {
             var _rows = settings.Rows;
             var _columns = settings.Columns;

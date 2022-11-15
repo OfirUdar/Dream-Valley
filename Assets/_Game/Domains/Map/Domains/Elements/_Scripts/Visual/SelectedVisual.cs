@@ -25,15 +25,16 @@ namespace Game.Map.Element
                 material
                     .DOFade(_selectedOpacity, _duration)
                     .SetLoops(-1, LoopType.Yoyo)
-                    .SetEase(Ease.OutSine);
+                    .SetEase(Ease.OutSine).Play();
             }
         }
         public void Unselect()
         {
             foreach (var renderer in _renderers)
             {
+                renderer.material.DOPause();
+                renderer.material.DORewind();
                 renderer.material.DOKill();
-                renderer.material.DOFade(1f, 0f);
             }
         }
 

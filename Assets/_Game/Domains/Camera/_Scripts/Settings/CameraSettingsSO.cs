@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Camera
 {
-    [CreateAssetMenu(fileName = "Camera Settings", menuName = "Camera/Settings", order = 0)]
+    [CreateAssetMenu(fileName = "Camera Settings", menuName = "Game/Camera/Settings", order = 0)]
     public class CameraSettingsSO : ScriptableObject
     {
         [SerializeField] private MoveSettings _moveSettings;

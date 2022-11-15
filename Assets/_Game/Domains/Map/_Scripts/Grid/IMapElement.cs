@@ -2,7 +2,7 @@
 {
     public interface IMapElement : IPlaceable, ISelectable, IDraggable
     {
-        
+        public void Destroy();
     }
 
 

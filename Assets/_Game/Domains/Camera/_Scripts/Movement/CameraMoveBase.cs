@@ -40,7 +40,7 @@ namespace Game.Camera
 
         public async Task FocusAsync(Vector3 nextPosition, float duration = 0.5f, Ease ease = Ease.InOutSine)
         {
-            await _camTran.DOMove(nextPosition, duration).SetEase(ease).AsyncWaitForCompletion();
+            await _camTran.DOMove(nextPosition, duration).SetEase(ease).Play().AsyncWaitForCompletion();
         }
 
     }

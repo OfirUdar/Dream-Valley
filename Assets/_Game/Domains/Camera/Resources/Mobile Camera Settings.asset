@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mobile Camera Settings
   m_EditorClassIdentifier: 
   _moveSettings:
-    <LerpAmount>k__BackingField: 20
+    <LerpAmount>k__BackingField: 30
     <InertiaInterpolation>k__BackingField: 0.05
     <HorizontalLimits>k__BackingField: {x: -12, y: 12}
     <VerticalLimits>k__BackingField: {x: -6, y: 6}

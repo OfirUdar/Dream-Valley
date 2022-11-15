@@ -6,8 +6,11 @@ namespace Game.Shop
 {
     public class ElementSpawner 
     {
-      
-
+        //private PrefabFactory _factory;
+        //public void S()
+        //{
+        //    PrefabFactory.
+        //}
     }
 }
 

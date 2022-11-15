@@ -37,17 +37,13 @@ namespace Game.Map.Element
 
         public void ChangeToIdleMode()
         {
-            var gfxPos = _gfx.position;
-            gfxPos.y = 0;
-            _gfx.position = gfxPos;
+            _gfx.localScale = Vector3.one;
             _editAreaRenderer.gameObject.SetActive(false);
             _idleArea.SetActive(true);
         }
         public void ChangeToEditMode()
         {
-            var gfxPos = _gfx.position;
-            gfxPos.y = 0.3f;
-            _gfx.position = gfxPos;
+            _gfx.localScale = Vector3.one * 0.95f;
             _editAreaRenderer.gameObject.SetActive(true);
             _idleArea.SetActive(false);
         }

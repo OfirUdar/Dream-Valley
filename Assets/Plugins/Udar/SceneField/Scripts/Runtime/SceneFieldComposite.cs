@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-namespace Udar.SceneField
+namespace Udar.SceneManager
 {
     [Serializable]
     public class SceneFieldComposite

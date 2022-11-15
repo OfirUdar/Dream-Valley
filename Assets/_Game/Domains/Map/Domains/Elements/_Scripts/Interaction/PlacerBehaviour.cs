@@ -5,14 +5,11 @@ namespace Game.Map.Element
 {
     public class PlacerBehaviour : MonoBehaviour, IPlaceable
     {
-
         private MapElementData _mapElementData;
         private Vector3 _size;
 
         public int Width => _mapElementData.Width;
-
         public int Height => _mapElementData.Height;
-
         public Vector3 Position
         {
             get
@@ -26,7 +23,7 @@ namespace Game.Map.Element
         }
 
         [Inject]
-        public void Init(MapElementData mapElementData, GridSettings gridSettings)
+        public void Init(MapElementData mapElementData, GridSettingsSO gridSettings)
         {
             _mapElementData = mapElementData;
 

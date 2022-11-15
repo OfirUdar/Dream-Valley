@@ -1,6 +1,7 @@
 using System;
 using Udar;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Game.Map.Element
 {
@@ -35,6 +36,8 @@ namespace Game.Map.Element
         {
             if (!_isDragging)
             {
+                if (Application.isMobilePlatform && Input.touchCount > 1) //Need to change it to more clean way :-)
+                    return;
                 var currentPosition = CameraUtils.Main.ScreenToWorldPoint(Input.mousePosition);
                 if ((currentPosition - _startDragPosition).sqrMagnitude > 0.05f)
                 {

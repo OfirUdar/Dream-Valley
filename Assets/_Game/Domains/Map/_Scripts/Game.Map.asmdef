@@ -3,7 +3,8 @@
     "rootNamespace": "",
     "references": [
         "Udar",
-        "Game"
+        "Game",
+        "Zenject"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

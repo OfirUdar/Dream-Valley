@@ -12,7 +12,7 @@ namespace Game.Map.Grid
         private readonly Vector3 _offset;
 
 
-        public Grid(GridSettings settings)
+        public Grid(GridSettingsSO settings)
         {
             _cells = new IMapElement[settings.Rows, settings.Columns];
 

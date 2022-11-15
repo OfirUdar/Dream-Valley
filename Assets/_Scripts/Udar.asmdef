@@ -1,7 +1,9 @@
 {
     "name": "Udar",
     "rootNamespace": "Udar",
-    "references": [],
+    "references": [
+        "GUID:53703901cd099f2448abb43172e1cc86"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

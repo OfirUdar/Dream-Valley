@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Udar.SceneField
+namespace Udar.SceneManager
 {
     [System.Serializable]
     public class SceneField : ISerializationCallbackReceiver
@@ -31,7 +31,7 @@ namespace Udar.SceneField
 
         private int GetBuildIndexFromName(string name)
         {
-            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+            for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings; i++)
             {
                 string buildIndexName = GetNameFromIndex(i);
                 if (buildIndexName == name)

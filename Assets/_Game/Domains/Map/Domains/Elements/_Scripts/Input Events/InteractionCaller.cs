@@ -7,15 +7,19 @@ namespace Game.Map.Element
         private readonly IMapElement _mapElement;
         private readonly PointerEvents _pointerEvents;
         private readonly SelectionManager _selectionManager;
-        private readonly DragManager _dragManager;
+        private readonly IDragManager _dragManager;
+
+        private readonly IUserInput _input;
 
         public InteractionCaller(IMapElement mapElement, PointerEvents pointerEvents,
-            SelectionManager selectionManager, DragManager dragManager)
+            SelectionManager selectionManager, IDragManager dragManager,IUserInput input)
         {
             _mapElement = mapElement;
             _pointerEvents = pointerEvents;
             _selectionManager = selectionManager;
             _dragManager = dragManager;
+
+            _input = input;
         }
 
         public void Initialize()
@@ -38,12 +42,18 @@ namespace Game.Map.Element
 
         private void OnPoinerUpAsButton()
         {
+            if (_input.IsPointerOverUI())
+                return;
+
             _selectionManager.RequestSelect(_mapElement);
         }
 
      
         private void OnPointerStartDrag()
         {
+            if (_input.IsPointerOverUI())
+                return;
+
             _dragManager.RequestStartDrag(_mapElement);
         }
         private void OnPointerEndDrag()

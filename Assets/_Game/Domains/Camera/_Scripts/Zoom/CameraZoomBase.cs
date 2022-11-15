@@ -32,7 +32,7 @@
       
         public async Task FocusAsync(float nextZoom, float duration = 0.5f, Ease ease = Ease.InOutSine)
         {
-            await _cam.DOOrthoSize(nextZoom, duration).SetEase(ease).AsyncWaitForCompletion();
+            await _cam.DOOrthoSize(nextZoom, duration).SetEase(ease).Play().AsyncWaitForCompletion();
         }
     }
 }

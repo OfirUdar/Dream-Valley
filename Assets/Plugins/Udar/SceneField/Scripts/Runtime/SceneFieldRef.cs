@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Udar.SceneField
+namespace Udar.SceneManager
 {
     public class SceneFieldRef : MonoBehaviour
     {
