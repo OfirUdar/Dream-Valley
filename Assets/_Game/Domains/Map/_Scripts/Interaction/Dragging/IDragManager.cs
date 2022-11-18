@@ -6,6 +6,9 @@
         public void RequestEndDrag();
         public void RequestDrag();
 
+        public void ChangeToExistElementDragger();
+        public void ChangeToNewElementDragger();
+
     }
 
 }

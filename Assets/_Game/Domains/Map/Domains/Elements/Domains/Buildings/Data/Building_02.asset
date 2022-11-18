@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca92a0f999a921547aa657254dedad3e, type: 3}
   m_Name: Building_02
   m_EditorClassIdentifier: 
-  <Pfb>k__BackingField: {fileID: 0}
+  <Pfb>k__BackingField: {fileID: 3054384207172757318, guid: b549b6e04d039194ea74ecffbd5f271b,
+    type: 3}
   <Data>k__BackingField:
     <Name>k__BackingField: Wider test
     <Description>k__BackingField: 

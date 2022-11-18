@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Game.Map.Element
 {
@@ -7,17 +8,21 @@ namespace Game.Map.Element
         private readonly IPlaceable _placer;
         private readonly ISelectable _selector;
         private readonly IDraggable _dragger;
+        private readonly IPlaceApprover _placeApprover;
         private readonly GameObject _elementObject;
+
+
 
         public MapElement(IPlaceable placer,
             ISelectable selector,
             IDraggable dragger,
+            IPlaceApprover placeApprover,
             GameObject elementObject)
         {
             _placer = placer;
             _selector = selector;
             _dragger = dragger;
-
+            _placeApprover = placeApprover;
             _elementObject = elementObject;
         }
 
@@ -32,6 +37,7 @@ namespace Game.Map.Element
 
         #region Selection
         public bool IsSelected => _selector.IsSelected;
+
 
         public void Select()
         {
@@ -58,10 +64,17 @@ namespace Game.Map.Element
         }
         #endregion
 
+        #region Place Approver
+        public IPlaceApprover PlaceApprover => _placeApprover;
+
+        #endregion
+
 
         public void Destroy()
         {
             GameObject.Destroy(_elementObject);
         }
+
+
     }
 }

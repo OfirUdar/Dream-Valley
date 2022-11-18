@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace Game.Map
 {
     public class ExistDragState : DraggerStateBase
     {
+      
+
         private Vector3 _startPosition;
 
         public ExistDragState(IMapGrid grid, ICameraController cameraController, CamPointerUtility camPointerUtility, SelectionManager selectionManager) : base(grid, cameraController, camPointerUtility, selectionManager)
@@ -16,9 +19,16 @@ namespace Game.Map
             _grid.Remove(_currentElement);
         }
 
-        public override void OnDragEnded(bool hasPlaced)
+        public override void OnDragEnded(bool canPlace)
         {
+            _currentElement.EndDrag(canPlace);
 
+            if (canPlace)
+            {
+                _grid.Place(_currentElement);
+                _currentElement = null;
+            }
+            
         }
         public override void OnCanceled()
         {

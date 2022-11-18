@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5655066838311473720}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.422, z: 0}
-  m_LocalScale: {x: 3.2, y: 0.72, z: 1.6}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
+  m_LocalScale: {x: 3.2, y: 1.2, z: 3.14}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6413159740222377640}
@@ -94,7 +94,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _elementSO
       value: 
-      objectReference: {fileID: 11400000, guid: 064259f17ac7c794c8b6884f84cc851c,
+      objectReference: {fileID: 11400000, guid: 0a36d8bf20861584da2903629be9cbc5,
         type: 2}
     - target: {fileID: 3520857174933889916, guid: e65a42722264d0640b749d48cf10b91b,
         type: 3}
@@ -161,10 +161,20 @@ PrefabInstance:
       propertyPath: _approveButton
       value: 
       objectReference: {fileID: 882159538014267424}
+    - target: {fileID: 7931847128607773800, guid: e65a42722264d0640b749d48cf10b91b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931847128607773800, guid: e65a42722264d0640b749d48cf10b91b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8101278497845708780, guid: e65a42722264d0640b749d48cf10b91b,
         type: 3}
       propertyPath: m_Name
-      value: Machine_Coins2
+      value: Machine_Coins3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e65a42722264d0640b749d48cf10b91b, type: 3}

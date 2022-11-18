@@ -161,11 +161,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Machine_Coins
       objectReference: {fileID: 0}
-    - target: {fileID: 8785755600692656995, guid: e65a42722264d0640b749d48cf10b91b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e65a42722264d0640b749d48cf10b91b, type: 3}
 --- !u!4 &266656875829152936 stripped

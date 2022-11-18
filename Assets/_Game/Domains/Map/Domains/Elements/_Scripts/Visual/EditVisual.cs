@@ -17,15 +17,6 @@ namespace Game.Map.Element
         [Space]
         [SerializeField] private UdarCanvasGroup _approveButton;
 
-        private void OnEnable()
-        {
-            _approveButton.GetComponent<Button>().onClick.AddListener(OnUIApproved);
-        }
-
-        private void OnDisable()
-        {
-            _approveButton.GetComponent<Button>().onClick.RemoveListener(OnUIApproved);
-        }
 
         public void SetPlaceAvailbility(bool isAvailable)
         {
@@ -49,10 +40,7 @@ namespace Game.Map.Element
         }
 
 
-        private void OnUIApproved()
-        {
-            
-        }
+
     }
 
 

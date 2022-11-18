@@ -14,6 +14,7 @@ namespace Game.Map.Element
         [Space]
         [SerializeField] private SelectedVisual _selectedVisual;
         [SerializeField] private EditVisual _editVisual;
+        [SerializeField] private PlaceApprover _placeApprover;
         [Space]
         [SerializeField] private PlacerBehaviour _placerBehaviour;
         [SerializeField] private PointerEvents _pointerEvents;
@@ -22,9 +23,6 @@ namespace Game.Map.Element
 
         public override void InstallBindings()
         {
-            Container.BindFactory
-               <Object, MapElementBehaviour, MapElementBehaviour.Factory>()
-               .FromFactory<PrefabFactory<MapElementBehaviour>>();
 
             Container.Bind<MapElementData>().FromInstance(_elementSO.Data);
 
@@ -40,6 +38,7 @@ namespace Game.Map.Element
         {
             Container.Bind<ISelectVisual>().FromInstance(_selectedVisual).AsSingle();
             Container.Bind<IEditVisual>().FromInstance(_editVisual).AsSingle();
+            Container.Bind<IPlaceApprover>().FromInstance(_placeApprover).AsSingle();
 
             Container.Bind<IPlaceable>().FromInstance(_placerBehaviour).AsSingle();
             Container.Bind<IDraggable>().To<Dragger>().AsSingle();

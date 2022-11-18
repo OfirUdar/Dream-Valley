@@ -732,7 +732,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7553880411937342275}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8491282845890876443}
+        m_TargetAssemblyTypeName: Game.Shop.UI.ElementCardUI, Game.Shop
+        m_MethodName: OnElementClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7553880411937342272
 MonoBehaviour:
   m_ObjectHideFlags: 0

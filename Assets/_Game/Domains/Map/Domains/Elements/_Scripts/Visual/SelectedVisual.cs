@@ -32,6 +32,9 @@ namespace Game.Map.Element
         {
             foreach (var renderer in _renderers)
             {
+                if (renderer == null)
+                    return;
+
                 renderer.material.DOPause();
                 renderer.material.DORewind();
                 renderer.material.DOKill();

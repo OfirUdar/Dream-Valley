@@ -8,7 +8,7 @@ namespace Game.Map
         protected readonly IMapGrid _grid;
         private readonly ICameraController _cameraController;
         private readonly CamPointerUtility _camPointerUtility;
-        private readonly SelectionManager _selectionManager;
+        protected readonly SelectionManager _selectionManager;
 
         private Vector3 _offsetPosition;
 
@@ -56,17 +56,9 @@ namespace Game.Map
             _currentElement.Position = snappedPosition;
 
             var canPlace = _grid.CanPlace(_currentElement);
-            _currentElement.EndDrag(canPlace);
-
-            if (canPlace)
-            {
-                _grid.Place(_currentElement);
-                OnDragEnded(canPlace);
-                _currentElement = null;
-            }
+            OnDragEnded(canPlace);
 
             _cameraController.SetActive(true);
-
         }
         public void RequestDrag()
         {
@@ -83,7 +75,7 @@ namespace Game.Map
 
         private Vector3 GetSnappedPosition()
         {
-            _camPointerUtility.RaycastPointer(out Vector3 worldPosition);
+            _camPointerUtility.InputRaycast(out Vector3 worldPosition);
 
             worldPosition -= _offsetPosition; //touch offset
             var indexes = _grid.GetIndexes(worldPosition);
@@ -98,11 +90,16 @@ namespace Game.Map
 
         private Vector3 CalculateOffsetPosition(Vector3 elementPosition)
         {
-            _camPointerUtility.RaycastPointer(out Vector3 worldPosition);
+            _camPointerUtility.InputRaycast(out Vector3 worldPosition);
 
             return worldPosition - elementPosition;
         }
 
+        protected void Cancel()
+        {
+            OnCanceled();
+            _currentElement = null;
+        }
         public void Initialize()
         {
             _selectionManager.SelectionChanged += OnSelectionChanged;
@@ -118,7 +115,9 @@ namespace Game.Map
             if (selection == null || selection != _currentElement)
             {
                 if (_currentElement != null)
-                    OnCanceled();
+                {
+                    Cancel();
+                }
             }
         }
     }

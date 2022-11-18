@@ -14,7 +14,7 @@ namespace Game
             _planeZ = new Plane(Vector3.up, Vector3.zero);
         }
 
-        public bool RaycastPointer(out Vector3 point)
+        public bool InputRaycast(out Vector3 point)
         {
             var ray = CameraUtils.Main.ScreenPointToRay(_input.GetPointerPosition());
 
@@ -27,7 +27,7 @@ namespace Game
             point = Vector3.zero;
             return false;
         }
-        public Collider RaycastPointer()
+        public Collider InputRaycast()
         {
             var ray = CameraUtils.Main.ScreenPointToRay(_input.GetPointerPosition());
 
@@ -38,5 +38,19 @@ namespace Game
 
             return null;
         }
+
+        public Vector3 CameraRaycast()
+        {
+            var ray = new Ray(CameraUtils.Main.transform.position, CameraUtils.Main.transform.forward);
+
+            if (_planeZ.Raycast(ray, out float enter))
+            {
+                var point = ray.GetPoint(enter);
+                return point;
+            }
+
+           return Vector3.zero;
+        }
+
     }
 }

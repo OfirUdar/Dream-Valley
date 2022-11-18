@@ -10,11 +10,11 @@ namespace Game.Map
         private readonly CamPointerUtility _camPointerUtility;
 
         private ISelectable _currentSelected;
+        private bool _isLocked;
 
 
         private const float SHORT_PRESS = 0.1f;
         private float _pressingTimer;
-
 
         public event Action<ISelectable> SelectionChanged;
 
@@ -27,6 +27,9 @@ namespace Game.Map
 
         public void RequestSelect(ISelectable selectable)
         {
+            if (_isLocked)
+                return;
+
             if (_currentSelected == selectable)
                 return;
 
@@ -38,12 +41,19 @@ namespace Game.Map
         }
         public void RequestUnselect()
         {
+            if (_isLocked)
+                return;
+
             _currentSelected?.Unselect();
             _currentSelected = null;
 
             SelectionChanged?.Invoke(null);
         }
 
+        public void Lock(bool isLock)
+        {
+            _isLocked = isLock;
+        }
 
         public void Tick()
         {
@@ -58,7 +68,7 @@ namespace Game.Map
             }
             if (_input.IsPointerUp() && _pressingTimer <= SHORT_PRESS)
             {
-                if (_camPointerUtility.RaycastPointer() == null)
+                if (_camPointerUtility.InputRaycast() == null)
                     RequestUnselect();
             }
         }

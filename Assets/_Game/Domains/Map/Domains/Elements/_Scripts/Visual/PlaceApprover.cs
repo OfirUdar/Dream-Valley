@@ -5,8 +5,8 @@ namespace Game.Map.Element
 {
     public class PlaceApprover : MonoBehaviour, IPlaceApprover
     {
-        private Action _approveCallback;
-        private Action _cancelCallback;
+        private event Action _approveCallback;
+        private event Action _cancelCallback;
 
 
         public void Hide()
@@ -22,22 +22,19 @@ namespace Game.Map.Element
         public void Approve()
         {
             _approveCallback?.Invoke();
+            _approveCallback = null;
         }
         public void Cancel()
         {
             _cancelCallback?.Invoke();
+            _cancelCallback = null;
         }
 
         public void SubscribeForCallbacks(Action approveCallback, Action cancelCallback)
         {
-            _approveCallback = approveCallback;
-            _cancelCallback = cancelCallback;
+            _approveCallback += approveCallback;
+            _cancelCallback += cancelCallback;
         }
     }
-    public interface IPlaceApprover
-    {
-        public void SubscribeForCallbacks(Action approveCallback, Action cancelCallback);
-        public void Show();
-        public void Hide();
-    }
+    
 }
