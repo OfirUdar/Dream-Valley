@@ -46,7 +46,7 @@ namespace Game.Camera
         }
 
 
-     
+
         public async Task FocusAsync(Vector3 position, float zoom)
         {
             //Saves the last permissions and activate it at the end
@@ -55,8 +55,8 @@ namespace Game.Camera
 
             SetActive(false);
 
-            if (_zoomHandler.IsCurrentLarger(zoom))
-                await _zoomHandler.FocusAsync(15f, 0.3f, Ease.OutSine);
+            if (_moveHandler.IsCurrentPositionFar(position))
+                await _zoomHandler.FocusAsync(20f, 0.3f, Ease.OutSine);
 
             var tasks = new Task[2];
             tasks[0] = _moveHandler.FocusAsync(position);

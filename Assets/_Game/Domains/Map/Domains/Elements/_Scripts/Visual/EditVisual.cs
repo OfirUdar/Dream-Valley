@@ -29,13 +29,23 @@ namespace Game.Map.Element
         public void ChangeToIdleMode()
         {
             _gfx.localScale = Vector3.one;
+
+            var editAreaPosition = _editAreaRenderer.transform.localPosition;
+            editAreaPosition.y -= 0.025f;
+            _editAreaRenderer.transform.localPosition= editAreaPosition;
             _editAreaRenderer.gameObject.SetActive(false);
+
             _idleArea.SetActive(true);
         }
         public void ChangeToEditMode()
         {
             _gfx.localScale = Vector3.one * 0.95f;
+
+            var editAreaPosition = _editAreaRenderer.transform.localPosition;
+            editAreaPosition.y += 0.025f;
+            _editAreaRenderer.transform.localPosition = editAreaPosition;
             _editAreaRenderer.gameObject.SetActive(true);
+
             _idleArea.SetActive(false);
         }
 
@@ -49,6 +59,6 @@ namespace Game.Map.Element
         public void SetPlaceAvailbility(bool isAvailable);
         public void ChangeToIdleMode();
         public void ChangeToEditMode();
-       
+
     }
 }

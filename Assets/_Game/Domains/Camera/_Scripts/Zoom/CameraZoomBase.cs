@@ -25,10 +25,6 @@
                 (nextZoom, _settings.Min, _settings.Max);
         }
 
-        public bool IsCurrentLarger(float zoom)
-        {
-            return (_cam.orthographicSize >= zoom);
-        }
       
         public async Task FocusAsync(float nextZoom, float duration = 0.5f, Ease ease = Ease.InOutSine)
         {

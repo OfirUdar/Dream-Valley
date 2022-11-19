@@ -134,7 +134,7 @@ MonoBehaviour:
   _collider: {fileID: 9206704503320243078}
   _selectedVisual: {fileID: 3865264469381728188}
   _editVisual: {fileID: 4349166761248490151}
-  _placeApprover: {fileID: 4664057604433780002}
+  _placeApprover: {fileID: 3859214660840092359}
   _placerBehaviour: {fileID: 2853982151650862455}
   _pointerEvents: {fileID: 1985669765108265346}
 --- !u!1 &3503097563583906630
@@ -401,36 +401,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3520857174933889916}
     m_Modifications:
-    - target: {fileID: 697156979612159395, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 4664057604433780002}
-    - target: {fileID: 697156979612159395, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Cancel
-      objectReference: {fileID: 0}
-    - target: {fileID: 697156979612159395, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Game.Map.Element.PlaceApprover, Game.Map.Element
-      objectReference: {fileID: 0}
-    - target: {fileID: 2524940853734220244, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 4664057604433780002}
-    - target: {fileID: 2524940853734220244, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Approve
-      objectReference: {fileID: 0}
-    - target: {fileID: 2524940853734220244, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Game.Map.Element.PlaceApprover, Game.Map.Element
-      objectReference: {fileID: 0}
     - target: {fileID: 4007758501230402931, guid: 88a1ab870fd64fa448cac1b61c0139a5,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -586,33 +556,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -125
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8028103074575181936, guid: 88a1ab870fd64fa448cac1b61c0139a5, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88a1ab870fd64fa448cac1b61c0139a5, type: 3}
---- !u!1 &1272557760026432058 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5426321833011366029, guid: 88a1ab870fd64fa448cac1b61c0139a5,
-    type: 3}
-  m_PrefabInstance: {fileID: 6550242113351326391}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4664057604433780002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1272557760026432058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d84a12ec9ea73d4da8008fc1b86d6cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1413331193974565308 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5294556701864309515, guid: 88a1ab870fd64fa448cac1b61c0139a5,
     type: 3}
   m_PrefabInstance: {fileID: 6550242113351326391}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3859214660840092359 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8028103074575181936, guid: 88a1ab870fd64fa448cac1b61c0139a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 6550242113351326391}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d84a12ec9ea73d4da8008fc1b86d6cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6210693628039448714 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 925474938587894333, guid: 88a1ab870fd64fa448cac1b61c0139a5,

@@ -37,7 +37,11 @@ namespace Game.Camera
             _camTran.position = Vector3.Lerp(_camTran.position, nextPos, _settings.LerpAmount * Time.deltaTime);
         }
 
-
+        public bool IsCurrentPositionFar(Vector3 targetPosition)
+        {
+            var distance = 7f;
+            return (_camTran.position - targetPosition).sqrMagnitude >= distance;
+        }
         public async Task FocusAsync(Vector3 nextPosition, float duration = 0.5f, Ease ease = Ease.InOutSine)
         {
             await _camTran.DOMove(nextPosition, duration).SetEase(ease).Play().AsyncWaitForCompletion();

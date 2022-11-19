@@ -12,6 +12,7 @@
         public void StartDrag()
         {
             _editVisual.ChangeToEditMode();
+            _editVisual.SetPlaceAvailbility(false);
         }
 
 

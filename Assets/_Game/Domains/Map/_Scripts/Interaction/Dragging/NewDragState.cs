@@ -19,7 +19,7 @@ namespace Game.Map
         }
         public override void OnDragStarted()
         {
-            _selectionManager.Lock(true);
+           // _selectionManager.Lock(true);
             _currentElement.PlaceApprover.SubscribeForCallbacks(OnApproveRequested, OnCancelRequested);
         }
 
@@ -30,25 +30,28 @@ namespace Game.Map
 
         public override void OnCanceled()
         {
-            _currentElement.Destroy();
-            _selectionManager.Lock(false);
+           // _currentElement.Destroy();
+            //_selectionManager.Lock(false);
+            //_dragManager.ChangeToExistElementDragger();
+            //MainUIEventAggregator.Show();
         }
 
         private void OnApproveRequested()
         {
-            _currentElement.PlaceApprover.Hide();
-            _selectionManager.Lock(false);
+            //_currentElement.PlaceApprover.Hide();
+            //_selectionManager.Lock(false);
+            //_dragManager.ChangeToExistElementDragger();
+            //MainUIEventAggregator.Show();
+
 
             _grid.Place(_currentElement);
             _currentElement.EndDrag(true);
             _currentElement = null;
 
-            _dragManager.ChangeToExistElementDragger();
         }
         private void OnCancelRequested()
         {
             Cancel();
-            _dragManager.ChangeToExistElementDragger();
         }
     }
 
