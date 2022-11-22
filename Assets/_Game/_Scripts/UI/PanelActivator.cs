@@ -49,6 +49,8 @@ namespace Game
         public void ForceHide()
         {
             SetDisable();
+            _windowTween.Complete(false);
+            _backgroundTween.Complete(false);
         }
 
 

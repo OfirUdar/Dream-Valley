@@ -1,7 +1,9 @@
 {
     "name": "Udar.Editor",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:753d3ac1822af5d41b501ad73b27d463"
+    ],
     "includePlatforms": [
         "Editor"
     ],

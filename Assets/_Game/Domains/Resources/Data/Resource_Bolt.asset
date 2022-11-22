@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23b9eeddae146674e9e8e2bd0ad08b03, type: 3}
   m_Name: Resource_Bolt
   m_EditorClassIdentifier: 
+  <GUID>k__BackingField: add6a76459c596f41a80481270d7a112
   <Name>k__BackingField: Bolt
   <Sprite>k__BackingField: {fileID: 21300000, guid: 180dd459b1f2e41e7b1c59cbb67e45bb,
     type: 3}

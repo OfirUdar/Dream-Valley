@@ -1,4 +1,5 @@
 using Udar;
+using Udar.SceneManager;
 using UnityEngine;
 
 namespace Game
@@ -10,7 +11,7 @@ namespace Game
 
         private void Awake()
         {
-            SceneChanger.LoadAddtiveAsync(_system.Main.Names);
+            SceneChanger.LoadAddtiveAsync(_system.Names);
         }
     }
 }

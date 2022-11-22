@@ -18,6 +18,7 @@ namespace Game.Camera
 
             Container.Bind(typeof(ICameraController), typeof(ITickable))
                 .To<CameraController>().AsSingle().NonLazy();
+
         }
 
         private void InstallMobile()

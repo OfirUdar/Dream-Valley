@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Game.Map.Element
@@ -24,47 +23,53 @@ namespace Game.Map.Element
             _cameraController = cameraController;
             _factory = factory;
         }
-        public void Spawn(GameObject gameObject, bool isNew)
+        public void Spawn(GameObject gameObject)
+        {
+            var startPosition = _camPointerUtility.CameraRaycast();
+            var facadeBehaviour = _factory.Create(gameObject);
+            facadeBehaviour.transform.position = startPosition;
+        }
+
+        public void SpawnNewAndPlace(GameObject gameObject, Action cancelCallback, Action successCallback)
         {
             var startPosition = _camPointerUtility.CameraRaycast();
             var facadeBehaviour = _factory.Create(gameObject);
             facadeBehaviour.transform.position = startPosition;
 
 
-            if (isNew)
-            {
-                var mapElement = facadeBehaviour.MapElement;
-                mapElement.StartDrag();
-                mapElement.PlaceApprover.Show();
-                mapElement.PlaceApprover.SubscribeForCallbacks(
-                      ()=> OnAprroved(mapElement)
-                    , () => OnCanceled(mapElement));
+            var mapElement = facadeBehaviour.MapElement;
+            mapElement.StartDrag();
+            mapElement.PlaceApprover.Show();
+            mapElement.PlaceApprover.SubscribeForCallbacks(
+                  () => OnAprroved(mapElement, successCallback)
+                , () => OnCanceled(mapElement, cancelCallback));
 
-                _selectionManager.RequestSelect(mapElement);
-                _selectionManager.Lock(true);
-                _dragManager.ChangeToNewElementDragger();
-                MainUIEventAggregator.Hide();
-                _cameraController.FocusAsync(startPosition, 15f);
-            }
-
+            _selectionManager.RequestSelect(mapElement);
+            _selectionManager.Lock(true);
+            _dragManager.ChangeToNewElementDragger();
+            _cameraController.FocusAsync(startPosition, 15f);
+            MainUIEventAggregator.Hide();
         }
 
-        private void OnAprroved(IMapElement mapElement)
+        private void OnAprroved(IMapElement mapElement,Action successCallback)
         {
             mapElement.PlaceApprover.Hide();
 
             _selectionManager.Lock(false);
             _dragManager.ChangeToExistElementDragger();
             MainUIEventAggregator.Show();
+
+            successCallback?.Invoke();
         }
-        private void OnCanceled(IMapElement mapElement)
+        private void OnCanceled(IMapElement mapElement, Action cancelCallback)
         {
             mapElement.Destroy();
 
             _selectionManager.Lock(false);
             _dragManager.ChangeToExistElementDragger();
             MainUIEventAggregator.Show();
-            
+
+            cancelCallback?.Invoke();
         }
 
     }

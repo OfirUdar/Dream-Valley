@@ -15,6 +15,7 @@ namespace Game.Shop.UI
 
         private ShopUI _shop;
         private ElementSO _shopElement;
+
         public void Setup(ElementSO shopElement,ShopUI shop)
         {
             _shop = shop;
@@ -29,7 +30,7 @@ namespace Game.Shop.UI
 
         public void OnElementClicked()
         {
-            _shop.StartPlace(_shopElement);
+            _shop.OnCardClicked(_shopElement);
         }
         
     }
