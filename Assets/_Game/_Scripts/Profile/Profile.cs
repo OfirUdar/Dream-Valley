@@ -3,16 +3,24 @@ using Udar;
 
 namespace Game
 {
-    public class Profile  
+    public class Profile
     {
         public ResourcesInventory ResourcesInventory = new ResourcesInventory();
 
         //Level
         //Current XP
 
-        public Profile(ILoadManager loadManager)
+        public Profile(ILoadManager loadManager, InitResourceDataListSO initResourceList)
         {
-            loadManager.TryLoad(ResourcesInventory);
+            bool hasLoaded = loadManager.TryLoad(ResourcesInventory);
+            
+            if(!hasLoaded)
+            {
+                foreach (var resourceInit in initResourceList.Resources)
+                {
+                    ResourcesInventory.AddResource(resourceInit.ResourceDataSO, resourceInit.Amount);
+                }
+            }
         }
 
     }
