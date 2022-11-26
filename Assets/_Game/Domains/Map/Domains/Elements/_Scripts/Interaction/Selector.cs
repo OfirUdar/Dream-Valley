@@ -10,10 +10,12 @@
         {
             _selectVisual = selectVisual;
         }
-        public void Select()
+        public bool Select()
         {
             IsSelected = true;
             _selectVisual.Select();
+
+            return true;
         }
 
         public void Unselect()

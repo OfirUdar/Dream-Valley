@@ -27,14 +27,14 @@ namespace Game.Resources.UI
                 AddResourceUIElement(resource.Key,resource.Value);
             }
 
-            _profile.ResourcesInventory.ResourcesChanged += OnResourcesChanged;
+            _profile.ResourcesInventory.ResourceChanged += OnResourcesChanged;
         }
 
        
 
         private void OnDestroy()
         {
-            _profile.ResourcesInventory.ResourcesChanged -= OnResourcesChanged;
+            _profile.ResourcesInventory.ResourceChanged -= OnResourcesChanged;
         }
         private void AddResourceUIElement(string guid, int amount)
         {

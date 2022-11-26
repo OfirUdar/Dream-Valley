@@ -5,7 +5,6 @@ using UnityEngine;
 namespace Game
 {
     [CreateAssetMenu(fileName = "Resource", menuName = "Game/Resources/New Resource", order = 0)]
-    [Serializable]
     public class ResourceDataSO : ScriptableObject
     {
         [field: SerializeField,ReadOnly] public string GUID { get; private set; }

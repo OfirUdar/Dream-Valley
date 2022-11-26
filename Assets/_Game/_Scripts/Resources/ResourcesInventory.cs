@@ -9,7 +9,7 @@ namespace Game
         public SerializeDictionary<string, int> Resources = new SerializeDictionary<string, int>();
 
 
-        public event Action<ResourceDataSO, int> ResourcesChanged;
+        public event Action<ResourceDataSO, int> ResourceChanged;
 
         public void AddResource(ResourceDataSO resource, int amount)
         {
@@ -19,7 +19,7 @@ namespace Game
                 Resources[resource.GUID] += amount;
 
             var totalAmount = Resources[resource.GUID];
-            ResourcesChanged?.Invoke(resource, totalAmount);
+            ResourceChanged?.Invoke(resource, totalAmount);
         }
         public void SubtratResource(ResourceDataSO resource, int amount)
         {
@@ -30,7 +30,7 @@ namespace Game
                 UnityEngine.Debug.Log($"Error subtract {amount} to {resource.Name}beyond the zero");
          #endif
             var totalAmount = Resources[resource.GUID];
-            ResourcesChanged?.Invoke(resource, totalAmount);
+            ResourceChanged?.Invoke(resource, totalAmount);
         }
         public bool CanSubtract(ResourceDataSO resource, int amount)
         {

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game.Map.Element
 {
@@ -39,9 +38,9 @@ namespace Game.Map.Element
         public bool IsSelected => _selector.IsSelected;
 
 
-        public void Select()
+        public bool Select()
         {
-            _selector.Select();
+            return _selector.Select();
         }
         public void Unselect()
         {

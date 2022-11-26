@@ -17,3 +17,11 @@ MonoBehaviour:
     _name: MainUI
     _path: Assets/_Game/Scenes/MainUI.unity
     _buildIndex: 1
+  - _sceneOB: {fileID: 102900000, guid: 0ad7c530532486e4584e677179664cb6, type: 3}
+    _name: DialogUI
+    _path: Assets/_Game/Scenes/DialogUI.unity
+    _buildIndex: 2
+  - _sceneOB: {fileID: 102900000, guid: 21687cef0b408fd42afc496b11bd12ec, type: 3}
+    _name: SelectedOptionsUI
+    _path: Assets/_Game/Scenes/SelectedOptionsUI.unity
+    _buildIndex: 3

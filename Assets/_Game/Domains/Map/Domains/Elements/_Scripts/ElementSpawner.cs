@@ -6,12 +6,12 @@ namespace Game.Map.Element
     public class ElementSpawner : IElementSpawner
     {
         private readonly FacadeBehaviour.Factory _factory;
-        private readonly SelectionManager _selectionManager;
+        private readonly ISelectionManager _selectionManager;
         private readonly IDragManager _dragManager;
         private readonly CamPointerUtility _camPointerUtility;
         private readonly ICameraController _cameraController;
 
-        public ElementSpawner(SelectionManager selectionManager,
+        public ElementSpawner(ISelectionManager selectionManager,
             IDragManager dragManager,
             CamPointerUtility camPointerUtility,
             ICameraController cameraController,

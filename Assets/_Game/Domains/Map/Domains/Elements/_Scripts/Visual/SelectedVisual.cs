@@ -18,6 +18,7 @@ namespace Game.Map.Element
 
         public void Select()
         {
+            _gfx.transform.DOPunchScale(Vector3.one*0.1f,0.1f).Play();
             foreach (var renderer in _renderers)
             {
                 var material = renderer.material;

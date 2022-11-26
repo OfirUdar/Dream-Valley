@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Game.Map
 {
-    public class SelectionManager : ITickable
+    public class SelectionManager : ISelectionManager, ITickable
     {
         private readonly IUserInput _input;
         private readonly CamPointerUtility _camPointerUtility;
@@ -33,11 +33,14 @@ namespace Game.Map
             if (_currentSelected == selectable)
                 return;
 
-            _currentSelected?.Unselect();
-            _currentSelected = selectable;
-            _currentSelected.Select();
+            bool isSuccessSelected = selectable.Select();
+            if (isSuccessSelected)
+            {
+                _currentSelected?.Unselect();
+                _currentSelected = selectable;
+                SelectionChanged?.Invoke(_currentSelected);
+            }
 
-            SelectionChanged?.Invoke(_currentSelected);
         }
         public void RequestUnselect()
         {
@@ -49,7 +52,6 @@ namespace Game.Map
 
             SelectionChanged?.Invoke(null);
         }
-
         public void Lock(bool isLock)
         {
             _isLocked = isLock;
@@ -66,7 +68,7 @@ namespace Game.Map
             {
                 _pressingTimer += Time.deltaTime;
             }
-            if (_input.IsPointerUp() && _pressingTimer <= SHORT_PRESS)
+            if (_input.IsPointerUp() && !_input.IsPointerOverUI() && _pressingTimer <= SHORT_PRESS)
             {
                 if (_camPointerUtility.InputRaycast() == null)
                     RequestUnselect();

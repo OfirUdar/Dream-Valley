@@ -1,6 +1,5 @@
 ﻿using Udar;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Game.Map.Element
 {

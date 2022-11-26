@@ -11,11 +11,4 @@ namespace Game.Shop
 
     }
 
-    [Serializable]
-    public class ResourcePrice
-    {
-        [field: SerializeField] public ResourceDataSO Resource { get; private set; }
-        [field: SerializeField] public int Amount { get; private set; }
-
-    }
 }

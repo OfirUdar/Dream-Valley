@@ -21,18 +21,18 @@ namespace Game.Map.Element
             _loadManager = loadManager;
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount == 1)
-                _profile.ResourcesInventory.AddResource(_resource, 100);
+        //private void Update()
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount == 1)
+        //        _profile.ResourcesInventory.AddResource(_resource, 100);
 
-            if (Input.GetKeyDown(KeyCode.S) || Input.touchCount == 2)
-                _saveManager.Save(_profile.ResourcesInventory);
+        //    if (Input.GetKeyDown(KeyCode.S) || Input.touchCount == 2)
+        //        _saveManager.Save(_profile.ResourcesInventory);
 
-            if (Input.GetKeyDown(KeyCode.L)||Input.touchCount == 3)
-            {
-                _loadManager.Load(_profile.ResourcesInventory);
-            }
-        }
+        //    if (Input.GetKeyDown(KeyCode.L)||Input.touchCount == 3)
+        //    {
+        //        _loadManager.Load(_profile.ResourcesInventory);
+        //    }
+        //}
     }
 }

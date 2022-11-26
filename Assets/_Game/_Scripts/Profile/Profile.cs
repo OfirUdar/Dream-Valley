@@ -25,12 +25,12 @@ namespace Game
 
     }
 
-    [Serializable]
-    public class Level
-    {
-        public int Number;
-        public float XPCapacity;
-        // public float CurrentXP;
-    }
+    //[Serializable]
+    //public class Level
+    //{
+    //    public int Number;
+    //    public float XPCapacity;
+    //    // public float CurrentXP;
+    //}
 
 }

@@ -6,24 +6,36 @@ namespace Game
 {
     public class PanelActivator : MonoBehaviour
     {
-        private const float DURATION = 0.15f;
+        private const float DURATION = 0.1f;
 
         [SerializeField] private GameObject _panelToActivate;
         [SerializeField] private Image _backgroundImage;
-        [SerializeField] private RectTransform _window;
+        [SerializeField] private CanvasGroup _window;
 
-        private Tween _windowTween;
+        private Tween _windowFadeTween;
+        private Tween _windowScaleTween;
         private Tween _backgroundTween;
 
         private void Awake()
         {
-            _windowTween = _window.DOScale(0f, DURATION).
-               SetEase(Ease.OutCubic).OnComplete(SetDisable).SetAutoKill(false);
+            _windowFadeTween = _window.DOFade(1f, DURATION).From(0f)
+                .SetEase(Ease.OutCubic)
+                 .SetAutoKill(false)
+                 .SetLink(gameObject);
 
-            _backgroundTween = _backgroundImage.DOFade(0f, DURATION).
-                SetEase(Ease.InOutSine).SetAutoKill(false);
+            _windowScaleTween = _window.transform.DOScale(1f, DURATION).From(0f)
+               .SetEase(Ease.OutCubic)
+               .OnPlay(SetEnable)
+               .OnRewind(SetDisable)
+               .SetAutoKill(false)
+               .SetLink(gameObject);
 
-            _windowTween.Complete(false);
+            _backgroundTween = _backgroundImage.DOFade(_backgroundImage.color.a, DURATION).From(0f)
+                .SetEase(Ease.InOutSine)
+                .SetAutoKill(false)
+                .SetLink(gameObject);
+
+            _windowScaleTween.Complete(false);
             _backgroundTween.Complete(false);
         }
         private void SetEnable()
@@ -36,21 +48,21 @@ namespace Game
         }
         public void Show()
         {
-            SetEnable();
-            _windowTween.SmoothRewind();
-            _backgroundTween.SmoothRewind();
+            _windowFadeTween.Restart();
+            _windowScaleTween.Restart();
+            _backgroundTween.Restart();
         }
         public void Hide()
         {
-            _windowTween.Restart();
-            _backgroundTween.Restart();
+            _windowFadeTween.SmoothRewind();
+            _windowScaleTween.SmoothRewind();
+            _backgroundTween.SmoothRewind();
+
         }
 
         public void ForceHide()
         {
             SetDisable();
-            _windowTween.Complete(false);
-            _backgroundTween.Complete(false);
         }
 
 

@@ -8,7 +8,7 @@ namespace Game.Map
         protected readonly IMapGrid _grid;
         private readonly ICameraController _cameraController;
         private readonly CamPointerUtility _camPointerUtility;
-        protected readonly SelectionManager _selectionManager;
+        protected readonly ISelectionManager _selectionManager;
 
         private Vector3 _offsetPosition;
 
@@ -21,7 +21,7 @@ namespace Game.Map
 
         public DraggerStateBase(IMapGrid grid, ICameraController cameraController,
             CamPointerUtility camPointerUtility,
-            SelectionManager selectionManager)
+            ISelectionManager selectionManager)
         {
             _grid = grid;
             _cameraController = cameraController;

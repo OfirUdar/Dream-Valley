@@ -12,7 +12,7 @@ namespace Game.Map
    
         private void InstallSelection()
         {
-            Container.BindInterfacesAndSelfTo<SelectionManager>()
+            Container.Bind(typeof(ITickable),typeof(ISelectionManager)).To<SelectionManager>()
               .AsSingle().NonLazy();
         }
 

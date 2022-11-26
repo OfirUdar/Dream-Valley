@@ -6,13 +6,13 @@ namespace Game.Map.Element
     {
         private readonly IMapElement _mapElement;
         private readonly PointerEvents _pointerEvents;
-        private readonly SelectionManager _selectionManager;
+        private readonly ISelectionManager _selectionManager;
         private readonly IDragManager _dragManager;
 
         private readonly IUserInput _input;
 
         public InteractionCaller(IMapElement mapElement, PointerEvents pointerEvents,
-            SelectionManager selectionManager, IDragManager dragManager,IUserInput input)
+            ISelectionManager selectionManager, IDragManager dragManager,IUserInput input)
         {
             _mapElement = mapElement;
             _pointerEvents = pointerEvents;

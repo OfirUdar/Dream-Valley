@@ -3,7 +3,7 @@
     public interface ISelectable
     {
         public bool IsSelected { get; }
-        public void Select();
+        public bool Select();
         public void Unselect();
     }
 
