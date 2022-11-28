@@ -1,12 +1,11 @@
 {
-    "name": "Game.Map.Element",
-    "rootNamespace": "",
+    "name": "Game.Map.Options",
+    "rootNamespace": "Game.Map.Options",
     "references": [
         "GUID:753d3ac1822af5d41b501ad73b27d463",
         "GUID:b81e2ed7407e68a48b7cf7a5503d984b",
         "GUID:da81f83e7b0beb94892ef041faff98cb",
-        "GUID:03d3358e50125ca4abe9b51b0cc0e1e0",
-        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:d69fc98cb0ec70f43bae52d293a7b08c",
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
         "GUID:75b881f4cfcbbf242b80b9aa5e2d769a"
     ],

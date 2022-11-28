@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/_Game/Scenes/DialogUI.unity
     guid: 0ad7c530532486e4584e677179664cb6
   - enabled: 1
-    path: Assets/_Game/Scenes/SelectedOptionsUI.unity
+    path: Assets/_Game/Domains/Map/Domains/Elements/Domains/Options/Scenes/SelectedOptionsUI.unity
     guid: 21687cef0b408fd42afc496b11bd12ec
   m_configObjects: {}

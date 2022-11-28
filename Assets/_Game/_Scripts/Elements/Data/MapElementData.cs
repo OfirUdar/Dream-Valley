@@ -11,6 +11,7 @@ namespace Game
         [field: SerializeField] public Sprite Sprite { get; private set; }
         [field: Space, SerializeField] public int Width { get; private set; }
         [field: SerializeField] public int Height { get; private set; }
+        [field: SerializeField] public ElementOption Options { get; private set; }
     }
 
     [Flags]
@@ -19,8 +20,8 @@ namespace Game
         Nothing = 0,
         Info = 1,
         Upgrade = 2,
-        Remove = 3,
-        Collect = 4,
+        Remove = 4,
+        Collect = 8,
     }
 
 

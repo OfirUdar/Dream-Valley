@@ -20,6 +20,8 @@ namespace Game.Shop.UI
         private Profile _profile;
         private IElementSpawner _elementSpawner;
         private ISaveManager _saveManager;
+
+        [Inject] private IDialog _dialog;
       
         [Inject]
         public void Init(Profile profile, IElementSpawner elementSpawner, ISaveManager saveManager)
@@ -58,7 +60,7 @@ namespace Game.Shop.UI
                 _panelActivator.ForceHide();
             }
             else
-                DialogManager.Instance.Show("Error", "Not enough resources!");
+                _dialog.Show("Error", "Not enough resources!");
 
         }
 

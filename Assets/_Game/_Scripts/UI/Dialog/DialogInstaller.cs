@@ -10,7 +10,6 @@ namespace Game
         public override void InstallBindings()
         {
             Container.Bind<IDialog>().FromInstance(_dialog).AsSingle();
-            Container.Bind<DialogManager>().ToSelf().AsSingle().NonLazy();
         }
     }
 }

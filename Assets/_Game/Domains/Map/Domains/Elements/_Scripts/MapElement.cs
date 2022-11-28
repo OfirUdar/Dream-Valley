@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace Game.Map.Element
 {
@@ -10,6 +11,7 @@ namespace Game.Map.Element
         private readonly IPlaceApprover _placeApprover;
         private readonly GameObject _elementObject;
 
+        [Inject] public MapElementData Data;
 
 
         public MapElement(IPlaceable placer,

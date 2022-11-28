@@ -11,6 +11,8 @@ namespace Game
         [SerializeField] private GameObject _panelToActivate;
         [SerializeField] private Image _backgroundImage;
         [SerializeField] private CanvasGroup _window;
+        [Space]
+        [SerializeField] private bool _isDestroyOnHide = false;
 
         private Tween _windowFadeTween;
         private Tween _windowScaleTween;
@@ -34,16 +36,18 @@ namespace Game
                 .SetEase(Ease.InOutSine)
                 .SetAutoKill(false)
                 .SetLink(gameObject);
-
-            _windowScaleTween.Complete(false);
-            _backgroundTween.Complete(false);
         }
         private void SetEnable()
-        {
+        {           
             _panelToActivate.SetActive(true);
         }
         private void SetDisable()
         {
+            if (_isDestroyOnHide)
+            {
+                Destroy(gameObject);
+                return;
+            }
             _panelToActivate.SetActive(false);
         }
         public void Show()
