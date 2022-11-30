@@ -19,8 +19,8 @@ MonoBehaviour:
       <Amount>k__BackingField: 10
     UpgradeDuration:
       Hours: 0
-      Mintues: 5
-      Seconds: 0
+      Mintues: 0
+      Seconds: 10
     UpgradeAccomplishedXP: 10
     Pfb: {fileID: 0}
   - UpgradePrice:
@@ -29,8 +29,8 @@ MonoBehaviour:
       <Amount>k__BackingField: 14
     UpgradeDuration:
       Hours: 0
-      Mintues: 0
-      Seconds: 2
+      Mintues: 5
+      Seconds: 0
     UpgradeAccomplishedXP: 10
     Pfb: {fileID: 0}
   - UpgradePrice:
@@ -38,7 +38,7 @@ MonoBehaviour:
       <Amount>k__BackingField: 0
     UpgradeDuration:
       Hours: 0
-      Mintues: 0
+      Mintues: 15
       Seconds: 0
     UpgradeAccomplishedXP: 0
     Pfb: {fileID: 0}

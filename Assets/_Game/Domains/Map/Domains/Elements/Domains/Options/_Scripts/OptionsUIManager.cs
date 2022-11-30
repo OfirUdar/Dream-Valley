@@ -16,18 +16,18 @@ namespace Game.Map.Element.Options
 
         private ISelectionManager _selectionManager;
 
-        private Tween _tween;
+        private Tween _hideTween;
 
         private void Awake()
         {
-            _tween = _mainContainer
+            _hideTween = _mainContainer
                 .DOAnchorPosY(-100f, 0.1f)
                 .SetEase(Ease.OutBack)
                 .OnPlay(SetEnable)
                 .OnComplete(SetDisable)
                 .SetAutoKill(false)
                 .SetLink(gameObject);
-            _tween.Complete();
+            _hideTween.Complete();
             SetDisable();
         }
 
@@ -35,6 +35,7 @@ namespace Game.Map.Element.Options
         {
             _selectionManager.SelectionChanged += OnSelectionChanged;
         }
+
         private void OnDisable()
         {
             _selectionManager.SelectionChanged -= OnSelectionChanged;
@@ -59,11 +60,11 @@ namespace Game.Map.Element.Options
         {
             if (selectable == null && _mainContainer.gameObject.activeSelf)
             {
-                _tween.Restart();
+                _hideTween.Restart();
             }
             if (selectable is MapElement mapElement)
             {
-                _tween.SmoothRewind();
+                _hideTween.SmoothRewind();
                 _elementNameText.text = mapElement.Data.Name;
 
                 var optionsButtonsPfb = _elementOptionsSO.GetPrefabsByOptions(mapElement.Data.Options);

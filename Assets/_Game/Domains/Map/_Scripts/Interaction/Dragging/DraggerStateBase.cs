@@ -14,7 +14,7 @@ namespace Game.Map
 
         protected IMapElement _currentElement;
 
-
+        protected abstract bool CanStartDrag(IMapElement mapElement);
         public abstract void OnDragStarted();
         public abstract void OnDragEnded(bool hasPlaced);
         public abstract void OnCanceled();
@@ -30,9 +30,10 @@ namespace Game.Map
         }
 
 
-        public void RequestStartDrag(IMapElement mapElement)
+        public virtual void RequestStartDrag(IMapElement mapElement)
         {
-            if (mapElement.IsSelected)
+            //if (mapElement.IsSelected)
+            if (CanStartDrag(mapElement))
             {
                 _offsetPosition = CalculateOffsetPosition(mapElement.Position);
 

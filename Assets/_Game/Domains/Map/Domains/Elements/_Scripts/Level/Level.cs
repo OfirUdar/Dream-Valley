@@ -14,9 +14,14 @@ namespace Game.Map.Element
         [Serializable]
         public class Duration
         {
-            public float Hours;
-            public float Mintues;
-            public float Seconds;
+            public int Hours;
+            public int Mintues;
+            public int Seconds;
+
+            public TimeSpan GetTimeSpan()
+            {
+                return new TimeSpan(hours: Hours, minutes: Mintues, seconds: Seconds);
+            }
         }
     }
 }

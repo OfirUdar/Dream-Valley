@@ -39,7 +39,7 @@ namespace Game.Map.Element
                 if (Application.isMobilePlatform && Input.touchCount > 1) //Need to change it to more clean way :-)
                     return;
                 var currentPosition = CameraUtils.Main.ScreenToWorldPoint(Input.mousePosition);
-                if ((currentPosition - _startDragPosition).sqrMagnitude > 0.05f)
+                if ((currentPosition - _startDragPosition).sqrMagnitude > 0.05f) //starting drag after some pointer distance
                 {
                     _isDragging = true;
                     StartDrag?.Invoke();

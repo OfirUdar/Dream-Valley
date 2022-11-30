@@ -38,6 +38,11 @@
         {
             Cancel();
         }
+
+        protected override bool CanStartDrag(IMapElement mapElement)
+        {
+            return true;
+        }
     }
 
 }

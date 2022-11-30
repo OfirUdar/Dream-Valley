@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8319a62ed5427e44b16407a996f8e2f, type: 3}
+  m_Name: Resource Generator Levels
+  m_EditorClassIdentifier: 
+  <Resource>k__BackingField: {fileID: 0}
+  <DataLevels>k__BackingField:
+  - <TimeInMinute>k__BackingField: 0
+    <AmountPerTime>k__BackingField: 10
+    <Capacity>k__BackingField: 150
+    <XpCollectPerAmount>k__BackingField: 2
+  - <TimeInMinute>k__BackingField: 0
+    <AmountPerTime>k__BackingField: 12
+    <Capacity>k__BackingField: 200
+    <XpCollectPerAmount>k__BackingField: 3
+  - <TimeInMinute>k__BackingField: 0
+    <AmountPerTime>k__BackingField: 15
+    <Capacity>k__BackingField: 250
+    <XpCollectPerAmount>k__BackingField: 4

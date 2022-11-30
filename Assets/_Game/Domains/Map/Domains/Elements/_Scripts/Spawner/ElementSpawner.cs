@@ -44,7 +44,7 @@ namespace Game.Map.Element
                   () => OnAprroved(mapElement, successCallback)
                 , () => OnCanceled(mapElement, cancelCallback));
 
-            _selectionManager.RequestSelect(mapElement);
+            _selectionManager.RequestUnselect();
             _selectionManager.Lock(true);
             _dragManager.ChangeToNewElementDragger();
             _cameraController.FocusAsync(startPosition, 15f);

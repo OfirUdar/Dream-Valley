@@ -35,6 +35,11 @@ namespace Game.Map
             _grid.Place(_currentElement);
             _currentElement.EndDrag(true);
         }
+
+        protected override bool CanStartDrag(IMapElement mapElement)
+        {
+            return mapElement.IsSelected;
+        }
     }
 
 }
