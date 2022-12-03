@@ -2335,9 +2335,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2115710342}
   - component: {fileID: 2115710344}
+  - component: {fileID: 2115710346}
   - component: {fileID: 2115710341}
   - component: {fileID: 2115710343}
   - component: {fileID: 2115710345}
+  - component: {fileID: 2115710347}
   m_Layer: 0
   m_Name: Map Installer
   m_TagString: Untagged
@@ -2398,9 +2400,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _leafInstallers:
+  - {fileID: 2115710346}
   - {fileID: 2115710341}
   - {fileID: 2115710343}
   - {fileID: 2115710345}
+  - {fileID: 2115710347}
 --- !u!114 &2115710345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2413,3 +2417,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6395e1e16df0c6041b54fa6204ee2deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2115710346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115710340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de30a3d743ff32d4f82b5dbce3314d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2115710347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115710340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432fd0b9f114f0349a33e6d28e99f4dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _elementsListSO: {fileID: 11400000, guid: f0a60b8a0f2913440b8d9a2087a341ef, type: 2}

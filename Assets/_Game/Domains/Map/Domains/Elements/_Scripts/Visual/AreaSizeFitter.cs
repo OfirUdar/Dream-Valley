@@ -6,7 +6,7 @@ namespace Game.Map.Element
     public class AreaSizeFitter
     {
         [Inject]
-        public void Init(GridSettingsSO gridSettings, MapElementData data,
+        public void Init(GridSettingsSO gridSettings, MapElementSO data,
             Transform idleArea,
             MeshRenderer editArea,
             BoxCollider collider)

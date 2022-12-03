@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca92a0f999a921547aa657254dedad3e, type: 3}
   m_Name: Building_02
   m_EditorClassIdentifier: 
+  <GUID>k__BackingField: 317891a15471c444a9b8c00a81334e0f
+  <Name>k__BackingField: Building two
+  <Description>k__BackingField: 
+  <Sprite>k__BackingField: {fileID: 21300000, guid: f8c9467a892580344bb697526dac0d13,
+    type: 3}
+  <Width>k__BackingField: 5
+  <Height>k__BackingField: 3
+  <Options>k__BackingField: 11
   <Pfb>k__BackingField: {fileID: 3054384207172757318, guid: b549b6e04d039194ea74ecffbd5f271b,
     type: 3}
-  <Data>k__BackingField:
-    <Name>k__BackingField: Wider test
-    <Description>k__BackingField: 
-    <Sprite>k__BackingField: {fileID: 21300000, guid: 61725b696bb9b4c73bb7f577825b65b2,
-      type: 3}
-    <Width>k__BackingField: 5
-    <Height>k__BackingField: 3
-    <Options>k__BackingField: 11

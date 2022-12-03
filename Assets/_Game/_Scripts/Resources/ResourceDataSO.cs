@@ -1,5 +1,4 @@
-﻿using System;
-using Udar;
+﻿using Udar;
 using UnityEngine;
 
 namespace Game

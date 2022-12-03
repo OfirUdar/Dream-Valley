@@ -4,8 +4,6 @@ namespace Game.Map
 {
     public class ExistDragState : DraggerStateBase
     {
-      
-
         private Vector3 _startPosition;
 
         public ExistDragState(IMapGrid grid, ICameraController cameraController, CamPointerUtility camPointerUtility, ISelectionManager selectionManager) : base(grid, cameraController, camPointerUtility, selectionManager)
@@ -15,7 +13,7 @@ namespace Game.Map
         public override void OnDragStarted()
         {
             _startPosition = _currentElement.Position;
-            _grid.Remove(_currentElement);
+            //_grid.Remove(_currentElement);
         }
 
         public override void OnDragEnded(bool canPlace)
@@ -24,15 +22,16 @@ namespace Game.Map
 
             if (canPlace)
             {
+                _grid.Remove(_startPosition, _currentElement.Width, _currentElement.Height); //removing from the old
                 _grid.Place(_currentElement);
                 _currentElement = null;
             }
-            
+
         }
         public override void OnCanceled()
         {
             _currentElement.Position = _startPosition;
-            _grid.Place(_currentElement);
+            //_grid.Place(_currentElement);
             _currentElement.EndDrag(true);
         }
 

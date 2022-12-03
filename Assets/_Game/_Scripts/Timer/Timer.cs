@@ -32,34 +32,45 @@ namespace Game
             Ticking?.Invoke();
         }
 
-        public void SetTime(DateTime targetDateTime)
+        public IDateTimer SetTime(DateTime targetDateTime)
         {
             _targetDateTime = targetDateTime;
 
             _targetTimeSeconds = (float)(_targetDateTime - DateTime.Now).TotalSeconds;
             _timerSeconds = _targetTimeSeconds;
+
+            return this;
+
         }
-        public void SetTime(TimeSpan targetTimeSpan)
+        public IDateTimer SetTime(TimeSpan targetTimeSpan)
         {
             _targetDateTime = DateTime.Now + targetTimeSpan;
 
             _targetTimeSeconds = (float)targetTimeSpan.TotalSeconds;
             _timerSeconds = _targetTimeSeconds;
+
+            return this;
+
         }
-        public void Start()
+        public IDateTimer Start()
         {
             _isTicking = true;
             Started?.Invoke();
+            return this;
+
         }
-        public void Stop()
+        public IDateTimer Stop()
         {
             _isTicking = false;
+            return this;
+
         }
-        public void Finish()
+        public IDateTimer Finish()
         {
             Stop();
             _timerSeconds = 0;
             Finished?.Invoke();
+            return this;
         }
 
         public float GetCurrent()

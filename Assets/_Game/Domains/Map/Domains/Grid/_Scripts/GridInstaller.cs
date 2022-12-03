@@ -13,7 +13,7 @@ namespace Game.Map.Grid
             Container.Bind<GridSettingsSO>()
                 .FromInstance(_settings).AsSingle();
 
-            Container.Bind<IMapGrid>().To<Grid>()
+            Container.Bind<IMapGrid>().To<MapGrid>()
                 .AsSingle().NonLazy();
 
         }

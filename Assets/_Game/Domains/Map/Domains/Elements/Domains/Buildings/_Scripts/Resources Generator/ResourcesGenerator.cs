@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Game.Map.Element.Building.Resources
 {
-    public class ResourcesGenerator: IBuildingState
+    public class ResourcesGenerator : IBuildingState
     {
         [Inject] private readonly ResourceGeneratorLevelsData _generatorData;
 
@@ -22,12 +22,12 @@ namespace Game.Map.Element.Building.Resources
         {
             _timer.Finished += OnTimerFinished;
 
-            _timer.SetTime(_generatorData[0].GetTimeSpan());
-            _timer.Start();
+            var generatorTime = _generatorData[0].GetTimeSpan();
+            _timer.SetTime(generatorTime).Start();
         }
         public void Tick()
         {
-            
+
 
         }
         public void Exit()

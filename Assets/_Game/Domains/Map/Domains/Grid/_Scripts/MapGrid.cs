@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 namespace Game.Map.Grid
 {
-    public class Grid : IMapGrid
+    public class MapGrid : IMapGrid
     {
+
         private readonly IMapElement[,] _cells;
 
         private readonly int _rows;
@@ -12,7 +14,10 @@ namespace Game.Map.Grid
         private readonly Vector3 _offset;
 
 
-        public Grid(GridSettingsSO settings)
+        public event Action<IMapElement> ElementChanged;
+        public event Action<IMapElement> ElementRemoved;
+
+        public MapGrid(GridSettingsSO settings)
         {
             _cells = new IMapElement[settings.Rows, settings.Columns];
 
@@ -37,26 +42,26 @@ namespace Game.Map.Grid
             return IsEmpty(row, column);
         }
 
-        public bool CanPlace(int row, int column, int width, int height)
+        public bool CanPlace(int row, int column, int width, int height, IMapElement element)
         {
             for (int r = row; r < row + width; r++)
             {
                 for (int c = column; c < column + height; c++)
                 {
-                    if (!IsEmpty(r, c))
+                    if (!IsEmpty(r, c) && _cells[r, c] != element)
                         return false;
                 }
             }
             return true;
         }
-        public bool CanPlace(Vector3 worldPosition, int width, int height)
+        public bool CanPlace(Vector3 worldPosition, int width, int height, IMapElement element)
         {
             GetIndexes(worldPosition, out int row, out int column);
-            return CanPlace(row, column, width, height);
+            return CanPlace(row, column, width, height, element);
         }
-        public bool CanPlace(IMapElement cell)
+        public bool CanPlace(IMapElement element)
         {
-            return CanPlace(cell.Position, cell.Width, cell.Height);
+            return CanPlace(element.Position, element.Width, element.Height, element);
         }
         public void Place(IMapElement cell)
         {
@@ -92,9 +97,11 @@ namespace Game.Map.Grid
             GetIndexes(worldPosition, out int row, out int column);
             Remove(row, column, width, height);
         }
-        public void Remove(IMapElement cell)
+        public void Remove(IMapElement element)
         {
-            Remove(cell.Position, cell.Width, cell.Height);
+            Remove(element.Position, element.Width, element.Height);
+
+            ElementRemoved?.Invoke(element);
         }
 
         #region GET
@@ -132,7 +139,7 @@ namespace Game.Map.Grid
         {
             return new Vector3(row, 0, column) * _cellSize - _offset;
         }
-       
+
 
 
         public Vector3 WorldPositionToGridPosition(Vector3 worldPosition)
@@ -156,6 +163,7 @@ namespace Game.Map.Grid
             if (IsOnRange(row, column))
             {
                 _cells[row, column] = value;
+                ElementChanged?.Invoke(value);
                 return true;
             }
             return false;

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Udar;
 using UnityEngine;
 using Zenject;
@@ -18,16 +17,16 @@ namespace Game.Shop.UI
         [SerializeField] private Dictionary<ElementCardUI,ResourcePrice> _elementsDictionaryUI = new Dictionary<ElementCardUI, ResourcePrice>();
 
         private Profile _profile;
-        private IElementSpawner _elementSpawner;
+        private ElementSpawnerAggragator _elementSpawnerAggragator;
         private ISaveManager _saveManager;
 
         [Inject] private IDialog _dialog;
       
         [Inject]
-        public void Init(Profile profile, IElementSpawner elementSpawner, ISaveManager saveManager)
+        public void Init(Profile profile, ElementSpawnerAggragator elementSpawner, ISaveManager saveManager)
         {
             _profile = profile;
-            _elementSpawner = elementSpawner;
+            _elementSpawnerAggragator = elementSpawner;
             _saveManager = saveManager;
 
             foreach (var element in _elementsList.Elements)
@@ -55,7 +54,7 @@ namespace Game.Shop.UI
 
             if (CanPurchase(price))
             {
-                _elementSpawner.SpawnNewAndPlace(element.Element.Pfb, null,
+                _elementSpawnerAggragator.SpawnNewAndPlace(element.Element.Pfb, null,
                     () => OnPlacedSuccessfully(price));
                 _panelActivator.ForceHide();
             }

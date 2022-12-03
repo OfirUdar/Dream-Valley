@@ -1,15 +1,20 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Map.Element
 {
-    public class ElementSpawner : IElementSpawner
+    public class ElementSpawner : IElementSpawner, IInitializable, ILateDisposable
     {
         private readonly FacadeBehaviour.Factory _factory;
         private readonly ISelectionManager _selectionManager;
         private readonly IDragManager _dragManager;
         private readonly CamPointerUtility _camPointerUtility;
         private readonly ICameraController _cameraController;
+
+        [Inject] private readonly ElementSpawnerAggragator _spawnerAggragator;
+
+        public event Action<IMapElement> NewSpawned;
 
         public ElementSpawner(ISelectionManager selectionManager,
             IDragManager dragManager,
@@ -23,11 +28,23 @@ namespace Game.Map.Element
             _cameraController = cameraController;
             _factory = factory;
         }
-        public void Spawn(GameObject gameObject)
+
+        public void Initialize()
+        {
+            _spawnerAggragator.SpawnNewRequested += SpawnNewAndPlace;
+        }
+        public void LateDispose()
+        {
+            _spawnerAggragator.SpawnNewRequested -= SpawnNewAndPlace;
+        }
+
+        public IMapElement Spawn(GameObject gameObject)
         {
             var startPosition = _camPointerUtility.CameraRaycast();
             var facadeBehaviour = _factory.Create(gameObject);
             facadeBehaviour.transform.position = startPosition;
+
+            return facadeBehaviour.MapElement;
         }
 
         public void SpawnNewAndPlace(GameObject gameObject, Action cancelCallback, Action successCallback)
@@ -51,7 +68,7 @@ namespace Game.Map.Element
             MainUIEventAggregator.Hide();
         }
 
-        private void OnAprroved(IMapElement mapElement,Action successCallback)
+        private void OnAprroved(IMapElement mapElement, Action successCallback)
         {
             mapElement.PlaceApprover.Hide();
 
@@ -60,6 +77,8 @@ namespace Game.Map.Element
             MainUIEventAggregator.Show();
 
             successCallback?.Invoke();
+
+            NewSpawned?.Invoke(mapElement);
         }
         private void OnCanceled(IMapElement mapElement, Action cancelCallback)
         {
@@ -72,6 +91,7 @@ namespace Game.Map.Element
             cancelCallback?.Invoke();
         }
 
+       
     }
 }
 

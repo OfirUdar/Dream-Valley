@@ -21,8 +21,8 @@ namespace Game.Shop.UI
             _shop = shop;
             _shopElement = shopElement;
 
-            _titleText.text = shopElement.Element.Data.Name;
-            _mainImage.sprite = shopElement.Element.Data.Sprite;
+            _titleText.text = shopElement.Element.Name;
+            _mainImage.sprite = shopElement.Element.Sprite;
 
             _resourceImage.sprite = shopElement.Price.Resource.Sprite;
 

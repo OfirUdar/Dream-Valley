@@ -4,6 +4,8 @@ namespace Game.Map
 {
     public interface IGrid<T> : IPlacer<T> where T : IPlaceable
     {
+        
+
         public bool IsEmpty(int row, int column);
         public bool IsEmpty(Vector3 worldPosition);
 
@@ -23,6 +25,7 @@ namespace Game.Map
         public bool SetValue(Vector3 worldPosition, T value);
         #endregion
 
+
     }
 
     public interface IPlacer<T> where T : IPlaceable
@@ -36,8 +39,8 @@ namespace Game.Map
         public void Remove(T cell);
 
         public bool CanPlace(T cell);
-        public bool CanPlace(int row, int column, int width, int height);
-        public bool CanPlace(Vector3 worldPosition, int width, int height);
+        public bool CanPlace(int row, int column, int width, int height,T cell);
+        public bool CanPlace(Vector3 worldPosition, int width, int height, T cell);
     }
 }
 

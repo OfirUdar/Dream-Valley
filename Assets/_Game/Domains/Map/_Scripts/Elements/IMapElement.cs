@@ -4,7 +4,6 @@ namespace Game.Map
 {
     public interface IMapElement : IPlaceable, ISelectable, IDraggable
     {
-       // public ElementOption ElementOptions { get; }
         public IPlaceApprover PlaceApprover { get; }
         public void Destroy();
     }

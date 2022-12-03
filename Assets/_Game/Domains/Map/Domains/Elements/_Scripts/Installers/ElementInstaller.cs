@@ -24,7 +24,7 @@ namespace Game.Map.Element
         public override void InstallBindings()
         {
 
-            Container.Bind<MapElementData>().FromInstance(_elementSO.Data);
+            Container.Bind<MapElementSO>().FromInstance(_elementSO);
 
             Container.Bind<AreaSizeFitter>().ToSelf().AsSingle()
                 .WithArguments(_idleArea, _editAreaRenderer, _collider).NonLazy();

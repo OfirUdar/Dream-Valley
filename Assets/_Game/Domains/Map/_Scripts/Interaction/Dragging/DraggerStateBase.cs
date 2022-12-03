@@ -43,7 +43,7 @@ namespace Game.Map
                     _currentElement.StartDrag();
                     OnDragStarted();
                 }
-               
+
                 _cameraController.SetActive(false);
             }
         }
@@ -68,7 +68,7 @@ namespace Game.Map
 
             var snappedPosition = GetSnappedPosition();
 
-            var canPlace = _grid.CanPlace(snappedPosition, _currentElement.Width, _currentElement.Height);
+            var canPlace = _grid.CanPlace(snappedPosition, _currentElement.Width, _currentElement.Height, _currentElement);
 
             _currentElement.Position = Vector3.Lerp(_currentElement.Position, snappedPosition, 15f * Time.deltaTime);
             _currentElement.OnDrag(canPlace);

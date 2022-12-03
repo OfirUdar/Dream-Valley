@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace Game.Map.Element
+namespace Game.Map
 {
     public class MapElement : IMapElement
     {
@@ -11,7 +11,7 @@ namespace Game.Map.Element
         private readonly IPlaceApprover _placeApprover;
         private readonly GameObject _elementObject;
 
-        [Inject] public MapElementData Data;
+        [Inject] public MapElementSO Data { get; private set; }
 
 
         public MapElement(IPlaceable placer,
@@ -38,7 +38,6 @@ namespace Game.Map.Element
 
         #region Selection
         public bool IsSelected => _selector.IsSelected;
-
 
         public bool Select()
         {

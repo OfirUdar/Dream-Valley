@@ -12,7 +12,9 @@ namespace Game.Map.Element
               <Object, FacadeBehaviour, FacadeBehaviour.Factory>()
               .FromFactory<PrefabFactory<FacadeBehaviour>>();
 
-            Container.Bind<IElementSpawner>().To<ElementSpawner>().AsSingle();
+            Container.BindInterfacesTo<ElementSpawner>().AsSingle();
+
+            Container.Bind<ElementSpawnerAggragator>().ToSelf().AsSingle();
         }
     }
 }
