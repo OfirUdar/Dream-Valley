@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace Game.Map
@@ -13,6 +14,8 @@ namespace Game.Map
 
         [Inject] public MapElementSO Data { get; private set; }
 
+        public MapElementSaveData SaveData { get; private set; } = new MapElementSaveData();
+
 
         public MapElement(IPlaceable placer,
             ISelectable selector,
@@ -25,6 +28,8 @@ namespace Game.Map
             _dragger = dragger;
             _placeApprover = placeApprover;
             _elementObject = elementObject;
+
+            SaveData.InstanceGUID = Guid.NewGuid().ToString();
         }
 
 
@@ -66,7 +71,6 @@ namespace Game.Map
 
         #region Place Approver
         public IPlaceApprover PlaceApprover => _placeApprover;
-
         #endregion
 
 
@@ -75,6 +79,17 @@ namespace Game.Map
             GameObject.Destroy(_elementObject);
         }
 
+        public string Path => SaveLoadKeys.GetElementPath(Data.GUID, SaveData.InstanceGUID);
 
+        public string GetSerialized()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void SetSerialized(string data)
+        {
+            throw new System.NotImplementedException();
+        }
     }
+
 }

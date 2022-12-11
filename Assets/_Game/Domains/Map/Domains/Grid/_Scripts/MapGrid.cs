@@ -63,10 +63,7 @@ namespace Game.Map.Grid
         {
             return CanPlace(element.Position, element.Width, element.Height, element);
         }
-        public void Place(IMapElement cell)
-        {
-            Place(cell.Position, cell.Width, cell.Height, cell);
-        }
+
         public void Place(int row, int column, int width, int height, IMapElement cell)
         {
             for (int r = row; r < row + width; r++)
@@ -76,12 +73,18 @@ namespace Game.Map.Grid
                     SetValue(r, c, cell);
                 }
             }
+            ElementChanged?.Invoke(cell);
         }
         public void Place(Vector3 worldPosition, int width, int height, IMapElement cell)
         {
             GetIndexes(worldPosition, out int row, out int column);
             Place(row, column, width, height, cell);
         }
+        public void Place(IMapElement cell)
+        {
+            Place(cell.Position, cell.Width, cell.Height, cell);
+        }
+
         public void Remove(int row, int column, int width, int height)
         {
             for (int r = row; r < row + width; r++)
@@ -163,7 +166,6 @@ namespace Game.Map.Grid
             if (IsOnRange(row, column))
             {
                 _cells[row, column] = value;
-                ElementChanged?.Invoke(value);
                 return true;
             }
             return false;
@@ -178,7 +180,6 @@ namespace Game.Map.Grid
         public bool SetValue(Vector3 worldPosition, IMapElement value)
         {
             GetIndexes(worldPosition, out int row, out int column);
-            Debug.Log($"row= {row} column= {column}");
             return SetValue(row, column, value);
         }
 
@@ -188,7 +189,6 @@ namespace Game.Map.Grid
         {
             return row >= 0 && column >= 0 && row < _rows && column < _columns;
         }
-
 
     }
 }

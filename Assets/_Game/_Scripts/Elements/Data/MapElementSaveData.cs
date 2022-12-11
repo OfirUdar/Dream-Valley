@@ -1,12 +1,13 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Game
 {
     [Serializable]
-    public class MapElementData
+    public class MapElementSaveData
     {
         public string InstanceGUID;
-        public int Level;
+        public Vector3 Position;
     }
 
     [Flags]

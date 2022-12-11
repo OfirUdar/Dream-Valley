@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.IO;
+
 namespace Udar
 {
 
@@ -25,13 +26,18 @@ namespace Udar
                 return false;
             }
         }
+        public string[] LoadFoldersPaths(string path)
+        {
+            return Directory.GetDirectories(_mainPath + path+"/");
+        }
+
         public void Save(ISaveable saveable)
         {
             var finalPath = _mainPath + saveable.Path;
             if (!Directory.Exists(finalPath))
                 Directory.CreateDirectory(finalPath);
 
-            File.WriteAllText(finalPath+"/data", saveable.GetSerialized());
+            File.WriteAllText(finalPath + "/data", saveable.GetSerialized());
         }
         public bool TrySave(ISaveable saveable)
         {
@@ -45,7 +51,6 @@ namespace Udar
                 return false;
             }
         }
-
 
 
     }
