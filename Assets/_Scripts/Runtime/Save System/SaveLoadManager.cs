@@ -28,7 +28,10 @@ namespace Udar
         }
         public string[] LoadFoldersPaths(string path)
         {
-            return Directory.GetDirectories(_mainPath + path+"/");
+            var finalPath = _mainPath + path;
+            if (Directory.Exists(finalPath))
+                return Directory.GetDirectories(_mainPath + path);
+            return new string[0];
         }
 
         public void Save(ISaveable saveable)

@@ -92,6 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7662918278464042140}
+  - component: {fileID: 3522025919737823366}
   - component: {fileID: 302030140245139610}
   m_Layer: 0
   m_Name: Installer
@@ -115,6 +116,20 @@ Transform:
   m_Father: {fileID: 3520857174933889916}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3522025919737823366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3061299032231768837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c0b026e5523f9c44acfea241a4f5ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _leafInstallers:
+  - {fileID: 302030140245139610}
 --- !u!114 &302030140245139610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,8 +330,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: 1000, y: 1000}
+  m_AnchoredPosition: {x: 0, y: 2.5}
+  m_SizeDelta: {x: 1000, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2008799738052215282
 Canvas:
@@ -450,7 +465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 302030140245139610}
+  - {fileID: 3522025919737823366}
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}

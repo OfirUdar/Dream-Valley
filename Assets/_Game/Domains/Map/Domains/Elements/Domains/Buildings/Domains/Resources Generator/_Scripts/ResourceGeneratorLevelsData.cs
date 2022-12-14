@@ -9,6 +9,8 @@ namespace Game.Map.Element.Building.Resources
         [field: SerializeField] public ResourceDataSO Resource { get; private set; }
         [field: SerializeField] public List<ResourceGeneratorData> DataLevels { get; private set; }
 
+
+
         public ResourceGeneratorData this[int index] { get { return DataLevels[index]; } set { DataLevels[index] = value; } }
 
     }

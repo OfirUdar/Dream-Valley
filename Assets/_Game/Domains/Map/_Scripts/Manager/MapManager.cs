@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using Udar;
-using UnityEngine;
 using Zenject;
 
 namespace Game.Map
@@ -35,18 +30,11 @@ namespace Game.Map
             if (element == null)
                 return;
 
-
             _mapSaver.SaveElement(element);
-
-            //_saveManager.Save(this);
         }
         private void OnElementRemoved(IMapElement element)
         {
             _mapSaver.DeleteElement(element);
-
-            //_mapElements.Remove(element);
-            // _saveManager.Save(this);
-
         }
        
     }

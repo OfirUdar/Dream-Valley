@@ -62,7 +62,7 @@ namespace Game.Map.Element.Options
             {
                 _hideTween.Restart();
             }
-            if (selectable is MapElement mapElement)
+            if (selectable is IMapElement mapElement)
             {
                 _hideTween.SmoothRewind();
                 _elementNameText.text = mapElement.Data.Name;

@@ -24,30 +24,26 @@ namespace Game.Map
             _loadManager = loadManager;
         }
 
- 
+
         public void SaveElement(IMapElement element)
         {
-            var mapElement = element as MapElement;
-
             var elementPath = Path.Combine(Application.persistentDataPath,
-                SaveLoadKeys.GetElementPath(mapElement.Data.GUID,
-                mapElement.SaveData.InstanceGUID));
+                SaveLoadKeys.GetElementPath(element.Data.GUID,
+                element.SaveData.InstanceGUID));
 
             var finalElementPath = Path.Combine(elementPath, "data");
             if (!Directory.Exists(elementPath))
                 Directory.CreateDirectory(elementPath);
 
-            mapElement.SaveData.Position = mapElement.Position;
-            File.WriteAllText(finalElementPath, JsonUtility.ToJson(mapElement.SaveData));
+            element.SaveData.Position = element.Position;
+            File.WriteAllText(finalElementPath, JsonUtility.ToJson(element.SaveData));
         }
 
         public void DeleteElement(IMapElement element)
         {
-            var mapElement = element as MapElement;
-
             var elementPath = Path.Combine(Application.persistentDataPath,
-                SaveLoadKeys.GetElementPath(mapElement.Data.GUID,
-                mapElement.SaveData.InstanceGUID));
+                SaveLoadKeys.GetElementPath(element.Data.GUID,
+                element.SaveData.InstanceGUID));
 
             if (Directory.Exists(elementPath))
                 Directory.Delete(elementPath);
@@ -66,7 +62,7 @@ namespace Game.Map
             foreach (var typePath in elementTypesPathList)
             {
                 string elementTypeGUID = new DirectoryInfo(Path.GetFileName(typePath)).Name;
-                var finalTypePath = SaveLoadKeys.Map + "/" + elementTypeGUID;
+                var finalTypePath = Path.Combine(SaveLoadKeys.Map, elementTypeGUID);
 
                 IterateOnInstances(elementTypeGUID, finalTypePath);
             }
@@ -77,7 +73,7 @@ namespace Game.Map
 
             foreach (var instancePath in elementInstancesPathList)
             {
-                var data = File.ReadAllText(instancePath + "/data");
+                var data = File.ReadAllText(Path.Combine(instancePath, "data"));
                 var elementData = JsonUtility.FromJson<MapElementSaveData>(data);
 
                 CreateInstance(elementTypeGUID, elementData);
@@ -91,7 +87,7 @@ namespace Game.Map
             (mapElementInstance as MapElement).SaveData.InstanceGUID = elementData.InstanceGUID;
             mapElementInstance.Position = elementData.Position;
 
-            _grid.SetValue(elementData.Position, mapElementInstance);
+            _grid.Place(mapElementInstance);
         }
 
 

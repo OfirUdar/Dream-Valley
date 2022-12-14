@@ -6,14 +6,11 @@ namespace Game.Map.Element.Building
     {
         public override void InstallBindings()
         {
-            Container.Bind(typeof(ITickable),typeof(IDateTimer)).To<Timer>().AsSingle();
+            Container.Bind(typeof(ITickable), typeof(IDateTimer)).To<Timer>().AsSingle();
 
-            Container.Bind(typeof(ITickable),typeof(IBuildingStateMachine))
-                .To<BuildingStateMachine>()
-                .AsSingle();
-
-
+            Container.BindInterfacesTo<BuildingStateMachine>().AsSingle();
 
         }
     }
+
 }

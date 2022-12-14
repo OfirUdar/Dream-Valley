@@ -78,18 +78,6 @@ namespace Game.Map
         {
             GameObject.Destroy(_elementObject);
         }
-
-        public string Path => SaveLoadKeys.GetElementPath(Data.GUID, SaveData.InstanceGUID);
-
-        public string GetSerialized()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SetSerialized(string data)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 
 }

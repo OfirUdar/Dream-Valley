@@ -5,11 +5,10 @@
         public void ChangeState(IBuildingState nextState);
         public void ChangeState(StateType state);
 
-        public enum StateType
-        {
-            Active,
-            Upgrade,
-        }
-
+    }
+    public enum StateType
+    {
+        Active,
+        Upgrade,
     }
 }

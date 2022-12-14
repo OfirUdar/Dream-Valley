@@ -32,7 +32,7 @@
 
         private void OnTimerFinished()
         {
-            _machine.ChangeState(IBuildingStateMachine.StateType.Active);
+            _machine.ChangeState(StateType.Active);
         }
 
     }

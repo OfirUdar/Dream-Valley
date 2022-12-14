@@ -1,11 +1,13 @@
 ﻿using System;
-using Udar;
 
 namespace Game.Map
 {
-    public interface IMapElement : IPlaceable, ISelectable, IDraggable,ISaveable,ILoadable
+    public interface IMapElement : IPlaceable, ISelectable, IDraggable
     {
         public IPlaceApprover PlaceApprover { get; }
+        public MapElementSO Data { get; }
+        public MapElementSaveData SaveData { get; }
+
         public void Destroy();
 
     }

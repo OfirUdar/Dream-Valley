@@ -2,23 +2,26 @@
 
 namespace Game.Map.Element.Building
 {
-    public class BuildingStateMachine : IBuildingStateMachine, ITickable
+    public class BuildingStateMachine : IBuildingStateMachine, ITickable, IInitializable
     {
         private IBuildingState _currentState;
 
+        [Inject(Id = StateType.Active)]
         private readonly IBuildingState _activeState; //Spesific state for building - for example, resource generator state
+        [Inject(Id = StateType.Upgrade)]
         private readonly IBuildingState _upgradeState;
 
-        public BuildingStateMachine(IBuildingState activeState, IBuildingState upgradeState)
+
+        public void Initialize()
         {
-            _activeState = activeState;
-            _upgradeState = upgradeState;
+            ChangeState(StateType.Active);
         }
+
         public void Tick()
         {
             _currentState?.Tick();
         }
-        
+
 
         public void ChangeState(IBuildingState nextState)
         {
@@ -26,21 +29,22 @@ namespace Game.Map.Element.Building
             _currentState = nextState;
             _currentState.Enter();
         }
-        public void ChangeState(IBuildingStateMachine.StateType stateType)
+        public void ChangeState(StateType stateType)
         {
-            switch(stateType)
+            switch (stateType)
             {
-                case IBuildingStateMachine.StateType.Active:
-                {
+                case StateType.Active:
+                    {
                         ChangeState(_activeState);
                         break;
-                }
-                case IBuildingStateMachine.StateType.Upgrade:
+                    }
+                case StateType.Upgrade:
                     {
                         ChangeState(_upgradeState);
                         break;
                     }
             }
         }
+
     }
 }

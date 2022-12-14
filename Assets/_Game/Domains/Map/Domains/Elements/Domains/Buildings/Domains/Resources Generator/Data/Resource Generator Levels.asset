@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8319a62ed5427e44b16407a996f8e2f, type: 3}
   m_Name: Resource Generator Levels
   m_EditorClassIdentifier: 
-  <Resource>k__BackingField: {fileID: 0}
+  <Resource>k__BackingField: {fileID: 11400000, guid: 15521e75b7002544396722fce9402d8d,
+    type: 2}
   <DataLevels>k__BackingField:
-  - <TimeInMinute>k__BackingField: 0
+  - _timeInMinute: 10
     <AmountPerTime>k__BackingField: 10
     <Capacity>k__BackingField: 150
     <XpCollectPerAmount>k__BackingField: 2
-  - <TimeInMinute>k__BackingField: 0
+  - _timeInMinute: 10
     <AmountPerTime>k__BackingField: 12
     <Capacity>k__BackingField: 200
     <XpCollectPerAmount>k__BackingField: 3
-  - <TimeInMinute>k__BackingField: 0
+  - _timeInMinute: 10
     <AmountPerTime>k__BackingField: 15
     <Capacity>k__BackingField: 250
     <XpCollectPerAmount>k__BackingField: 4
