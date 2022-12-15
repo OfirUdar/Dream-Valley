@@ -53,12 +53,11 @@ namespace Game.Map.Element
             var facadeBehaviour = _factory.Create(gameObject);
             facadeBehaviour.transform.position = startPosition;
 
-
             var mapElement = facadeBehaviour.MapElement;
             mapElement.StartDrag();
             mapElement.PlaceApprover.Show();
             mapElement.PlaceApprover.SubscribeForCallbacks(
-                  () => OnAprroved(mapElement, successCallback)
+                  () => OnAprroved(facadeBehaviour, successCallback)
                 , () => OnCanceled(mapElement, cancelCallback));
 
             _selectionManager.RequestUnselect();
@@ -68,8 +67,10 @@ namespace Game.Map.Element
             MainUIEventAggregator.Hide();
         }
 
-        private void OnAprroved(IMapElement mapElement, Action successCallback)
+        private void OnAprroved(FacadeBehaviour facadeBehaviour, Action successCallback)
         {
+            var mapElement = facadeBehaviour.MapElement;
+
             mapElement.PlaceApprover.Hide();
 
             _selectionManager.Lock(false);
@@ -79,6 +80,8 @@ namespace Game.Map.Element
             successCallback?.Invoke();
 
             NewSpawned?.Invoke(mapElement);
+
+            facadeBehaviour.Eventor.NotifiySpawnedSuccessfully();
         }
         private void OnCanceled(IMapElement mapElement, Action cancelCallback)
         {

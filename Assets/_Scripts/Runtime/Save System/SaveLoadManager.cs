@@ -3,7 +3,6 @@ using System.IO;
 
 namespace Udar
 {
-
     public class SaveLoadManager : ISaveManager, ILoadManager
     {
         private static readonly string _mainPath = Application.persistentDataPath + "/";
@@ -55,6 +54,17 @@ namespace Udar
             }
         }
 
+        public bool TryDelete(ISaveable saveable)
+        {
+            var finalPath = _mainPath + saveable.Path;
 
+            if (!Directory.Exists(finalPath))
+                return false;
+
+            File.Delete(finalPath + "/data");
+            Directory.Delete(finalPath);
+
+            return true;
+        }
     }
 }

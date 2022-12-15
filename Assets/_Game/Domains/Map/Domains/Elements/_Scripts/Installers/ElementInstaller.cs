@@ -31,6 +31,8 @@ namespace Game.Map.Element
 
             Container.Bind<IMapElement>().To<MapElement>().AsSingle().WithArguments(_elementGameObject);
 
+            Container.Bind<Eventor>().ToSelf().AsSingle();
+
             InstallInteraction();
         }
 

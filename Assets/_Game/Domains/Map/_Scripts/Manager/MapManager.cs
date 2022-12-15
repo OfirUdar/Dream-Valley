@@ -11,11 +11,12 @@ namespace Game.Map
         {
             _mapSaver = mapSaver;
             _grid = grid;
+            _mapSaver.LoadAll();
         }
 
         public void Initialize()
         {
-            _mapSaver.LoadAll();
+
             _grid.ElementChanged += OnElementChanged;
             _grid.ElementRemoved += OnElementRemoved;
         }

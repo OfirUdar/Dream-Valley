@@ -52,6 +52,15 @@ namespace Game
             return this;
 
         }
+
+
+        public IDateTimer SetTime(TimeSpan currentTime, TimeSpan targetTimeSpan)
+        {
+            _targetTimeSeconds = (float)targetTimeSpan.TotalSeconds;
+            _timerSeconds = (float)currentTime.TotalSeconds;
+
+            return this;
+        }
         public IDateTimer Start()
         {
             _isTicking = true;
@@ -85,7 +94,6 @@ namespace Game
         {
             return _timerSeconds / _targetTimeSeconds;
         }
-
 
     }
 

@@ -16,7 +16,7 @@ namespace Game.Map.Element.Building.Resources
         public TimeSpan GetTimeSpan()
         {
             // return TimeSpan.FromMinutes(TimeInMinute);
-            return TimeSpan.FromSeconds(TimeInMinute);
+            return TimeSpan.FromSeconds(TimeInMinute*3);
         }
     }
 }

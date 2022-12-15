@@ -84,7 +84,7 @@ namespace Game.Map
             var mapElementDataPrefab = _elementsList.GetByGUID(elementTypeGUID).Pfb;
             var mapElementInstance = _elementSpawner.Spawn(mapElementDataPrefab);
 
-            (mapElementInstance as MapElement).SaveData.InstanceGUID = elementData.InstanceGUID;
+            mapElementInstance.SaveData.InstanceGUID = elementData.InstanceGUID;
             mapElementInstance.Position = elementData.Position;
 
             _grid.Place(mapElementInstance);

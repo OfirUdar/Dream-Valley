@@ -11,6 +11,9 @@ namespace Game.Map.Element
     public class LevelsListSO : ScriptableObject
     {
         public List<Level> Levels = new List<Level>();
+
+        public Level this[int index] { get { return Levels[index]; } set { Levels[index] = value; } }
+
     }
 
 }

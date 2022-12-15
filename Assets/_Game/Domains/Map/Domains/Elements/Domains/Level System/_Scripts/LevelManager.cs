@@ -27,7 +27,6 @@ namespace Game.Map.Element.LevelSystem
             _loadManager.TryLoad(this);
         }
 
-
         public string GetSerialized()
         {
             return JsonUtility.ToJson(_levelSaveData);
