@@ -47,7 +47,7 @@ namespace Game.Map.Element
             return facadeBehaviour.MapElement;
         }
 
-        public void SpawnNewAndPlace(GameObject gameObject, Action cancelCallback, Action successCallback)
+        public async void SpawnNewAndPlace(GameObject gameObject, Action cancelCallback, Action successCallback)
         {
             var startPosition = _camPointerUtility.CameraRaycast();
             var facadeBehaviour = _factory.Create(gameObject);
@@ -62,9 +62,11 @@ namespace Game.Map.Element
 
             _selectionManager.RequestUnselect();
             _selectionManager.Lock(true);
-            _dragManager.ChangeToNewElementDragger();
-            _cameraController.FocusAsync(startPosition, 15f);
+            _dragManager.Lock(true);
+            _dragManager.ChangeToNewElementDragger(mapElement);
             MainUIEventAggregator.Hide();
+            await _cameraController.FocusAsync(startPosition, 15f);
+            _dragManager.Lock(false);
         }
 
         private void OnAprroved(FacadeBehaviour facadeBehaviour, Action successCallback)
@@ -94,7 +96,7 @@ namespace Game.Map.Element
             cancelCallback?.Invoke();
         }
 
-       
+
     }
 }
 

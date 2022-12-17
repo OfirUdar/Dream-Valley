@@ -10,7 +10,7 @@ namespace Game.Map.Element.Building
         [Inject] private readonly IMapElement _mapElement;
         [Inject] private readonly ISaveManager _saveManager;
         [Inject] private readonly ILoadManager _loadManager;
-        [Inject] private readonly Eventor _eventor;
+        [Inject] private readonly IEventor _eventor;
 
         [Inject(Id = StateType.Active)]
         private readonly IBuildingState _activeState; //Spesific state for building - for example, resource generator state
@@ -24,11 +24,13 @@ namespace Game.Map.Element.Building
         {
             var isSuccess = _loadManager.TryLoad(this);
             _eventor.SpawnedSuccessfully += OnElementSpawnedSuccessfully;
+            _eventor.UpgradeRequested += OnUpgradeRequested;
         }
 
         public void LateDispose()
         {
             _eventor.SpawnedSuccessfully -= OnElementSpawnedSuccessfully;
+            _eventor.UpgradeRequested -= OnUpgradeRequested;
         }
 
         public void Tick()
@@ -63,6 +65,11 @@ namespace Game.Map.Element.Building
         }
 
         private void OnElementSpawnedSuccessfully()
+        {
+            ChangeState(StateType.Upgrade);
+        }
+
+        private void OnUpgradeRequested()
         {
             ChangeState(StateType.Upgrade);
         }

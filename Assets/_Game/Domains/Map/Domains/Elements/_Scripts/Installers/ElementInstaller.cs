@@ -18,6 +18,7 @@ namespace Game.Map.Element
         [Space]
         [SerializeField] private PlacerBehaviour _placerBehaviour;
         [SerializeField] private PointerEvents _pointerEvents;
+       
 
 
 
@@ -31,7 +32,8 @@ namespace Game.Map.Element
 
             Container.Bind<IMapElement>().To<MapElement>().AsSingle().WithArguments(_elementGameObject);
 
-            Container.Bind<Eventor>().ToSelf().AsSingle();
+            Container.Bind<IEventor>().To<Eventor>().AsSingle();
+
 
             InstallInteraction();
         }

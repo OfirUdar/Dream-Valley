@@ -16,6 +16,11 @@ namespace Game.Camera
         {
         }
 
+        public override void SetActive(bool isActive)
+        {
+            _panVelocity = Vector3.zero;
+        }
+
         public override void Tick()
         {
             if (_input.IsPointerDown() && !_input.IsPointerOverUI())

@@ -42,6 +42,7 @@ namespace Game.Map
             }
 
         }
+       
         public void RequestUnselect()
         {
             if (_isLocked)
@@ -59,6 +60,8 @@ namespace Game.Map
 
         public void Tick()
         {
+            if (_isLocked)
+                return;
 
             if (_input.IsPointerDown())
             {

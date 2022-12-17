@@ -12,7 +12,10 @@ namespace Game.Camera
         public TouchCameraMove(Transform camTran, IUserInput input, MoveSettings moveSettings) : base(camTran, input, moveSettings)
         {
         }
-
+        public override void SetActive(bool isActive)
+        {
+            _panVelocity = Vector3.zero;
+        }
         public override void Tick()
         {
             if (Input.touchCount >= 1 && !_input.IsPointerOverUI())

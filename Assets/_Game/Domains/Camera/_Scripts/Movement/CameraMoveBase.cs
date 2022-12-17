@@ -11,6 +11,7 @@ namespace Game.Camera
         protected readonly MoveSettings _settings;
 
         public abstract void Tick();
+        public abstract void SetActive(bool isActive);
 
         public CameraMoveBase(Transform camTran, IUserInput input, MoveSettings moveSettings)
         {

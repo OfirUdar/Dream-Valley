@@ -32,7 +32,6 @@ namespace Game.Map
 
         public virtual void RequestStartDrag(IMapElement mapElement)
         {
-            //if (mapElement.IsSelected)
             if (CanStartDrag(mapElement))
             {
                 _offsetPosition = CalculateOffsetPosition(mapElement.Position);
@@ -43,7 +42,6 @@ namespace Game.Map
                     _currentElement.StartDrag();
                     OnDragStarted();
                 }
-
                 _cameraController.SetActive(false);
             }
         }

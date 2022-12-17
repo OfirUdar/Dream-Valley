@@ -14,12 +14,17 @@ namespace Game.Map.Element.LevelSystem
         private readonly IMapElement _mapElement;
         private readonly ISaveManager _saveManager;
         private readonly ILoadManager _loadManager;
+        private readonly IElementVisualHandler _elementVisualHandler;
 
-        public LevelManager(IMapElement mapElement, ISaveManager saveManager, ILoadManager loadManager)
+        public LevelManager(IMapElement mapElement,
+            ISaveManager saveManager,
+            ILoadManager loadManager,
+            IElementVisualHandler elementVisualHandler)
         {
             _mapElement = mapElement;
             _saveManager = saveManager;
             _loadManager = loadManager;
+            _elementVisualHandler = elementVisualHandler;
         }
 
         public void Initialize()
@@ -36,11 +41,15 @@ namespace Game.Map.Element.LevelSystem
         {
             var levelSaveData = JsonUtility.FromJson<LevelSaveData>(data);
             _levelSaveData = levelSaveData;
+
+            _elementVisualHandler.Refresh(CurrentLevel);
         }
 
         public void UpgradgeLevelUp()
         {
             _levelSaveData.CurrentLevel++;
+            _elementVisualHandler.Refresh(CurrentLevel);
+
             _saveManager.Save(this);
         }
 

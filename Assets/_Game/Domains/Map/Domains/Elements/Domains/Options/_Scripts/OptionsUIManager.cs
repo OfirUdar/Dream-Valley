@@ -62,6 +62,7 @@ namespace Game.Map.Element.Options
             {
                 _hideTween.Restart();
             }
+            
             if (selectable is IMapElement mapElement)
             {
                 _hideTween.SmoothRewind();
@@ -76,7 +77,8 @@ namespace Game.Map.Element.Options
 
                 foreach (var pfb in optionsButtonsPfb)
                 {
-                    Instantiate(pfb, _container, false);
+                    var optionButton = Instantiate(pfb, _container, false);
+                    optionButton.Setup(mapElement);
                 }
 
             }

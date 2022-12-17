@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca92a0f999a921547aa657254dedad3e, type: 3}
+  m_Name: Element_Coins_Generator
+  m_EditorClassIdentifier: 
+  <GUID>k__BackingField: 639ccc6fdc4ae5e4c96b5c6beda62258
+  <Name>k__BackingField: Building one
+  <Description>k__BackingField: hahahah test
+  <Sprite>k__BackingField: {fileID: 21300000, guid: eb22d376b7994415aac9d7a87ff27901,
+    type: 3}
+  <Width>k__BackingField: 3
+  <Height>k__BackingField: 3
+  <Options>k__BackingField: 11
+  <Pfb>k__BackingField: {fileID: 8129032008449172806, guid: c999730c44d342f4a934cd5558c6fcb9,
+    type: 3}

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5770715656037455937}
   - component: {fileID: 5770715656037455942}
   - component: {fileID: 5770715656037455941}
+  - component: {fileID: -6530994927889890030}
   m_Layer: 5
   m_Name: OptionButtonBase
   m_TagString: Untagged
@@ -165,6 +166,24 @@ MonoBehaviour:
   _activeAlpha: 1
   _inActiveAlpha: 0.5
   _isActive: 1
+--- !u!114 &-6530994927889890030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5770715656037455951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abcc43b0cf82df4d90f0282576e9b98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 5770715656037455937}
+  _image: {fileID: 5770715657244553148}
+  _optionText: {fileID: 5770715656242552555}
+  Clicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5770715656242552553
 GameObject:
   m_ObjectHideFlags: 0

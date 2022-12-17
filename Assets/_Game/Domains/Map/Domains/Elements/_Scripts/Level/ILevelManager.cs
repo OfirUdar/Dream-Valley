@@ -3,8 +3,6 @@
     public interface ILevelManager
     {
         public int CurrentLevel { get; }
-
-
         public void UpgradgeLevelUp();
     }
 }

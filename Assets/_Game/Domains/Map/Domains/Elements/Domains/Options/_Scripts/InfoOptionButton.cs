@@ -2,12 +2,12 @@
 
 namespace Game.Map.Element.Options
 {
-    public class InfoOptionButton : OptionButtonBase
+    public class InfoOptionButton : MonoBehaviour
     {
-        [SerializeField] private PanelActivator _pfb;
-        public override void Execute()
+        [SerializeField] private UIInfoElementDialog _pfb;
+        public void Execute(IMapElement mapElement)
         {
-            Instantiate(_pfb).Show();
+            Instantiate(_pfb).Show(mapElement);
         }
     }
 }

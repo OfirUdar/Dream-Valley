@@ -7,6 +7,7 @@
 
 
         private DraggerStateBase _currentState;
+        private bool _isLock;
 
         public DragManager(ExistDragState existElementDragger,
             NewDragState newElementDragger)
@@ -19,6 +20,9 @@
 
         public void RequestStartDrag(IMapElement mapElement)
         {
+            if (_isLock)
+                return;
+
             _currentState.RequestStartDrag(mapElement);
         }
         public void RequestEndDrag()
@@ -27,17 +31,25 @@
         }
         public void RequestDrag()
         {
+            if (_isLock)
+                return;
+
             _currentState.RequestDrag();
         }
-
 
         public void ChangeToExistElementDragger()
         {
             _currentState = _existElementDragger;
         }
-        public void ChangeToNewElementDragger()
+        public void ChangeToNewElementDragger(IMapElement mapElement)
         {
             _currentState = _newElementDragger;
+            _newElementDragger.SetMapElement(mapElement);
+        }
+
+        public void Lock(bool isLock)
+        {
+            _isLock = isLock;
         }
     }
 

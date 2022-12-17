@@ -9,8 +9,8 @@ namespace Game.Map.Element.Options
     {
         [SerializeField] private List<ElementOptionWithButton> _optionsButtons;
 
-        private readonly Dictionary<ElementOption, OptionButtonBase> _optionsDictionary
-            = new Dictionary<ElementOption, OptionButtonBase>();
+        private readonly Dictionary<ElementOption, OptionButton> _optionsDictionary
+            = new Dictionary<ElementOption, OptionButton>();
 
         private void OnEnable()
         {
@@ -20,9 +20,9 @@ namespace Game.Map.Element.Options
             }
         }
 
-        public List<OptionButtonBase> GetPrefabsByOptions(ElementOption options)
+        public List<OptionButton> GetPrefabsByOptions(ElementOption options)
         {
-            var buttonsPrefabsList = new List<OptionButtonBase>();
+            var buttonsPrefabsList = new List<OptionButton>();
 
             foreach (var iterateOption in _optionsDictionary)
             {
@@ -38,7 +38,7 @@ namespace Game.Map.Element.Options
     public class ElementOptionWithButton
     {
         [field: SerializeField] public ElementOption Option { get; private set; }
-        [field: SerializeField] public OptionButtonBase Pfb { get; private set; }
+        [field: SerializeField] public OptionButton Pfb { get; private set; }
 
     }
 }

@@ -16,7 +16,6 @@ namespace Game.Map
 
         public void Initialize()
         {
-
             _grid.ElementChanged += OnElementChanged;
             _grid.ElementRemoved += OnElementRemoved;
         }

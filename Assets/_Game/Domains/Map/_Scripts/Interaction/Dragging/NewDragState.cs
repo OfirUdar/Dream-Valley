@@ -1,10 +1,10 @@
-﻿namespace Game.Map
-{
+﻿using UnityEngine;
 
+namespace Game.Map
+{
     //For new element
     public class NewDragState : DraggerStateBase
     {
-
         public NewDragState(IMapGrid grid,
             ICameraController cameraController,
             CamPointerUtility camPointerUtility,
@@ -41,7 +41,14 @@
 
         protected override bool CanStartDrag(IMapElement mapElement)
         {
+            if (_currentElement != mapElement)
+                return false;
             return true;
+        }
+        public void SetMapElement(IMapElement mapElement)
+        {
+            _currentElement = mapElement;
+            _currentElement.PlaceApprover.SubscribeForCallbacks(OnApproveRequested, OnCancelRequested);
         }
     }
 
