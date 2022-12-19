@@ -27,3 +27,7 @@ MonoBehaviour:
     <AmountPerTime>k__BackingField: 15
     <Capacity>k__BackingField: 250
     <XpCollectPerAmount>k__BackingField: 4
+  - _timeInMinute: 10
+    <AmountPerTime>k__BackingField: 20
+    <Capacity>k__BackingField: 300
+    <XpCollectPerAmount>k__BackingField: 4

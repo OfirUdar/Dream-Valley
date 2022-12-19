@@ -5,11 +5,9 @@ namespace Game.Map.Element.Options
     public class UpgradeOptionButton : MonoBehaviour
     {
 
-        public void Execute(ISelectable selectable)
+        public void Execute(IMapElement mapElement)
         {
-            var mapElement = selectable as IMapElement;
-
-
+            mapElement.UpgradeDisplayer.Display();
         }
     }
 }

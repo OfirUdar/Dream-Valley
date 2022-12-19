@@ -14,12 +14,12 @@ namespace Game.Map.Element.LevelSystem
         private readonly IMapElement _mapElement;
         private readonly ISaveManager _saveManager;
         private readonly ILoadManager _loadManager;
-        private readonly IElementVisualHandler _elementVisualHandler;
+        private readonly ILevelsElementVisualHandler _elementVisualHandler;
 
         public LevelManager(IMapElement mapElement,
             ISaveManager saveManager,
             ILoadManager loadManager,
-            IElementVisualHandler elementVisualHandler)
+            ILevelsElementVisualHandler elementVisualHandler)
         {
             _mapElement = mapElement;
             _saveManager = saveManager;

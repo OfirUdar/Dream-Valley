@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Game.Map.Element
 {
-    public class ElementVisualHandler : MonoBehaviour, IElementVisualHandler
+    public class LevelsElementVisualHandler : MonoBehaviour, ILevelsElementVisualHandler
     {
         [SerializeField] private Transform _gfx;
 

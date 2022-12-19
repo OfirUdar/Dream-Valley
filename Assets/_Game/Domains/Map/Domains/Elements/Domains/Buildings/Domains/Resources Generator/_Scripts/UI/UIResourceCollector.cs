@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Game.Map.Element.Building.Resources.UI
 {
-    public class ResourceCollectorUI : MonoBehaviour
+    public class UIResourceCollector : MonoBehaviour
     {
         [SerializeField] private PopupTween _popup;
         [SerializeField] private Button _collectButton;

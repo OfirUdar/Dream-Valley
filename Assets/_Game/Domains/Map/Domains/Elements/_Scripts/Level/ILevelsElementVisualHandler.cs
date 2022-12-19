@@ -1,6 +1,6 @@
 ﻿namespace Game.Map.Element
 {
-    public interface IElementVisualHandler
+    public interface ILevelsElementVisualHandler
     {
         /// <summary>
         /// Refersh element visualing - it can be after upgradeing element to next level

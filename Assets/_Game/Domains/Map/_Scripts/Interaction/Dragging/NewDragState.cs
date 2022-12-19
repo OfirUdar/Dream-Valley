@@ -15,7 +15,7 @@ namespace Game.Map
         }
         public override void OnDragStarted()
         {
-            _currentElement.PlaceApprover.SubscribeForCallbacks(OnApproveRequested, OnCancelRequested);
+           // _currentElement.PlaceApprover.SubscribeForCallbacks(OnApproveRequested, OnCancelRequested);
         }
 
         public override void OnDragEnded(bool canPlace)
@@ -50,6 +50,7 @@ namespace Game.Map
             _currentElement = mapElement;
             _currentElement.PlaceApprover.SubscribeForCallbacks(OnApproveRequested, OnCancelRequested);
         }
+
     }
 
 }

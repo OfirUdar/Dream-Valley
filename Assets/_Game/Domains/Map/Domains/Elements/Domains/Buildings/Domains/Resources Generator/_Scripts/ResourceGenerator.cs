@@ -15,6 +15,7 @@ namespace Game.Map.Element.Building.Resources
         private readonly ILoadManager _loadManager;
         private readonly IDateTimer _timer;
         private readonly ILevelManager _levelManager;
+        private readonly ISelectionManager _selectionManager;
 
         private int _collectAmount;
 
@@ -43,6 +44,7 @@ namespace Game.Map.Element.Building.Resources
             if (!isSuccessed)
                 StartTimer();
         }
+
 
         public void Tick()
         {
@@ -90,6 +92,9 @@ namespace Game.Map.Element.Building.Resources
 
         public void Collect()
         {
+            if (_collectAmount == 0)
+                return;
+
             _profile.ResourcesInventory.AddResource(_generatorData.Resource, _collectAmount);
             _saveManager.TrySave(_profile.ResourcesInventory);
 
@@ -102,6 +107,9 @@ namespace Game.Map.Element.Building.Resources
         {
             return _generatorData.Resource;
         }
+
+
+
 
 
         #region Save&Load

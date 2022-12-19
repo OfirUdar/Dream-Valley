@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 1062254998875389408, guid: 2b65677c3a878f14b9456ab713000fc4,
         type: 3}
       propertyPath: m_Name
-      value: ResourceInfoElementDialog
+      value: UIResourceInfoElementDialog
       objectReference: {fileID: 0}
     - target: {fileID: 1062254999335159070, guid: 2b65677c3a878f14b9456ab713000fc4,
         type: 3}
@@ -94,6 +94,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b65677c3a878f14b9456ab713000fc4, type: 3}
+--- !u!114 &2677635308328228911 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2275837350643349473, guid: 2b65677c3a878f14b9456ab713000fc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 4232742786876256206}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3747094294331298350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453b99449e8cb524499779d00bf858d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3747094294035855744 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1062254999242626638, guid: 2b65677c3a878f14b9456ab713000fc4,
@@ -118,18 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d9936a333551d40af34a1c5769d5cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panelActivator: {fileID: 3747094294331298513}
+  _displayer: {fileID: 2677635308328228911}
   _rowPfb: {fileID: 983783850826124513, guid: b5fbfe6b6e1a65141bd61d220e121b5e, type: 3}
-  _container: {fileID: 3747094294035855744}
---- !u!114 &3747094294331298513 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1062254998875389215, guid: 2b65677c3a878f14b9456ab713000fc4,
+  _separatorPfb: {fileID: 8412201712246211187, guid: 91d1e160e49bac748aeca4e0cddf830d,
     type: 3}
-  m_PrefabInstance: {fileID: 4232742786876256206}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3747094294331298350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36587542107cd314ab94e1fc181b635a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _container: {fileID: 3747094294035855744}

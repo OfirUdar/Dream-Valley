@@ -7,7 +7,7 @@ namespace Game.Map.Element.Building
     {
         [SerializeField] private LevelsListSO _levels;
         [Space]
-        [SerializeField] private ElementVisualHandler _elementVisualHandler;
+        [SerializeField] private LevelsElementVisualHandler _elementVisualHandler;
 
         public override void InstallBindings()
         {
@@ -23,7 +23,7 @@ namespace Game.Map.Element.Building
                .To<UpgradeState>().FromResolve();
 
             Container.Bind<LevelsListSO>().FromInstance(_levels);
-            Container.Bind<IElementVisualHandler>().FromInstance(_elementVisualHandler);
+            Container.Bind<ILevelsElementVisualHandler>().FromInstance(_elementVisualHandler);
 
         }
     }

@@ -24,24 +24,28 @@ namespace Game.Resources.UI
 
             foreach (var resource in _profile.ResourcesInventory.Resources)
             {
-                AddResourceUIElement(resource.Key,resource.Value);
+                AddResourceUIElement(resource.Key, resource.Value);
             }
 
             _profile.ResourcesInventory.ResourceChanged += OnResourcesChanged;
         }
 
-       
+
 
         private void OnDestroy()
         {
             _profile.ResourcesInventory.ResourceChanged -= OnResourcesChanged;
         }
-        private void AddResourceUIElement(string guid, int amount)
+        private void AddResourceUIElement(string guid, int amount, bool withTweenAmount = false)
         {
             var uiInstance = Instantiate(_pfb, _container, false);
             var resourceData = _resourcesList.GetByGUID(guid);
 
             uiInstance.Setup(resourceData.Sprite, amount);
+
+            if (withTweenAmount)
+                uiInstance.SetTweenAmount(amount);
+
             _resourceUIDictionary.Add(resourceData, uiInstance);
         }
 
@@ -53,7 +57,7 @@ namespace Game.Resources.UI
             }
             else
             {
-                AddResourceUIElement(data.GUID, amount);
+                AddResourceUIElement(data.GUID, amount, true);
             }
 
         }

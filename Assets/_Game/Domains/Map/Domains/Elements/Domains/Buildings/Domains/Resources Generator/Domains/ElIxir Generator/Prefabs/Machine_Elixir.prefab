@@ -600,6 +600,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levels: {fileID: 11400000, guid: 5bbf65508ddec2b4f9711b266a640abe, type: 2}
+  _uiInfoDisplayPfb: {fileID: 4508881234128165971, guid: 2e597551899afde4cbec6107b87d5935,
+    type: 3}
+  _uiUpgradeDisplayPfb: {fileID: 8435146432732484123, guid: 2d52ff2a5be8fe840b36ddeab3a5434a,
+    type: 3}
 --- !u!114 &6236723140801391136 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6210693628039448714, guid: e65a42722264d0640b749d48cf10b91b,

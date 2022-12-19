@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Game.Map
+namespace Game.Map.Element
 {
     public class MapElement : IMapElement
     {
@@ -12,9 +12,12 @@ namespace Game.Map
         private readonly IPlaceApprover _placeApprover;
         private readonly GameObject _elementObject;
 
-        [Inject] public MapElementSO Data { get; private set; }
+        [InjectOptional] public IInfoDisplayer InfoDisplayer { get; private set; }
+        [InjectOptional] public IUpgradeDisplayer UpgradeDisplayer { get; private set; }
 
+        [Inject] public MapElementSO Data { get; private set; }
         public MapElementSaveData SaveData { get; private set; } = new MapElementSaveData();
+
 
 
         public MapElement(IPlaceable placer,
@@ -71,6 +74,7 @@ namespace Game.Map
 
         #region Place Approver
         public IPlaceApprover PlaceApprover => _placeApprover;
+
         #endregion
 
 

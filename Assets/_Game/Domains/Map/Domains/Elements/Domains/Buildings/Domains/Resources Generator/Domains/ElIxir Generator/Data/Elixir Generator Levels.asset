@@ -34,8 +34,9 @@ MonoBehaviour:
     UpgradeAccomplishedXP: 10
     Pfb: {fileID: 1776689438979302762, guid: 88a4cd5d7e2537040ae1ba4ac5882d92, type: 3}
   - UpgradePrice:
-      <Resource>k__BackingField: {fileID: 0}
-      <Amount>k__BackingField: 0
+      <Resource>k__BackingField: {fileID: 11400000, guid: 15521e75b7002544396722fce9402d8d,
+        type: 2}
+      <Amount>k__BackingField: 100
     UpgradeDuration:
       Hours: 0
       Mintues: 15
@@ -43,8 +44,9 @@ MonoBehaviour:
     UpgradeAccomplishedXP: 30
     Pfb: {fileID: 1776689438979302762, guid: 2cda1bbb2b915ac4c8eabae9dc8ed5e8, type: 3}
   - UpgradePrice:
-      <Resource>k__BackingField: {fileID: 0}
-      <Amount>k__BackingField: 0
+      <Resource>k__BackingField: {fileID: 11400000, guid: 15521e75b7002544396722fce9402d8d,
+        type: 2}
+      <Amount>k__BackingField: 100
     UpgradeDuration:
       Hours: 0
       Mintues: 15
