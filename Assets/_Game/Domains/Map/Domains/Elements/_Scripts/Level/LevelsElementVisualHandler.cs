@@ -7,15 +7,14 @@ namespace Game.Map.Element
     {
         [SerializeField] private Transform _gfx;
 
-        [Inject] private readonly LevelsListSO _levels;
         [Inject] private readonly ISelectVisual _selectVisual;
 
 
-        public void Refresh(int level)
+        public void Refresh(Level level)
         {
             ClearGFX();
 
-            var pfb = _levels[level].Pfb;
+            var pfb = level.Pfb;
 
             GameObject.Instantiate(pfb, _gfx, false);
 

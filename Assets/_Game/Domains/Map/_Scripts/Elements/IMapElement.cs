@@ -5,6 +5,7 @@ namespace Game.Map
     public interface IMapElement : IPlaceable, ISelectable, IDraggable, IDestroyable
     {
         public IPlaceApprover PlaceApprover { get; }
+        public IOptionsDisplayer OptionsDisplayer { get; }
         public IInfoDisplayer InfoDisplayer { get; }
         public IUpgradeDisplayer UpgradeDisplayer { get; }
         public MapElementSO Data { get; }

@@ -12,9 +12,11 @@ namespace Game
         [field: SerializeField] public Sprite Sprite { get; private set; }
         [field: Space, SerializeField] public int Width { get; private set; }
         [field: SerializeField] public int Height { get; private set; }
-        [field: SerializeField,Space] public ElementOption Options { get; private set; }
-        
-        [field: SerializeField] public GameObject Pfb { get; private set; }
+        [field: SerializeField, Space] public ElementOption Options { get; private set; }
+
+        [field: SerializeField, Space] public GameObject Pfb { get; private set; }
+
+        [field: SerializeField] public Vector2 DefaultPosition { get; private set; }
 
 
 #if UNITY_EDITOR

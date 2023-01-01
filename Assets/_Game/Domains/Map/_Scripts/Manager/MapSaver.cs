@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Udar;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Map
 {
@@ -9,18 +11,19 @@ namespace Game.Map
     {
         private readonly IMapGrid _grid;
         private readonly IElementSpawner _elementSpawner;
-        private readonly ElementsListSO _elementsList;
-
         private readonly ILoadManager _loadManager;
+
+
+        [Inject(Id = "Initalize")] private readonly ElementsListSO _initElementList;
+        [Inject] private readonly ElementsListSO _elementList;
+
 
         public MapSaver(IMapGrid grid,
             IElementSpawner elementSpawner,
-            ElementsListSO elementsListSO,
             ILoadManager loadManager)
         {
             _grid = grid;
             _elementSpawner = elementSpawner;
-            _elementsList = elementsListSO;
             _loadManager = loadManager;
         }
 
@@ -54,10 +57,27 @@ namespace Game.Map
         public void LoadAll()
         {
             var elementTypesPathList = _loadManager.LoadFoldersPaths(SaveLoadKeys.Map);
-            IterateOnTypes(elementTypesPathList);
+            if (elementTypesPathList.Length > 0)
+                IterateOnElementTypes(elementTypesPathList);
+            else
+                LoadDefaultMap();
         }
 
-        private void IterateOnTypes(string[] elementTypesPathList)
+        private void LoadDefaultMap()
+        {
+            foreach (var element in _initElementList.ElementsList)
+            {
+                var mapElementInstance = _elementSpawner.Spawn(element.Pfb);
+
+                mapElementInstance.Position = element.DefaultPosition;
+
+                _grid.Place(mapElementInstance);
+
+                SaveElement(mapElementInstance);
+            }
+        }
+
+        private void IterateOnElementTypes(string[] elementTypesPathList)
         {
             foreach (var typePath in elementTypesPathList)
             {
@@ -81,13 +101,21 @@ namespace Game.Map
         }
         private void CreateInstance(string elementTypeGUID, MapElementSaveData elementData)
         {
-            var mapElementDataPrefab = _elementsList.GetByGUID(elementTypeGUID).Pfb;
-            var mapElementInstance = _elementSpawner.Spawn(mapElementDataPrefab);
+            try
+            {
+                var mapElementDataPrefab = _elementList.GetByGUID(elementTypeGUID).Pfb;
+                var mapElementInstance = _elementSpawner.Spawn(mapElementDataPrefab);
 
-            mapElementInstance.SaveData.InstanceGUID = elementData.InstanceGUID;
-            mapElementInstance.Position = elementData.Position;
+                mapElementInstance.SaveData.InstanceGUID = elementData.InstanceGUID;
+                mapElementInstance.Position = elementData.Position;
 
-            _grid.Place(mapElementInstance);
+                _grid.Place(mapElementInstance);
+            }
+            catch (Exception exe)
+            {
+                Debug.LogException(exe);
+            }
+
         }
 
 

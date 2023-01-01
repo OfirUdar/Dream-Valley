@@ -65,7 +65,7 @@ namespace Game.Shop.UI
 
         private void OnPlacedSuccessfully(ResourcePrice price)
         {
-            _profile.ResourcesInventory.SubtratResource(price.Resource, price.Amount);
+            _profile.ResourcesInventory.SubtractResource(price.Resource, price.Amount);
             _saveManager.Save(_profile.ResourcesInventory);
         }
 

@@ -5,6 +5,6 @@
         /// <summary>
         /// Refersh element visualing - it can be after upgradeing element to next level
         /// </summary>
-        public void Refresh(int level);
+        public void Refresh(Level level);
     }
 }

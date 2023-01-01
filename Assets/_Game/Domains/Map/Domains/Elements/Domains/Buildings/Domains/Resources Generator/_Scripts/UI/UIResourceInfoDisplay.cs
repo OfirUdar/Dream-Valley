@@ -10,19 +10,22 @@ namespace Game.Map.Element.Building.Resources
         [Space]
         [SerializeField] private Transform _container;
 
-        public void Display(MapElementSO mapElementSO, ResourceDataSO resource, ResourceGeneratorData data)
+        public void Display(MapElementSO mapElementSO,
+            ResourceDataSO resource,
+            ResourceGeneratorData data,
+            int currentLevel)
         {
             var productionRate = Instantiate(_rowPfb, _container, false);
-            productionRate.SetText($"Production Rate:  {data.AmountPerTime} per {data.TimeInMinute} min");
+            productionRate.SetText($"<u>Production Rate:</u>  {data.AmountPerTime} per {data.TimeInMinute} min");
             productionRate.SetSprite(resource.Sprite);
 
             Instantiate(_separatorPfb, _container, false);
 
             var storageCapcity = Instantiate(_rowPfb, _container, false);
-            storageCapcity.SetText($"Storage Capcity:  {data.Capacity}");
+            storageCapcity.SetText($"<u>Storage Capacity:</u>  {data.Capacity}");
             storageCapcity.SetSprite(resource.Sprite);
 
-            _displayer.Display(mapElementSO);
+            _displayer.Display(mapElementSO, currentLevel);
         }
     }
 

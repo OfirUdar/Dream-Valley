@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a747cf5c1589e948aa4af5316c872ea, type: 3}
   m_Name: Shop_Building_02
   m_EditorClassIdentifier: 
-  <Element>k__BackingField: {fileID: 11400000, guid: 064259f17ac7c794c8b6884f84cc851c,
+  <Element>k__BackingField: {fileID: 11400000, guid: 47ed87d33a5c46748af02b1767a39e05,
     type: 2}
   <Price>k__BackingField:
     <Resource>k__BackingField: {fileID: 11400000, guid: 15521e75b7002544396722fce9402d8d,
       type: 2}
-    <Amount>k__BackingField: 15
+    <Amount>k__BackingField: 50

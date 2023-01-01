@@ -28,6 +28,8 @@ namespace Game.Map.Element.Building.Resources
                .AsSingle()
                .WithArguments(_uiUpgradeDisplayPfb);
 
+         
+
         }
     }
 }

@@ -23,6 +23,8 @@ namespace Game.Map.Element.Building
         public void Initialize()
         {
             var isSuccess = _loadManager.TryLoad(this);
+            if (!isSuccess)
+                ChangeState(StateType.Upgrade);
             _eventor.SpawnedSuccessfully += OnElementSpawnedSuccessfully;
             _eventor.UpgradeRequested += OnUpgradeRequested;
         }
@@ -64,6 +66,13 @@ namespace Game.Map.Element.Building
             }
         }
 
+
+        public StateType GetCurrentState()
+        {
+            return _currentStateType;
+        }
+
+
         private void OnElementSpawnedSuccessfully()
         {
             ChangeState(StateType.Upgrade);
@@ -92,7 +101,6 @@ namespace Game.Map.Element.Building
             };
             return JsonUtility.ToJson(saveData);
         }
-
 
         [Serializable]
         public struct StateSaveData

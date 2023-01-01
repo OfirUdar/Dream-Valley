@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3fc113030ac2d4b829a10d8fdde516, type: 3}
+  m_Name: Elixir_Generator_BuildingLevels
+  m_EditorClassIdentifier: 
+  Levels:
+  - UpgradePrice:
+      <Resource>k__BackingField: {fileID: 0}
+      <Amount>k__BackingField: 0
+    UpgradeDuration:
+      Hours: 0
+      Mintues: 0
+      Seconds: 15
+    UpgradeAccomplishedXP: 10
+    Pfb: {fileID: 1776689438979302762, guid: 88a4cd5d7e2537040ae1ba4ac5882d92, type: 3}
+  - UpgradePrice:
+      <Resource>k__BackingField: {fileID: 11400000, guid: 15521e75b7002544396722fce9402d8d,
+        type: 2}
+      <Amount>k__BackingField: 14
+    UpgradeDuration:
+      Hours: 0
+      Mintues: 8
+      Seconds: 0
+    UpgradeAccomplishedXP: 10
+    Pfb: {fileID: 1776689438979302762, guid: 88a4cd5d7e2537040ae1ba4ac5882d92, type: 3}
+  - UpgradePrice:
+      <Resource>k__BackingField: {fileID: 11400000, guid: 15521e75b7002544396722fce9402d8d,
+        type: 2}
+      <Amount>k__BackingField: 100
+    UpgradeDuration:
+      Hours: 0
+      Mintues: 20
+      Seconds: 0
+    UpgradeAccomplishedXP: 30
+    Pfb: {fileID: 1776689438979302762, guid: 2cda1bbb2b915ac4c8eabae9dc8ed5e8, type: 3}
+  - UpgradePrice:
+      <Resource>k__BackingField: {fileID: 11400000, guid: 15521e75b7002544396722fce9402d8d,
+        type: 2}
+      <Amount>k__BackingField: 100
+    UpgradeDuration:
+      Hours: 0
+      Mintues: 45
+      Seconds: 0
+    UpgradeAccomplishedXP: 30
+    Pfb: {fileID: 1776689438979302762, guid: c8298478ec4d871489da2c7b27f53e48, type: 3}

@@ -21,7 +21,7 @@ namespace Game
             var totalAmount = Resources[resource.GUID];
             ResourceChanged?.Invoke(resource, totalAmount);
         }
-        public void SubtratResource(ResourceDataSO resource, int amount)
+        public void SubtractResource(ResourceDataSO resource, int amount)
         {
             Resources[resource.GUID] -= amount;
 

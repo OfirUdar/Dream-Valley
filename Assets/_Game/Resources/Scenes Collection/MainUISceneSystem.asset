@@ -23,5 +23,5 @@ MonoBehaviour:
     _buildIndex: 1
   - _sceneOB: {fileID: 102900000, guid: 21687cef0b408fd42afc496b11bd12ec, type: 3}
     _name: SelectedOptionsUI
-    _path: Assets/_Game/Scenes/SelectedOptionsUI.unity
+    _path: Assets/_Game/Domains/Map/Domains/Elements/Domains/Options/Scenes/SelectedOptionsUI.unity
     _buildIndex: 3

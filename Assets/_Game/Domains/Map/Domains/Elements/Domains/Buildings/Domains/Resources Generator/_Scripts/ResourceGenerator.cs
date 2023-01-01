@@ -15,7 +15,6 @@ namespace Game.Map.Element.Building.Resources
         private readonly ILoadManager _loadManager;
         private readonly IDateTimer _timer;
         private readonly ILevelManager _levelManager;
-        private readonly ISelectionManager _selectionManager;
 
         private int _collectAmount;
 
@@ -63,7 +62,7 @@ namespace Game.Map.Element.Building.Resources
 
         private void StartTimer()
         {
-            var generatorTime = _generatorData[_levelManager.CurrentLevel].GetTimeSpan();
+            var generatorTime = _generatorData[_levelManager.CurrentIndexLevel].GetTimeSpan();
             StartTimer(generatorTime);
         }
         private void StartTimer(TimeSpan time)
@@ -76,8 +75,9 @@ namespace Game.Map.Element.Building.Resources
         private void OnTimerFinished()
         {
             AddAmountToCollect();
-
-            StartTimer();
+            var maxAmountCapcity = _generatorData[_levelManager.CurrentIndexLevel].Capacity;
+            if (_collectAmount < maxAmountCapcity)
+                StartTimer();
         }
 
         private void AddAmountToCollect()
@@ -85,8 +85,8 @@ namespace Game.Map.Element.Building.Resources
             if (_collectAmount == 0)
                 CollectableChanged?.Invoke(true);
 
-            var addAmount = _generatorData[_levelManager.CurrentLevel].AmountPerTime;
-            var maxAmountCapcity = _generatorData[_levelManager.CurrentLevel].Capacity;
+            var addAmount = _generatorData[_levelManager.CurrentIndexLevel].AmountPerTime;
+            var maxAmountCapcity = _generatorData[_levelManager.CurrentIndexLevel].Capacity;
             _collectAmount = Mathf.Min(_collectAmount + addAmount, maxAmountCapcity);
         }
 
@@ -94,9 +94,14 @@ namespace Game.Map.Element.Building.Resources
         {
             if (_collectAmount == 0)
                 return;
-
+           
             _profile.ResourcesInventory.AddResource(_generatorData.Resource, _collectAmount);
             _saveManager.TrySave(_profile.ResourcesInventory);
+
+            var maxAmountCapcity = _generatorData[_levelManager.CurrentIndexLevel].Capacity;
+            if (_collectAmount == maxAmountCapcity)
+                StartTimer();
+
 
             _collectAmount = 0;
 
@@ -119,7 +124,7 @@ namespace Game.Map.Element.Building.Resources
         {
             var saveData = JsonUtility.FromJson<TimerSaveData>(data);
             DateTime.TryParse(saveData.StartTime, out DateTime startTime);
-            var generatorTime = _generatorData[_levelManager.CurrentLevel].GetTimeSpan();
+            var generatorTime = _generatorData[_levelManager.CurrentIndexLevel].GetTimeSpan();
             var differentTime = (DateTime.Now - startTime);
 
 

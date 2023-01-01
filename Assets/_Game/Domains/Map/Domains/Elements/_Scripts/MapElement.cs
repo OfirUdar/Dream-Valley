@@ -12,6 +12,7 @@ namespace Game.Map.Element
         private readonly IPlaceApprover _placeApprover;
         private readonly GameObject _elementObject;
 
+        [InjectOptional] public IOptionsDisplayer OptionsDisplayer { get; private set; }
         [InjectOptional] public IInfoDisplayer InfoDisplayer { get; private set; }
         [InjectOptional] public IUpgradeDisplayer UpgradeDisplayer { get; private set; }
 
@@ -74,6 +75,7 @@ namespace Game.Map.Element
 
         #region Place Approver
         public IPlaceApprover PlaceApprover => _placeApprover;
+
 
         #endregion
 

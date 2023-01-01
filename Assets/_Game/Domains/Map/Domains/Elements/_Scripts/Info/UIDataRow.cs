@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.Map.Element.Building.Resources
+namespace Game.Map.Element
 {
     public class UIDataRow : MonoBehaviour
     {

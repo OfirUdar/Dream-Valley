@@ -1,15 +1,11 @@
 ﻿using System;
 using Udar;
 using UnityEngine;
-using Zenject;
 
 namespace Game.Map.Element.Building
 {
     public class UpgradeState : IBuildingState, IUpgrader, ISaveable, ILoadable
     {
-        [Inject] private readonly LevelsListSO _levels;
-
-
         private readonly IMapElement _mapElement;
         private readonly IBuildingStateMachine _machine;
         private readonly IDateTimer _timer;
@@ -65,8 +61,8 @@ namespace Game.Map.Element.Building
 
         private void StartTimer()
         {
-            var currentLevel = _levelManager.CurrentLevel;
-            var upgradeTime = _levels[currentLevel].UpgradeDuration.GetTimeSpan();
+            var nextLevel = _levelManager.NextLevel;
+            var upgradeTime = nextLevel.UpgradeDuration.GetTimeSpan();
             StartTimer(upgradeTime, upgradeTime);
 
             _saveManager.Save(this);
@@ -96,8 +92,8 @@ namespace Game.Map.Element.Building
             var saveData = JsonUtility.FromJson<TimerSaveData>(data);
             DateTime.TryParse(saveData.StartTime, out DateTime startTime);
 
-            var currentLevel = _levelManager.CurrentLevel;
-            var upgradeTime = _levels[currentLevel].UpgradeDuration.GetTimeSpan();
+            var nextLevel = _levelManager.NextLevel;
+            var upgradeTime = nextLevel.UpgradeDuration.GetTimeSpan();
 
             var differentTime = (DateTime.Now - startTime);
 

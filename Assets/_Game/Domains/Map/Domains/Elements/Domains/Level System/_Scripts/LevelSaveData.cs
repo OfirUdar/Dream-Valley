@@ -5,6 +5,6 @@ namespace Game.Map.Element.LevelSystem
     [Serializable]
     public class LevelSaveData
     {
-        public int CurrentLevel;
+        public int CurrentLevel = -1;
     }
 }

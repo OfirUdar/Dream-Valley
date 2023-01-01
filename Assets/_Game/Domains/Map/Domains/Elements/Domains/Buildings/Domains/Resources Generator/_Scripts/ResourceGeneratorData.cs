@@ -1,5 +1,4 @@
 ﻿using System;
-using Udar;
 using UnityEngine;
 
 namespace Game.Map.Element.Building.Resources
@@ -7,16 +6,16 @@ namespace Game.Map.Element.Building.Resources
     [Serializable]
     public class ResourceGeneratorData
     {
-        [SerializeField, ReadOnly] private float _timeInMinute = 10f;
-        public float TimeInMinute => _timeInMinute;
+        //[SerializeField, ReadOnly] private float _timeInMinute = 3f;
+        private const float _TIME_IN_MINTUE = 3f;
+        public float TimeInMinute => _TIME_IN_MINTUE;
         [field: SerializeField] public int AmountPerTime { get; private set; }
         [field: SerializeField] public int Capacity { get; private set; }
         [field: SerializeField] public int XpCollectPerAmount { get; private set; } //when collects the resources - get xp's
 
         public TimeSpan GetTimeSpan()
         {
-            // return TimeSpan.FromMinutes(TimeInMinute);
-            return TimeSpan.FromSeconds(TimeInMinute*3);
+            return TimeSpan.FromSeconds(TimeInMinute);
         }
     }
 }

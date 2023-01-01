@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff81d89f5368dd4993eaa7241f54647, type: 3}
+  m_Name: TownHall_Levels
+  m_EditorClassIdentifier: 
+  <DataLevels>k__BackingField:
+  - Workers: 1
+    StorageCapacity: 1000
+  - Workers: 2
+    StorageCapacity: 2000
+  - Workers: 3
+    StorageCapacity: 3000

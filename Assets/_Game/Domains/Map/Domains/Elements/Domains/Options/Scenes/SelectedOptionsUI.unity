@@ -499,7 +499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e4087b0cef59a469675739f2d23383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _elementOptionsSO: {fileID: 11400000, guid: 7b2725082f490c34daca97fcd24a555c, type: 2}
   _mainContainer: {fileID: 321342806}
   _container: {fileID: 380184708}
   _elementNameText: {fileID: 494333099}

@@ -2,6 +2,7 @@
 {
     public interface IBuildingStateMachine
     {
+        public StateType GetCurrentState();
         public void ChangeState(IBuildingState nextState);
         public void ChangeState(StateType state);
 

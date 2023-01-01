@@ -7,14 +7,13 @@ namespace Game.Map.Element.Options
 {
     public class OptionsUIManager : MonoBehaviour
     {
-        [SerializeField] private ElementOptionsSO _elementOptionsSO;
-        [Space]
         [SerializeField] private RectTransform _mainContainer;
         [SerializeField] private RectTransform _container;
         [SerializeField] private TextMeshProUGUI _elementNameText;
 
-
-        private ISelectionManager _selectionManager;
+        [Inject] private ISelectionManager _selectionManager;
+        [Inject] private IOptionsAggragetor _optionsAggragetor;
+        private IMapElement _selectedElement;
 
         private Tween _hideTween;
 
@@ -34,19 +33,16 @@ namespace Game.Map.Element.Options
         private void OnEnable()
         {
             _selectionManager.SelectionChanged += OnSelectionChanged;
+            _optionsAggragetor.RefreshRequested += OnRefreshResquested;
         }
-
         private void OnDisable()
         {
             _selectionManager.SelectionChanged -= OnSelectionChanged;
+            _optionsAggragetor.RefreshRequested -= OnRefreshResquested;
         }
 
 
-        [Inject]
-        public void Init(ISelectionManager selectionManager)
-        {
-            _selectionManager = selectionManager;
-        }
+
         private void SetEnable()
         {
             _mainContainer.gameObject.SetActive(true);
@@ -62,27 +58,34 @@ namespace Game.Map.Element.Options
             {
                 _hideTween.Restart();
             }
-            
+
             if (selectable is IMapElement mapElement)
             {
+                _selectedElement = mapElement;
                 _hideTween.SmoothRewind();
-                _elementNameText.text = mapElement.Data.Name;
 
-                var optionsButtonsPfb = _elementOptionsSO.GetPrefabsByOptions(mapElement.Data.Options);
-
-                for (int i = 0; i < _container.childCount; i++)
-                {
-                    Destroy(_container.GetChild(i).gameObject);
-                }
-
-                foreach (var pfb in optionsButtonsPfb)
-                {
-                    var optionButton = Instantiate(pfb, _container, false);
-                    optionButton.Setup(mapElement);
-                }
-
+                Display();
             }
         }
 
+        private void Display()
+        {
+            _elementNameText.text = _selectedElement.OptionsDisplayer.GetDisplayText();//mapElement.Data.Name;
+            CleanContainer();
+            _selectedElement.OptionsDisplayer.Show(_container);
+        }
+
+        private void CleanContainer()
+        {
+            for (int i = 0; i < _container.childCount; i++)
+            {
+                Destroy(_container.GetChild(i).gameObject);
+            }
+        }
+
+        private void OnRefreshResquested()
+        {
+            Display();
+        }
     }
 }

@@ -13,10 +13,10 @@ namespace Game.Map.Element
         [SerializeField] private TextMeshProUGUI _descriptionText;
 
 
-        public void Display(MapElementSO elementDataSO)
+        public void Display(MapElementSO elementDataSO, int currentLevel)
         {
             _elementImage.sprite = elementDataSO.Sprite;
-            _titleText.text = elementDataSO.Name;
+            _titleText.text = elementDataSO.Name + $" (Level {(currentLevel + 1)})";
             _descriptionText.text = elementDataSO.Description;
 
             _panelActivator.Show();

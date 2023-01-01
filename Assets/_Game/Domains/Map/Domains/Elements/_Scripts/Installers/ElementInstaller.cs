@@ -19,7 +19,7 @@ namespace Game.Map.Element
         [SerializeField] private PlacerBehaviour _placerBehaviour;
         [SerializeField] private PointerEvents _pointerEvents;
        
-
+        
 
 
         public override void InstallBindings()

@@ -1,23 +1,32 @@
 ﻿using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.Map.Element.Building.Resources.UI
 {
     public class PopupTween : MonoBehaviour
     {
-        [SerializeField] private GameObject _popup;
-        private Tween _showTween;
+        [SerializeField] private CanvasGroup _popup;
+        private Tween _scaleTween;
+        private Tween _fadeTween;
 
         private void Awake()
         {
-            _showTween = _popup.transform
+            _scaleTween = _popup.transform
                 .DOScale(1f, 0.1f)
                 .SetEase(Ease.OutCubic)
                 .From(0f)
                 .OnPlay(Enable)
                 .OnRewind(Disable)
                 .SetAutoKill(false)
-                .SetLink(_popup);
+                .SetLink(gameObject);
+
+            _fadeTween = _popup
+                .DOFade(1f, 0.15f)
+                .SetEase(Ease.InCubic)
+                .From(0f)
+                .SetAutoKill(false)
+                .SetLink(gameObject);
         }
 
 
@@ -30,11 +39,13 @@ namespace Game.Map.Element.Building.Resources.UI
         }
         public void Show()
         {
-            _showTween.Restart();
+            _scaleTween.Restart();
+            _fadeTween.Restart();
         }
         public void Hide()
         {
-            _showTween.SmoothRewind();
+            _scaleTween.SmoothRewind();
+            _fadeTween.SmoothRewind();
         }
         public void ForceHide()
         {
@@ -43,11 +54,11 @@ namespace Game.Map.Element.Building.Resources.UI
 
         private void Disable()
         {
-            _popup.SetActive(false);
+            _popup.gameObject.SetActive(false);
         }
         private void Enable()
         {
-            _popup.SetActive(true);
+            _popup.gameObject.SetActive(true);
         }
     }
 }
