@@ -9,7 +9,7 @@ namespace Game.Map.Element.Building.Resources
         [Inject] private readonly ResourceGeneratorLevelsData _resourceLevels;
         [Inject] private readonly IMapElement _mapElement;
         [Inject] private readonly IBuildingStateMachine _buildingStateMachine;
-        [Inject] private readonly Profile _profile;
+        [Inject] private readonly IResourcesInventory _resourcesInventory;
         [Inject] private readonly UIResourceUpgradeDisplay _prefab;
         [Inject] private readonly IOptionsAggragetor _optionsUI;
 
@@ -20,7 +20,7 @@ namespace Game.Map.Element.Building.Resources
             var currentLevelData = _resourceLevels[_levelManager.CurrentIndexLevel];
             var nextLevelData = _resourceLevels[_levelManager.CurrentIndexLevel + 1];
 
-            var canPurchase = _profile.ResourcesInventory.CanSubtract(nextElementLevel.UpgradePrice.Resource, nextElementLevel.UpgradePrice.Amount);
+            var canPurchase = _resourcesInventory.CanSubtract(nextElementLevel.UpgradePrice.Resource, nextElementLevel.UpgradePrice.Amount);
 
             var popupDisplay = GameObject.Instantiate(_prefab);
             popupDisplay
@@ -37,7 +37,7 @@ namespace Game.Map.Element.Building.Resources
 
             _buildingStateMachine.ChangeState(StateType.Upgrade);
 
-            _profile.ResourcesInventory.SubtractResource(nextElementLevel.UpgradePrice.Resource, nextElementLevel.UpgradePrice.Amount);
+            _resourcesInventory.SubtractResource(nextElementLevel.UpgradePrice.Resource, nextElementLevel.UpgradePrice.Amount);
 
             _optionsUI.RequestRefresh();
 

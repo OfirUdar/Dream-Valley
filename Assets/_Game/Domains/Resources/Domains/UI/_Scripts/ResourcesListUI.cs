@@ -12,36 +12,44 @@ namespace Game.Resources.UI
         [Space]
         [SerializeField] private ResourceUI _pfb;
 
-        private Profile _profile;
+        private IResourcesInventory _resourcesInventory;
+        private IResourcesCapacityManager _resourcesCapacityManager;
 
         private readonly Dictionary<ResourceDataSO, ResourceUI> _resourceUIDictionary
             = new Dictionary<ResourceDataSO, ResourceUI>();
 
         [Inject]
-        public void Init(Profile profile)
+        public void Init(IResourcesInventory resourcesInventory, IResourcesCapacityManager resourcesCapacityManager)
         {
-            _profile = profile;
+            _resourcesInventory = resourcesInventory;
+            _resourcesCapacityManager = resourcesCapacityManager;
 
-            foreach (var resource in _profile.ResourcesInventory.Resources)
+            _resourcesInventory.Initialized += OnInitalized;
+            _resourcesInventory.ResourceChanged += OnResourceChanged;
+            _resourcesCapacityManager.Changed += OnResourceCapacityChanged;
+        }
+        private void OnDestroy()
+        {
+            _resourcesInventory.Initialized -= OnInitalized;
+            _resourcesInventory.ResourceChanged -= OnResourceChanged;
+            _resourcesCapacityManager.Changed -= OnResourceCapacityChanged;
+        }
+
+
+        private void OnInitalized()
+        {
+            foreach (var resource in _resourcesInventory.GetResources())
             {
                 AddResourceUIElement(resource.Key, resource.Value);
             }
-
-            _profile.ResourcesInventory.ResourceChanged += OnResourcesChanged;
         }
 
-
-
-        private void OnDestroy()
-        {
-            _profile.ResourcesInventory.ResourceChanged -= OnResourcesChanged;
-        }
         private void AddResourceUIElement(string guid, int amount, bool withTweenAmount = false)
         {
             var uiInstance = Instantiate(_pfb, _container, false);
             var resourceData = _resourcesList.GetByGUID(guid);
 
-            uiInstance.Setup(resourceData.Sprite, amount);
+            uiInstance.Setup(resourceData.Sprite, amount, 100);
 
             if (withTweenAmount)
                 uiInstance.SetTweenAmount(amount);
@@ -49,18 +57,30 @@ namespace Game.Resources.UI
             _resourceUIDictionary.Add(resourceData, uiInstance);
         }
 
-        private void OnResourcesChanged(ResourceDataSO data, int amount)
+        private void OnResourceChanged(ResourceDataSO resource, int amount)
         {
-            if (_resourceUIDictionary.TryGetValue(data, out ResourceUI resourceUI))
+            if (_resourceUIDictionary.TryGetValue(resource, out ResourceUI resourceUI))
             {
                 resourceUI.SetTweenAmount(amount);
             }
             else
             {
-                AddResourceUIElement(data.GUID, amount, true);
+                AddResourceUIElement(resource.GUID, amount, true);
             }
 
         }
+        private void OnResourceCapacityChanged(ResourceDataSO resource, int totalCapacity)
+        {
+            if (_resourceUIDictionary.TryGetValue(resource, out ResourceUI resourceUI))
+            {
+                resourceUI.SetCapacity(totalCapacity);
+            }
+            else
+            {
+                AddResourceUIElement(resource.GUID, 0, false);
+            }
+        }
+
 
 
     }

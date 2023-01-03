@@ -16,36 +16,41 @@ namespace Game.Shop.UI
 
         [SerializeField] private Dictionary<ElementCardUI,ResourcePrice> _elementsDictionaryUI = new Dictionary<ElementCardUI, ResourcePrice>();
 
-        private Profile _profile;
+        private IResourcesInventory _resourceInventory;
         private ElementSpawnerAggragator _elementSpawnerAggragator;
-        private ISaveManager _saveManager;
 
         [Inject] private IDialog _dialog;
       
         [Inject]
-        public void Init(Profile profile, ElementSpawnerAggragator elementSpawner, ISaveManager saveManager)
+        public void Init(IResourcesInventory resourceInventory, ElementSpawnerAggragator elementSpawner)
         {
-            _profile = profile;
+            _resourceInventory = resourceInventory;
             _elementSpawnerAggragator = elementSpawner;
-            _saveManager = saveManager;
 
+           
+            _resourceInventory.Initialized += OnResourceInventoryInitalized;
+            _resourceInventory.ResourceChanged += OnResourcesChanged;
+        }
+
+        private void OnDestroy()
+        {
+            _resourceInventory.Initialized -= OnResourceInventoryInitalized;
+            _resourceInventory.ResourceChanged -= OnResourcesChanged;
+        }
+
+
+        private void OnResourceInventoryInitalized()
+        {
             foreach (var element in _elementsList.Elements)
             {
                 var card = Instantiate(_elementCardPfb, _cardsContainer, false);
                 card.Setup(element, this, CanPurchase(element.Price));
                 _elementsDictionaryUI.Add(card, element.Price);
             }
-
-            _profile.ResourcesInventory.ResourceChanged += OnResourcesChanged;
         }
-        private void OnDestroy()
-        {
-            _profile.ResourcesInventory.ResourceChanged -= OnResourcesChanged;
-        }
-
         private bool CanPurchase(ResourcePrice price)
         {
-            return _profile.ResourcesInventory.CanSubtract(price.Resource, price.Amount);
+            return _resourceInventory.CanSubtract(price.Resource, price.Amount);
         }
 
         public void OnCardClicked(ElementSO element)
@@ -65,8 +70,7 @@ namespace Game.Shop.UI
 
         private void OnPlacedSuccessfully(ResourcePrice price)
         {
-            _profile.ResourcesInventory.SubtractResource(price.Resource, price.Amount);
-            _saveManager.Save(_profile.ResourcesInventory);
+            _resourceInventory.SubtractResource(price.Resource, price.Amount);
         }
 
 

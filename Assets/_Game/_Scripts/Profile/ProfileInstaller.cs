@@ -6,7 +6,7 @@ namespace Game
     {
         public override void InstallBindings()
         {
-            Container.Bind<Profile>().ToSelf().AsSingle(); 
+            //Container.Bind<Profile>().ToSelf().AsSingle(); 
         }
     }
 }

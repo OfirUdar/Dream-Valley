@@ -9,7 +9,7 @@ namespace Game.Map.Element.Building.Resources
     {
         [Inject] private readonly ResourceGeneratorLevelsData _generatorData;
 
-        private readonly Profile _profile;
+        private readonly IResourcesInventory _resourcesInventory;
         private readonly IMapElement _mapElement;
         private readonly ISaveManager _saveManager;
         private readonly ILoadManager _loadManager;
@@ -21,14 +21,14 @@ namespace Game.Map.Element.Building.Resources
 
         public event Action<bool> CollectableChanged;
 
-        public ResourceGenerator(Profile profile,
+        public ResourceGenerator(IResourcesInventory resourcesInventory,
             IMapElement mapElement,
             ISaveManager saveManager,
             ILoadManager loadManager,
             IDateTimer timer,
             ILevelManager levelManager)
         {
-            _profile = profile;
+            _resourcesInventory = resourcesInventory;
             _mapElement = mapElement;
             _saveManager = saveManager;
             _loadManager = loadManager;
@@ -94,9 +94,8 @@ namespace Game.Map.Element.Building.Resources
         {
             if (_collectAmount == 0)
                 return;
-           
-            _profile.ResourcesInventory.AddResource(_generatorData.Resource, _collectAmount);
-            _saveManager.TrySave(_profile.ResourcesInventory);
+
+            _resourcesInventory.AddResource(_generatorData.Resource, _collectAmount);
 
             var maxAmountCapcity = _generatorData[_levelManager.CurrentIndexLevel].Capacity;
             if (_collectAmount == maxAmountCapcity)
