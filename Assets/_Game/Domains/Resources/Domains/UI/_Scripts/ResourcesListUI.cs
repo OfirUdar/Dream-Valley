@@ -24,25 +24,25 @@ namespace Game.Resources.UI
             _resourcesInventory = resourcesInventory;
             _resourcesCapacityManager = resourcesCapacityManager;
 
-            _resourcesInventory.Initialized += OnInitalized;
             _resourcesInventory.ResourceChanged += OnResourceChanged;
             _resourcesCapacityManager.Changed += OnResourceCapacityChanged;
         }
-        private void OnDestroy()
-        {
-            _resourcesInventory.Initialized -= OnInitalized;
-            _resourcesInventory.ResourceChanged -= OnResourceChanged;
-            _resourcesCapacityManager.Changed -= OnResourceCapacityChanged;
-        }
-
-
-        private void OnInitalized()
+        private void Start()
         {
             foreach (var resource in _resourcesInventory.GetResources())
             {
                 AddResourceUIElement(resource.Key, resource.Value);
+
+                var capacity = _resourcesCapacityManager.GetCapacity(resource.Key);
+                UpdateCapacityText(resource.Key, capacity);
             }
         }
+        private void OnDestroy()
+        {
+            _resourcesInventory.ResourceChanged -= OnResourceChanged;
+            _resourcesCapacityManager.Changed -= OnResourceCapacityChanged;
+        }
+
 
         private void AddResourceUIElement(string guid, int amount, bool withTweenAmount = false)
         {
@@ -56,6 +56,16 @@ namespace Game.Resources.UI
 
             _resourceUIDictionary.Add(resourceData, uiInstance);
         }
+        private void UpdateCapacityText(string resourceGuid, int totalCapacity)
+        {
+            var resource = _resourcesList.GetByGUID(resourceGuid);
+
+            if (_resourceUIDictionary.TryGetValue(resource, out ResourceUI resourceUI))
+            {
+                resourceUI.SetCapacity(totalCapacity);
+            }
+        }
+
 
         private void OnResourceChanged(ResourceDataSO resource, int amount)
         {
@@ -69,19 +79,11 @@ namespace Game.Resources.UI
             }
 
         }
-        private void OnResourceCapacityChanged(ResourceDataSO resource, int totalCapacity)
+        private void OnResourceCapacityChanged(string resourceGuid, int totalCapacity)
         {
-            if (_resourceUIDictionary.TryGetValue(resource, out ResourceUI resourceUI))
-            {
-                resourceUI.SetCapacity(totalCapacity);
-            }
-            else
-            {
-                AddResourceUIElement(resource.GUID, 0, false);
-            }
+            UpdateCapacityText(resourceGuid, totalCapacity);
         }
 
-
-
+       
     }
 }

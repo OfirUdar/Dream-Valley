@@ -6,8 +6,7 @@ namespace Game.Resources
     {
         public override void InstallBindings()
         {
-            Container.Bind<IResourcesCapacityManager>()
-                .To<ResourcesCapacityManager>().AsSingle();
+            Container.BindInterfacesTo<ResourcesCapacityManager>().AsSingle();
         }
     }
 }

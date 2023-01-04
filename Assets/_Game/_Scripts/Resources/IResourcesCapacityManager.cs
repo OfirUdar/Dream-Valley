@@ -4,21 +4,22 @@ namespace Game
 {
     public interface IResourcesCapacityManager
     {
-        public event Action<ResourceDataSO, int> Changed; // int -> the capacity
+        public event Action<string, int> Changed; // int -> the capacity
 
-        public int GetCapacity(ResourceDataSO resource);
+        public int GetCapacity(string resourceGuid);
         /// <summary>
         /// Adding to spesific resource
         /// </summary>
-        /// <param name="resource"></param>
+        /// <param name="resourceGuid"></param>
         /// <param name="resourceCapacity"></param>
-        public void AddCapacityContainer(ResourceDataSO resource, IResourceCapacityContainer resourceCapacity);
+        public void AddCapacityContainer(string resourceGuid, IResourceCapacityContainer resourceCapacity);
         /// <summary>
         /// Adding to all the resources capacity
         /// </summary>
         /// <param name="resourceCapacity"></param>
         public void AddCapacityContainer(IResourceCapacityContainer resourceCapacity);
-        public void MarkDirty(ResourceDataSO resource);
+        public void MarkDirty(string resourceGuid);
+        public void MarkDirty();
     }
 
     public interface IResourceCapacityContainer

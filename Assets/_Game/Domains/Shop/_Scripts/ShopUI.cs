@@ -28,18 +28,9 @@ namespace Game.Shop.UI
             _elementSpawnerAggragator = elementSpawner;
 
            
-            _resourceInventory.Initialized += OnResourceInventoryInitalized;
             _resourceInventory.ResourceChanged += OnResourcesChanged;
         }
-
-        private void OnDestroy()
-        {
-            _resourceInventory.Initialized -= OnResourceInventoryInitalized;
-            _resourceInventory.ResourceChanged -= OnResourcesChanged;
-        }
-
-
-        private void OnResourceInventoryInitalized()
+        private void Start()
         {
             foreach (var element in _elementsList.Elements)
             {
@@ -48,6 +39,13 @@ namespace Game.Shop.UI
                 _elementsDictionaryUI.Add(card, element.Price);
             }
         }
+
+        private void OnDestroy()
+        {
+            _resourceInventory.ResourceChanged -= OnResourcesChanged;
+        }
+
+      
         private bool CanPurchase(ResourcePrice price)
         {
             return _resourceInventory.CanSubtract(price.Resource, price.Amount);

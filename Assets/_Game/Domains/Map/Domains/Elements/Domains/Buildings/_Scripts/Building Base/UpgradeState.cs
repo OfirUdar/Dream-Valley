@@ -77,7 +77,7 @@ namespace Game.Map.Element.Building
 
         private void OnTimerFinished()
         {
-            _levelManager.UpgradgeLevelUp();
+            _levelManager.UpgradeLevelUp();
 
             _machine.ChangeState(StateType.Active);
         }

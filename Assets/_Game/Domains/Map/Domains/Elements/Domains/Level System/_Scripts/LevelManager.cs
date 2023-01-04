@@ -1,4 +1,5 @@
-﻿using Udar;
+﻿using System;
+using Udar;
 using UnityEngine;
 using Zenject;
 
@@ -20,6 +21,9 @@ namespace Game.Map.Element.LevelSystem
 
         private LevelSaveData _levelSaveData = new LevelSaveData();
 
+        public event Action LevelUp;
+
+
         public LevelManager(IMapElement mapElement,
             LevelsListSO levels,
             ISaveManager saveManager,
@@ -39,12 +43,14 @@ namespace Game.Map.Element.LevelSystem
         }
 
 
-        public void UpgradgeLevelUp()
+        public void UpgradeLevelUp()
         {
             _levelSaveData.CurrentLevel++;
             _elementVisualHandler.Refresh(CurrentLevel);
 
             _saveManager.Save(this);
+
+            LevelUp?.Invoke();
         }
 
         public Level GetLevel(int index)

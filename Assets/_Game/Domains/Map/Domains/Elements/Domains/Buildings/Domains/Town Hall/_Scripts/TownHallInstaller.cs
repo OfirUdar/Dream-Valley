@@ -30,6 +30,9 @@ namespace Game.Map.Element.Building.TownHall
             //Container.Bind<IUpgradeDisplayer>().To<UpgradeDisplayer>()
             //   .AsSingle()
             //   .WithArguments(_uiUpgradeDisplayPfb);
+
+
+            Container.BindInterfacesTo<TownHallCapacityContainer>().AsSingle().NonLazy();
         }
     }
 }

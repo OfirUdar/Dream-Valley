@@ -5,13 +5,14 @@ using Zenject;
 
 namespace Game
 {
-    public class ResourcesInventory : IResourcesInventory, IInitializable, ISaveable, ILoadable
+    public class ResourcesInventory : IResourcesInventory, ISaveable, ILoadable
     {
         public SerializeDictionary<string, int> Resources = new SerializeDictionary<string, int>();
 
+        [Inject] private readonly IResourcesCapacityManager _resourcesCapacityManager;
+
         private readonly ISaveManager _saveManager;
         public event Action<ResourceDataSO, int> ResourceChanged;
-        public event Action Initialized;
 
         public ResourcesInventory(ISaveManager saveManager, ILoadManager loadManager, InitResourceDataListSO initResourceList)
         {
@@ -27,10 +28,6 @@ namespace Game
                 }
             }
         }
-        public void Initialize()
-        {
-            Initialized?.Invoke();
-        }
 
         public SerializeDictionary<string, int> GetResources()
         {
@@ -44,7 +41,8 @@ namespace Game
             else
                 Resources[resource.GUID] += amount;
 
-            var totalAmount = Resources[resource.GUID];
+            var totalAmount = Mathf.Min(Resources[resource.GUID], _resourcesCapacityManager.GetCapacity(resource.GUID));
+            Resources[resource.GUID] = totalAmount;
 
             _saveManager.Save(this);
 
@@ -96,7 +94,6 @@ namespace Game
     {
 
         public event Action<ResourceDataSO, int> ResourceChanged;
-        public event Action Initialized;
 
         public SerializeDictionary<string, int> GetResources();
         public void AddResource(ResourceDataSO resource, int amount);
