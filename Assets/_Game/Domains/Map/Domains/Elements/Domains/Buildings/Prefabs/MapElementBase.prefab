@@ -246,6 +246,7 @@ GameObject:
   - component: {fileID: 220325989002538498}
   - component: {fileID: 9206704503320243078}
   - component: {fileID: 1985669765108265346}
+  - component: {fileID: 3483052033434167557}
   m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
@@ -291,6 +292,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ff1f3a93ccb9a547aa747edad06d302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _longPressEvent: {fileID: 3483052033434167557}
+--- !u!114 &3483052033434167557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344123441593379488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0675fdd9f9bcd8f429d85f5af202ebf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7250683462557316074

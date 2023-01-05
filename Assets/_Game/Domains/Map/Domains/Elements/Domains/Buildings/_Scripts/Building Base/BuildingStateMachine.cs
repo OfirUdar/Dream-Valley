@@ -10,7 +10,7 @@ namespace Game.Map.Element.Building
         [Inject] private readonly IMapElement _mapElement;
         [Inject] private readonly ISaveManager _saveManager;
         [Inject] private readonly ILoadManager _loadManager;
-        [Inject] private readonly IEventor _eventor;
+        private readonly IEventor _eventor;
 
         [Inject(Id = StateType.Active)]
         private readonly IBuildingState _activeState; //Spesific state for building - for example, resource generator state
@@ -20,13 +20,16 @@ namespace Game.Map.Element.Building
         private StateType _currentStateType;
         private IBuildingState _currentState;
 
-        public void Initialize()
+        public BuildingStateMachine(IEventor eventor)
         {
-            var isSuccess = _loadManager.TryLoad(this);
-            if (!isSuccess)
-                ChangeState(StateType.Upgrade);
+            _eventor = eventor;
             _eventor.SpawnedSuccessfully += OnElementSpawnedSuccessfully;
             _eventor.UpgradeRequested += OnUpgradeRequested;
+        }
+
+        public void Initialize()
+        {
+            _loadManager.TryLoad(this);
         }
 
         public void LateDispose()

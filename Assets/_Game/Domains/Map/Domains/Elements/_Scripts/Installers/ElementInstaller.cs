@@ -50,7 +50,7 @@ namespace Game.Map.Element
 
             Container.Bind<PointerEvents>().FromInstance(_pointerEvents).AsSingle();
 
-            Container.BindInterfacesAndSelfTo<InteractionCaller>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<InteractionInvoker>().AsSingle().NonLazy();
         }
     }
 }

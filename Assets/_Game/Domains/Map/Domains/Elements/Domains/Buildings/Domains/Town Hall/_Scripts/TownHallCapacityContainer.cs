@@ -2,7 +2,7 @@
 
 namespace Game.Map.Element.Building.TownHall
 {
-    public class TownHallCapacityContainer : IResourceCapacityContainer,IInitializable,ILateDisposable
+    public class TownHallCapacityContainer : IResourceCapacityContainer, IInitializable, ILateDisposable
     {
         [Inject] private readonly ILevelManager _levelManager;
         [Inject] private readonly IResourcesCapacityManager _resourcesCapacityManager;
@@ -10,7 +10,10 @@ namespace Game.Map.Element.Building.TownHall
 
         public int GetCapacity()
         {
-            var townHallDataCurrentLevel = _townHallData.DataLevels[_levelManager.CurrentIndexLevel];
+            var currentIndexLevel = _levelManager.CurrentIndexLevel;
+            if (currentIndexLevel < 0)
+                currentIndexLevel = 0;
+            var townHallDataCurrentLevel = _townHallData.DataLevels[currentIndexLevel];
             return townHallDataCurrentLevel.StorageCapacity;
         }
 
@@ -30,7 +33,7 @@ namespace Game.Map.Element.Building.TownHall
         }
 
 
-       
+
     }
 }
 

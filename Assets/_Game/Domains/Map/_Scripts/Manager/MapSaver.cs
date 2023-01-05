@@ -67,7 +67,7 @@ namespace Game.Map
         {
             foreach (var element in _initElementList.ElementsList)
             {
-                var mapElementInstance = _elementSpawner.Spawn(element.Pfb);
+                var mapElementInstance = _elementSpawner.SpawnDefault(element.Pfb);
 
                 mapElementInstance.Position = element.DefaultPosition;
 

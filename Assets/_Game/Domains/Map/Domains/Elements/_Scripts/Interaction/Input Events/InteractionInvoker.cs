@@ -2,7 +2,7 @@
 
 namespace Game.Map.Element
 {
-    public class InteractionCaller : IInitializable, ILateDisposable
+    public class InteractionInvoker : IInitializable, ILateDisposable
     {
         private readonly IMapElement _mapElement;
         private readonly PointerEvents _pointerEvents;
@@ -11,7 +11,7 @@ namespace Game.Map.Element
 
         private readonly IUserInput _input;
 
-        public InteractionCaller(IMapElement mapElement, PointerEvents pointerEvents,
+        public InteractionInvoker(IMapElement mapElement, PointerEvents pointerEvents,
             ISelectionManager selectionManager, IDragManager dragManager,IUserInput input)
         {
             _mapElement = mapElement;

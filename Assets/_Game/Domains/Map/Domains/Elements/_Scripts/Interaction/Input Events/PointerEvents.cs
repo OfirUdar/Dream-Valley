@@ -1,12 +1,13 @@
 using System;
 using Udar;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Game.Map.Element
 {
     public class PointerEvents : MonoBehaviour
     {
+        [SerializeField] private LongPressEvent _longPressEvent;
+
         public event Action UpAsButton;
         public event Action StartDrag;
         public event Action EndDrag;
@@ -14,6 +15,15 @@ namespace Game.Map.Element
 
         private bool _isDragging;
         private Vector3 _startDragPosition;
+
+        private void OnEnable()
+        {
+            _longPressEvent.PressExecuted += OnLongPressExecuted;
+        }
+        private void OnDisable()
+        {
+            _longPressEvent.PressExecuted -= OnLongPressExecuted;
+        }
 
         private void OnMouseUpAsButton()
         {
@@ -50,6 +60,10 @@ namespace Game.Map.Element
 
             Dragging?.Invoke();
 
+        }
+        private void OnLongPressExecuted()
+        {
+            UpAsButton?.Invoke();
         }
     }
 }

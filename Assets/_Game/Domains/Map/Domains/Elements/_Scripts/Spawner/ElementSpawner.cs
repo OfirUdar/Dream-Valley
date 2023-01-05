@@ -46,6 +46,16 @@ namespace Game.Map.Element
 
             return facadeBehaviour.MapElement;
         }
+        public IMapElement SpawnDefault(GameObject gameObject)
+        {
+            var startPosition = _camPointerUtility.CameraRaycast();
+            var facadeBehaviour = _factory.Create(gameObject);
+            facadeBehaviour.transform.position = startPosition;
+
+            facadeBehaviour.Eventor.NotifiySpawnedSuccessfully();
+
+            return facadeBehaviour.MapElement;
+        }
 
         public async void SpawnNewAndPlace(GameObject gameObject, Action cancelCallback, Action successCallback)
         {

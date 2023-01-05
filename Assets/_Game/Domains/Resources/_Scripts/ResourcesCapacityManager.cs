@@ -6,7 +6,7 @@ namespace Game.Resources
 {
     public class ResourcesCapacityManager : IResourcesCapacityManager, IInitializable
     {
-        public event Action<string, int> Changed; // int -> the capacity
+        public event Action<string, int> Changed; //string -> resource guid, int -> the capacity
 
 
         [Inject] private readonly IResourcesInventory _iventory;
@@ -48,7 +48,9 @@ namespace Game.Resources
         }
         public int GetCapacity(string resourceGuid)
         {
-            return _capacityDictionary[resourceGuid].Capacity;
+            if (_capacityDictionary.ContainsKey(resourceGuid))
+                return _capacityDictionary[resourceGuid].Capacity;
+            return 0;
         }
         public void MarkDirty(string resourceGuid)
         {

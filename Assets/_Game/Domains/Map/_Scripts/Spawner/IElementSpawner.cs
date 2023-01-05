@@ -7,6 +7,7 @@ namespace Game.Map
     {
         public event Action<IMapElement> NewSpawned;
         public IMapElement Spawn(GameObject gameObject);
+        public IMapElement SpawnDefault(GameObject gameObject);
     }
 
 }

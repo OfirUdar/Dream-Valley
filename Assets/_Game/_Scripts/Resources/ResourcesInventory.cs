@@ -24,7 +24,7 @@ namespace Game
             {
                 foreach (var resourceInit in initResourceList.Resources)
                 {
-                    AddResource(resourceInit.ResourceDataSO, resourceInit.Amount);
+                    AddResourceWithEmptyCapacity(resourceInit.ResourceDataSO, resourceInit.Amount);
                 }
             }
         }
@@ -34,6 +34,20 @@ namespace Game
             return Resources;
         }
 
+        private void AddResourceWithEmptyCapacity(ResourceDataSO resource, int amount)
+        {
+            if (!Resources.ContainsKey(resource.GUID))
+                Resources.Add(resource.GUID, amount);
+            else
+                Resources[resource.GUID] += amount;
+
+            var totalAmount = Resources[resource.GUID];
+            Resources[resource.GUID] = totalAmount;
+
+            _saveManager.Save(this);
+
+            ResourceChanged?.Invoke(resource, totalAmount);
+        }
         public void AddResource(ResourceDataSO resource, int amount)
         {
             if (!Resources.ContainsKey(resource.GUID))

@@ -26,9 +26,7 @@ namespace Game.Resources.UI
 
             _resourcesInventory.ResourceChanged += OnResourceChanged;
             _resourcesCapacityManager.Changed += OnResourceCapacityChanged;
-        }
-        private void Start()
-        {
+
             foreach (var resource in _resourcesInventory.GetResources())
             {
                 AddResourceUIElement(resource.Key, resource.Value);
@@ -37,6 +35,7 @@ namespace Game.Resources.UI
                 UpdateCapacityText(resource.Key, capacity);
             }
         }
+       
         private void OnDestroy()
         {
             _resourcesInventory.ResourceChanged -= OnResourceChanged;

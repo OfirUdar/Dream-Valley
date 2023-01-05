@@ -29,9 +29,7 @@ namespace Game.Shop.UI
 
            
             _resourceInventory.ResourceChanged += OnResourcesChanged;
-        }
-        private void Start()
-        {
+
             foreach (var element in _elementsList.Elements)
             {
                 var card = Instantiate(_elementCardPfb, _cardsContainer, false);
