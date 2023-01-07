@@ -10,7 +10,8 @@ namespace Game.Map.Element.Building.TownHall
         //Upgrade popup
 
         [SerializeField] private TownHallLevelsData _townHallLevels;
-        [SerializeField] private UITownHallInfoDisplay _uiInfoDisplayPfb;
+        [SerializeField] private UITownHallInfoDisplay _uiInfoDisplayPfb; 
+        [SerializeField] private UITownHallUpgradeDisplay _uiUpgradeDisplayPfb; 
 
         public override void InstallBindings()
         {
@@ -27,9 +28,9 @@ namespace Game.Map.Element.Building.TownHall
                 .AsSingle()
                 .WithArguments(_uiInfoDisplayPfb);
 
-            //Container.Bind<IUpgradeDisplayer>().To<UpgradeDisplayer>()
-            //   .AsSingle()
-            //   .WithArguments(_uiUpgradeDisplayPfb);
+            Container.Bind<IUpgradeDisplayer>().To<UpgradeDisplayer>()
+               .AsSingle()
+               .WithArguments(_uiUpgradeDisplayPfb);
 
 
             Container.BindInterfacesTo<TownHallCapacityContainer>().AsSingle().NonLazy();

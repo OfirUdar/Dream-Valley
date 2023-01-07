@@ -41,7 +41,6 @@ namespace Game.Camera
 
                 _panVelocity = delta;
 
-                _dragOrigin = currentPosition;
             }
 
             if (_input.IsPointerUp())

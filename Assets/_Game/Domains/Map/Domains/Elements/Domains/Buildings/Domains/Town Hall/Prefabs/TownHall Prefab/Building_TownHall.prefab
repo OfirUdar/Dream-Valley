@@ -245,6 +245,8 @@ MonoBehaviour:
   _townHallLevels: {fileID: 11400000, guid: 8b34456e88d50aa4da38289d342af5ea, type: 2}
   _uiInfoDisplayPfb: {fileID: 2210218118266257772, guid: 478e65eb1040d83428561c944bc8b38a,
     type: 3}
+  _uiUpgradeDisplayPfb: {fileID: 7897230313405457777, guid: b511b101772be7e40bc441dd1e41adc6,
+    type: 3}
 --- !u!114 &3519486068135466405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,7 +368,7 @@ PrefabInstance:
     - target: {fileID: 709963874496353608, guid: 4f6bc64ada382dd4f89ac5d2017f2627,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 709963874496353608, guid: 4f6bc64ada382dd4f89ac5d2017f2627,
         type: 3}
@@ -411,7 +413,7 @@ PrefabInstance:
     - target: {fileID: 709963874496353608, guid: 4f6bc64ada382dd4f89ac5d2017f2627,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 500
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 709963874496353608, guid: 4f6bc64ada382dd4f89ac5d2017f2627,
         type: 3}

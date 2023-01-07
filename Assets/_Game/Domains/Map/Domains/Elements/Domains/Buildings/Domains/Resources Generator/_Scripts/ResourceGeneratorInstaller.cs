@@ -12,6 +12,8 @@ namespace Game.Map.Element.Building.Resources
         public override void InstallBindings()
         {
             //Install Active State
+            Container.BindInterfacesAndSelfTo<ResourceCollector>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<ResourceGenerator>().AsSingle();
 
             Container.Bind<IBuildingState>()
@@ -28,7 +30,7 @@ namespace Game.Map.Element.Building.Resources
                .AsSingle()
                .WithArguments(_uiUpgradeDisplayPfb);
 
-         
+
 
         }
     }

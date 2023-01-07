@@ -10,17 +10,16 @@ namespace Game.Map.Element.Building.UI
 
         [Inject] private readonly IUpgrader _upgrader;
 
-        private void OnEnable()
+        private void Awake()
         {
             _upgrader.UpgradeStarted += OnUpgradeStarted;
             _upgrader.UpgradeFinished += OnUpgradeFinished;
         }
-        private void OnDisable()
+        private void OnDestroy()
         {
             _upgrader.UpgradeStarted -= OnUpgradeStarted;
             _upgrader.UpgradeFinished -= OnUpgradeFinished;
         }
-
 
         private void OnUpgradeStarted()
         {

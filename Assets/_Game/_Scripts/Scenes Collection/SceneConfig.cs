@@ -8,7 +8,6 @@ namespace Game
     {
         [SerializeField] private SceneCompositeSO _system;
 
-
         private void Awake()
         {
             SceneChanger.LoadAddtiveAsync(_system.Names);

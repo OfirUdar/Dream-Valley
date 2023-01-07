@@ -8,6 +8,7 @@ namespace Game
         public event Action Started;
         public event Action Finished;
 
+        public bool IsTicking();
         public IDateTimer SetTime(DateTime targetDateTime);
         public IDateTimer SetTime(TimeSpan targetTimeSpan);
         public IDateTimer SetTime(TimeSpan currentTime,TimeSpan targetTimeSpan);

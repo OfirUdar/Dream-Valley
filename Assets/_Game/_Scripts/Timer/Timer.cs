@@ -95,6 +95,10 @@ namespace Game
             return _timerSeconds / _targetTimeSeconds;
         }
 
+        public bool IsTicking()
+        {
+            return _isTicking;
+        }
     }
 
 

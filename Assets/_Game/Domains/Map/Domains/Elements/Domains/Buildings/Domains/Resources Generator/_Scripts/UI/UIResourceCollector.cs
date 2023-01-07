@@ -10,25 +10,25 @@ namespace Game.Map.Element.Building.Resources.UI
         [SerializeField] private Button _collectButton;
         [SerializeField] private Image _resourceImage;
 
-        [Inject] private readonly IResourceGenerator _resourceGenerator;
+        [Inject] private readonly IResourceCollector _resourceCollector;
 
 
 
         private void OnEnable()
         {
-            _resourceGenerator.CollectableChanged += OnCollectableChanged;
+            _resourceCollector.CollectableChanged += OnCollectableChanged;
             _collectButton.onClick.AddListener(OnCollectClicked);
         }
 
         private void OnDisable()
         {
-            _resourceGenerator.CollectableChanged -= OnCollectableChanged;
+            _resourceCollector.CollectableChanged -= OnCollectableChanged;
             _collectButton.onClick.RemoveListener(OnCollectClicked);
         }
 
         private void Start()
         {
-            _resourceImage.sprite = _resourceGenerator.GetResource().Sprite;
+            _resourceImage.sprite = _resourceCollector.GetResource().Sprite;
         }
 
         private void OnCollectableChanged(bool canCollect)
@@ -38,7 +38,7 @@ namespace Game.Map.Element.Building.Resources.UI
 
         private void OnCollectClicked()
         {
-            _resourceGenerator.Collect();
+            _resourceCollector.Collect();
         }
 
 

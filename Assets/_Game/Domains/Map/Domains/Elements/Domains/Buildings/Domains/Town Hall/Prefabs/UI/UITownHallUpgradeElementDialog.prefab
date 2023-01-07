@@ -1591,7 +1591,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3747094294331298512}
   - component: {fileID: 3747094294331298513}
-  - component: {fileID: 8435146432732484123}
+  - component: {fileID: 7897230313405457777}
   - component: {fileID: 1512925520831073988}
   m_Layer: 0
   m_Name: UITownHallUpgradeElementDialog
@@ -1632,7 +1632,7 @@ MonoBehaviour:
   _backgroundImage: {fileID: 3747094293446690421}
   _window: {fileID: 5037944225140341139}
   _isDestroyOnHide: 1
---- !u!114 &8435146432732484123
+--- !u!114 &7897230313405457777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1641,7 +1641,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3747094294331298350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a31dad298627324ea86e97f63f6d7b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d9aac94d786b0644b55cb52659606ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _panelActivator: {fileID: 3747094294331298513}
@@ -1656,6 +1656,9 @@ MonoBehaviour:
   _upgradeButtonImage: {fileID: 4711138726157340577}
   _upgradePriceButtonText: {fileID: 6604925445367125042}
   _upgradeDurationText: {fileID: 4747043101791227850}
+  _workersSprite: {fileID: 21300000, guid: 88a1cbcfc07604b8bb6294fbbbcff649, type: 3}
+  _storageCapacitySprite: {fileID: 21300000, guid: c249affb68c10448491cf5f21db84c12,
+    type: 3}
 --- !u!114 &1512925520831073988
 MonoBehaviour:
   m_ObjectHideFlags: 0

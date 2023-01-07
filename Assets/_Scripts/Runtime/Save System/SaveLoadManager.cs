@@ -63,7 +63,7 @@ namespace Udar
                 return false;
 
             File.Delete(finalPath + "/data");
-            Directory.Delete(finalPath);
+            Directory.Delete(finalPath, true);
 
             return true;
         }

@@ -7,10 +7,11 @@ namespace Game
     {
         public const string Resources = "Player/Inventory/Resources";
         public const string Map = "Map";
-        public const string ElementLevel = "ElementLevel";
-        public const string ElementUpgrader = "ElementUpgrader";
-        public const string ResourceGenerator = "ResourceGenerator";
-        public const string BuildingState = "BuildingState";
+        private const string ElementLevel = "ElementLevel";
+        private const string ElementUpgrader = "ElementUpgrader";
+        private const string ResourceGenerator = "ResourceGenerator";
+        private const string ResourceGeneratorCollector = "ResourceGeneratorCollector";
+        private const string BuildingState = "BuildingState";
 
 
         public static string GetElementPath(string dataGUID, string instanceGUID)
@@ -30,7 +31,10 @@ namespace Game
         {
             return Path.Combine(Map, dataGUID, instanceGUID, ResourceGenerator);
         }
-
+        public static string GetResourceGeneratorCollectorPath(string dataGUID, string instanceGUID)
+        {
+            return Path.Combine(GetResourceGeneratorPath(dataGUID, instanceGUID), ResourceGeneratorCollector);
+        }
         public static string GetBuildingState(string dataGUID, string instanceGUID)
         {
             return Path.Combine(Map, dataGUID, instanceGUID, BuildingState);

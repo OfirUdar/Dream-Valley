@@ -15,19 +15,15 @@ MonoBehaviour:
   <Resource>k__BackingField: {fileID: 11400000, guid: 839ca43900cafad4a85f49feccbc05ae,
     type: 2}
   <DataLevels>k__BackingField:
-  - _timeInMinute: 10
-    <AmountPerTime>k__BackingField: 10
+  - <AmountPerTime>k__BackingField: 3
     <Capacity>k__BackingField: 150
     <XpCollectPerAmount>k__BackingField: 2
-  - _timeInMinute: 10
-    <AmountPerTime>k__BackingField: 12
+  - <AmountPerTime>k__BackingField: 5
     <Capacity>k__BackingField: 200
     <XpCollectPerAmount>k__BackingField: 3
-  - _timeInMinute: 10
-    <AmountPerTime>k__BackingField: 15
+  - <AmountPerTime>k__BackingField: 7
     <Capacity>k__BackingField: 250
     <XpCollectPerAmount>k__BackingField: 4
-  - _timeInMinute: 10
-    <AmountPerTime>k__BackingField: 20
+  - <AmountPerTime>k__BackingField: 10
     <Capacity>k__BackingField: 300
     <XpCollectPerAmount>k__BackingField: 4

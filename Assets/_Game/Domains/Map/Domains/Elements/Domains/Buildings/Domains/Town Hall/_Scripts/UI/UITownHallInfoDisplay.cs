@@ -18,9 +18,9 @@ namespace Game.Map.Element.Building.TownHall
             TownHallData data,
             int currentLevel)
         {
-            var productionRate = Instantiate(_rowPfb, _container, false);
-            productionRate.SetText($"<u>Workers:</u>  {data.Workers}");
-            productionRate.SetSprite(_workersSprite);
+            var workersAmount = Instantiate(_rowPfb, _container, false);
+            workersAmount.SetText($"<u>Workers:</u>  {data.Workers}");
+            workersAmount.SetSprite(_workersSprite);
 
             Instantiate(_separatorPfb, _container, false);
 
