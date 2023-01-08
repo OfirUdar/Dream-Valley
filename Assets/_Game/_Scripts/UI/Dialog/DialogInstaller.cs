@@ -5,11 +5,11 @@ namespace Game
 {
     public class DialogInstaller : MonoInstaller
     {
-        [SerializeField] private Dialog _dialog;
+        [SerializeField] private Dialog _dialogPfb;
 
         public override void InstallBindings()
         {
-            Container.Bind<IDialog>().FromInstance(_dialog).AsSingle();
+            Container.Bind<IDialog>().FromComponentInNewPrefab(_dialogPfb).AsSingle();
         }
     }
 }

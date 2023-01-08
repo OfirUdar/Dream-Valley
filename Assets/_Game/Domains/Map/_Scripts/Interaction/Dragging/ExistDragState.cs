@@ -6,7 +6,7 @@ namespace Game.Map
     {
         private Vector3 _startPosition;
 
-        public ExistDragState(IMapGrid grid, ICameraController cameraController, CamPointerUtility camPointerUtility, ISelectionManager selectionManager) : base(grid, cameraController, camPointerUtility, selectionManager)
+        public ExistDragState(IMapGrid grid, ICameraController cameraController, ICameraPointerUtility camPointerUtility, ISelectionManager selectionManager) : base(grid, cameraController, camPointerUtility, selectionManager)
         {
         }
 

@@ -20,11 +20,13 @@ namespace Game.Map.Element
         }
         private void OnHideRequested()
         {
-            _main.SetActive(false);
+            if (_main.activeSelf)
+                _main.SetActive(false);
         }
         private void OnShowRequested()
         {
-            _main.SetActive(true);
+            if (!_main.activeSelf)
+                _main.SetActive(true);
         }
     }
 

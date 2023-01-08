@@ -8,12 +8,12 @@ namespace Game.Map.Element.LevelSystem
     public class LevelManager : ILevelManager, ILoadable, ISaveable, IInitializable
     {
         public int CurrentIndexLevel => _levelSaveData.CurrentLevel;
-        public Level CurrentLevel => _levels[CurrentIndexLevel];
-        public Level NextLevel => _levels[CurrentIndexLevel + 1];
+        public Level CurrentLevel => _levelsContainer[CurrentIndexLevel];
+        public Level NextLevel => _levelsContainer[CurrentIndexLevel + 1];
 
 
         private readonly IMapElement _mapElement;
-        private readonly LevelsListSO _levels;
+        private readonly LevelsListSO _levelsContainer;
         private readonly ISaveManager _saveManager;
         private readonly ILoadManager _loadManager;
         private readonly ILevelsElementVisualHandler _elementVisualHandler;
@@ -31,7 +31,7 @@ namespace Game.Map.Element.LevelSystem
             ILevelsElementVisualHandler elementVisualHandler)
         {
             _mapElement = mapElement;
-            _levels = levels;
+            _levelsContainer = levels;
             _saveManager = saveManager;
             _loadManager = loadManager;
             _elementVisualHandler = elementVisualHandler;
@@ -55,7 +55,12 @@ namespace Game.Map.Element.LevelSystem
 
         public Level GetLevel(int index)
         {
-            return _levels[index];
+            return _levelsContainer[index];
+        }
+
+        public bool HasNext()
+        {
+            return (CurrentIndexLevel + 1 < _levelsContainer.Levels.Count);
         }
 
 

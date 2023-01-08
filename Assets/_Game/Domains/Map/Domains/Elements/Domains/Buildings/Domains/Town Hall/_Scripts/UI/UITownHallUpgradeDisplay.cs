@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Game.Map.Element.Building.TownHall
 {
@@ -24,6 +25,8 @@ namespace Game.Map.Element.Building.TownHall
         [Space]
         [SerializeField] private Sprite _workersSprite;
         [SerializeField] private Sprite _storageCapacitySprite;
+
+        [Inject] private readonly IDialog _dialog;
 
         private bool _canPurchase;
         private Action _upgradeCallback;
@@ -96,7 +99,7 @@ namespace Game.Map.Element.Building.TownHall
             }
             else
             {
-                // _dialog.Show("Not enough", "Not enough to purchase");
+                _dialog.Show("Not enough", "Not enough to purchase");
             }
 
         }

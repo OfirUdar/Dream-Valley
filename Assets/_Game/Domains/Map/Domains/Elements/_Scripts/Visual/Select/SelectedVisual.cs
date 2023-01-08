@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Map.Element
 {
@@ -10,6 +11,8 @@ namespace Game.Map.Element
         [SerializeField] private float _selectedOpacity = 0.5f;
         [SerializeField] private float _duration = 1f;
 
+        public UnityEvent<bool> SelectionChanged;
+
         private Renderer[] _renderers;
 
         private void Awake()
@@ -17,7 +20,7 @@ namespace Game.Map.Element
             RefreshGFX();
         }
 
-        public void RefreshGFX() 
+        public void RefreshGFX()
         {
             StartCoroutine(RefreshGFXCoroutine());
         }
@@ -31,7 +34,7 @@ namespace Game.Map.Element
 
         public void Select()
         {
-            _gfx.transform.DOPunchScale(Vector3.one*0.1f,0.1f).Play();
+            _gfx.transform.DOPunchScale(Vector3.one * 0.1f, 0.1f).Play();
             foreach (var renderer in _renderers)
             {
                 var material = renderer.material;
@@ -43,6 +46,8 @@ namespace Game.Map.Element
                     .SetLink(renderer.gameObject)
                     .Play();
             }
+
+            SelectionChanged?.Invoke(true);
         }
         public void Unselect()
         {
@@ -55,6 +60,8 @@ namespace Game.Map.Element
                 renderer.material.DORewind();
                 renderer.material.DOKill();
             }
+
+            SelectionChanged?.Invoke(false);
         }
 
     }

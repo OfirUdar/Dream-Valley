@@ -23,6 +23,7 @@ namespace Game.Map.Element.Building.Resources
         [SerializeField] private TextMeshProUGUI _upgradePriceButtonText;
         [SerializeField] private TextMeshProUGUI _upgradeDurationText;
 
+        [Inject] private readonly IDialog _dialog;
 
         private bool _canPurchase;
         private Action _upgradeCallback;
@@ -100,7 +101,7 @@ namespace Game.Map.Element.Building.Resources
             }
             else
             {
-                // _dialog.Show("Not enough", "Not enough to purchase");
+                 _dialog.Show("Not enough", "Not enough to purchase");
             }
 
         }

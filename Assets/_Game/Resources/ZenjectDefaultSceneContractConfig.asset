@@ -15,5 +15,3 @@ MonoBehaviour:
   DefaultContracts:
   - ContractName: Main
     Scene: {fileID: 102900000, guid: edabdd5b16433eb4e8645c509591e128, type: 3}
-  - ContractName: Common
-    Scene: {fileID: 102900000, guid: 0ad7c530532486e4584e677179664cb6, type: 3}

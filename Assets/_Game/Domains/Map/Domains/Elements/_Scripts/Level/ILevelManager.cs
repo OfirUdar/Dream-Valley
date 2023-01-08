@@ -9,6 +9,7 @@ namespace Game.Map.Element
         public Level CurrentLevel { get; }
         public Level NextLevel { get; }
 
+        public bool HasNext();
         public Level GetLevel(int index);
         public void UpgradeLevelUp();
     }

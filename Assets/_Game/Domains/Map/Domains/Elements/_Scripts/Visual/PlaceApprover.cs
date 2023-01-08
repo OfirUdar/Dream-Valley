@@ -1,13 +1,16 @@
 ﻿using System;
+using Udar;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Game.Map.Element
 {
     public class PlaceApprover : MonoBehaviour, IPlaceApprover
     {
+        [SerializeField] private UdarCanvasGroup _acceptButton;
         private event Action _approveCallback;
         private event Action _cancelCallback;
-
 
         public void Hide()
         {
@@ -35,6 +38,11 @@ namespace Game.Map.Element
             _approveCallback += approveCallback;
             _cancelCallback += cancelCallback;
         }
+
+        public void SetPlaceAvailbility(bool isAvailable)
+        {
+            _acceptButton.Activate(isAvailable);
+        }
     }
-    
+
 }

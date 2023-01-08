@@ -7,7 +7,7 @@ namespace Game.Map
     public class SelectionManager : ISelectionManager, ITickable
     {
         private readonly IUserInput _input;
-        private readonly CamPointerUtility _camPointerUtility;
+        private readonly ICameraPointerUtility _camPointerUtility;
 
         private ISelectable _currentSelected;
         private bool _isLocked;
@@ -19,7 +19,7 @@ namespace Game.Map
         public event Action<ISelectable> SelectionChanged;
 
 
-        public SelectionManager(IUserInput input, CamPointerUtility camPointerUtility)
+        public SelectionManager(IUserInput input, ICameraPointerUtility camPointerUtility)
         {
             _input = input;
             _camPointerUtility = camPointerUtility;

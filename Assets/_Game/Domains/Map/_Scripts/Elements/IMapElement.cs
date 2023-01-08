@@ -16,6 +16,7 @@ namespace Game.Map
     public interface IPlaceApprover
     {
         public void SubscribeForCallbacks(Action approveCallback, Action cancelCallback);
+        public void SetPlaceAvailbility(bool isAvailable);
         public void Show();
         public void Hide();
     }

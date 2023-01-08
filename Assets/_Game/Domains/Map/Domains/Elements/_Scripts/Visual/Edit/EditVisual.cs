@@ -1,5 +1,5 @@
-﻿using Udar;
-using UnityEngine;
+﻿using UnityEngine;
+using Zenject;
 
 namespace Game.Map.Element
 {
@@ -13,8 +13,7 @@ namespace Game.Map.Element
         [SerializeField] private Color _availableColor = Color.green;
         [SerializeField] private Color _unavailableColor = Color.red;
 
-        [Space]
-        [SerializeField] private UdarCanvasGroup _approveButton;
+        [Inject] private readonly IPlaceApprover _placeApprover;
 
 
         public void SetPlaceAvailbility(bool isAvailable)
@@ -22,7 +21,7 @@ namespace Game.Map.Element
             _editAreaRenderer.material.color =
                 isAvailable ? _availableColor : _unavailableColor;
 
-            _approveButton.Activate(isAvailable);
+            _placeApprover.SetPlaceAvailbility(isAvailable);
         }
 
         public void ChangeToIdleMode()
@@ -32,7 +31,7 @@ namespace Game.Map.Element
 
             var editAreaPosition = _editAreaRenderer.transform.localPosition;
             editAreaPosition.y -= 0.025f;
-            _editAreaRenderer.transform.localPosition= editAreaPosition;
+            _editAreaRenderer.transform.localPosition = editAreaPosition;
             _editAreaRenderer.gameObject.SetActive(false);
 
             _idleArea.SetActive(true);

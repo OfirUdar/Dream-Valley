@@ -1,13 +1,11 @@
-﻿using UnityEngine;
-
-namespace Game.Map
+﻿namespace Game.Map
 {
     //For new element
     public class NewDragState : DraggerStateBase
     {
         public NewDragState(IMapGrid grid,
             ICameraController cameraController,
-            CamPointerUtility camPointerUtility,
+            ICameraPointerUtility camPointerUtility,
             ISelectionManager selectionManager) : base(grid, cameraController, camPointerUtility, selectionManager)
         {
 

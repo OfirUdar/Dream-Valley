@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PC Camera Settings
   m_EditorClassIdentifier: 
   _moveSettings:
-    <LerpAmount>k__BackingField: 500
+    <LerpAmount>k__BackingField: 50
     <InertiaInterpolation>k__BackingField: 0.02
     <HorizontalLimits>k__BackingField: {x: -12, y: 12}
     <VerticalLimits>k__BackingField: {x: -6, y: 6}

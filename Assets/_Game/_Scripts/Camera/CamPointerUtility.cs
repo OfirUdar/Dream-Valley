@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game
 {
-    public class CamPointerUtility 
+    public class CamPointerUtility : ICameraPointerUtility
     {
         private readonly IUserInput _input;
 
@@ -18,7 +18,7 @@ namespace Game
         {
             var ray = CameraUtils.Main.ScreenPointToRay(_input.GetPointerPosition());
 
-            if(_planeZ.Raycast(ray, out float enter))
+            if (_planeZ.Raycast(ray, out float enter))
             {
                 point = ray.GetPoint(enter);
                 return true;
@@ -31,7 +31,7 @@ namespace Game
         {
             var ray = CameraUtils.Main.ScreenPointToRay(_input.GetPointerPosition());
 
-            if (Physics.Raycast(ray,out RaycastHit hit, Mathf.Infinity))
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
             {
                 return hit.collider;
             }
@@ -49,7 +49,7 @@ namespace Game
                 return point;
             }
 
-           return Vector3.zero;
+            return Vector3.zero;
         }
 
     }

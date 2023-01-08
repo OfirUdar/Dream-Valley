@@ -9,7 +9,7 @@ namespace Game.Map.Element
         private readonly FacadeBehaviour.Factory _factory;
         private readonly ISelectionManager _selectionManager;
         private readonly IDragManager _dragManager;
-        private readonly CamPointerUtility _camPointerUtility;
+        private readonly ICameraPointerUtility _camPointerUtility;
         private readonly ICameraController _cameraController;
 
         [Inject] private readonly ElementSpawnerAggragator _spawnerAggragator;
@@ -18,7 +18,7 @@ namespace Game.Map.Element
 
         public ElementSpawner(ISelectionManager selectionManager,
             IDragManager dragManager,
-            CamPointerUtility camPointerUtility,
+            ICameraPointerUtility camPointerUtility,
             ICameraController cameraController,
             FacadeBehaviour.Factory factory)
         {

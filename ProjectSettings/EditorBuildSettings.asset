@@ -20,4 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Game/Domains/Map/Domains/Elements/Domains/Options/Scenes/SelectedOptionsUI.unity
     guid: 21687cef0b408fd42afc496b11bd12ec
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 98a02bf982f6fdd44a4b3fe53e97174d,
+      type: 2}
