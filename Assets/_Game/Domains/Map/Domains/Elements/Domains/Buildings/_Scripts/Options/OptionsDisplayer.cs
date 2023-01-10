@@ -32,7 +32,8 @@ namespace Game.Map.Element.Building
         {
             var options = _mapElement.Data.Options;
 
-            if (_buildingStateMachine.GetCurrentState() == StateType.Upgrade)
+            if (_buildingStateMachine.GetCurrentState() == StateType.Upgrade
+               || !_levelManager.HasNext())
                 options -= ElementOption.Upgrade;
             return _elementOptionsSO.GetPrefabsByOptions(options);
         }

@@ -1,25 +1,25 @@
 ﻿using System;
 using Udar;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Game.Map.Element
 {
     public class PlaceApprover : MonoBehaviour, IPlaceApprover
     {
+        [SerializeField] private CanvasActivator _canvasActivator;
+        [Space]
         [SerializeField] private UdarCanvasGroup _acceptButton;
         private event Action _approveCallback;
         private event Action _cancelCallback;
 
         public void Hide()
         {
-            gameObject.SetActive(false);
+            _canvasActivator.Deactivate();
         }
 
         public void Show()
         {
-            gameObject.SetActive(true);
+            _canvasActivator.Activate();
         }
 
         public void Approve()

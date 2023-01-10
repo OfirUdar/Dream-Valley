@@ -281,11 +281,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7333189284728144700}
-  - component: {fileID: 2096564325935345505}
+  - component: {fileID: 544507743941577044}
   - component: {fileID: 4632818567930786065}
   - component: {fileID: 473233525832955966}
+  - component: {fileID: 6770935253758629764}
+  - component: {fileID: 2096564325935345505}
   m_Layer: 0
-  m_Name: PickInfo
+  m_Name: PickInfo_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -312,21 +314,27 @@ RectTransform:
   m_AnchoredPosition: {x: 500, y: 0}
   m_SizeDelta: {x: 1000, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2096564325935345505
-MonoBehaviour:
+--- !u!223 &544507743941577044
+Canvas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4348785363964266059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2f03fe0ccb4a6d49adac7b544523946, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _container: {fileID: 4112064580812008718}
-  _elementNameText: {fileID: 8263239104873335333}
-  _levelText: {fileID: 2474716061157752919}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!114 &4632818567930786065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,6 +375,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &6770935253758629764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348785363964266059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4acdcefa85f17747a68eb9008bd2f7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvas: {fileID: 544507743941577044}
+  _root: {fileID: 8351879528902066624}
+--- !u!114 &2096564325935345505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348785363964266059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2f03fe0ccb4a6d49adac7b544523946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvasActivator: {fileID: 6770935253758629764}
+  _container: {fileID: 4112064580812008718}
+  _elementNameText: {fileID: 8263239104873335333}
+  _levelText: {fileID: 2474716061157752919}
 --- !u!1 &8351879528902066624
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Zenject;
 
@@ -6,6 +5,8 @@ namespace Game.Map.Element.Building.UI
 {
     public class UpgraderUI : MonoBehaviour
     {
+        [SerializeField] private CanvasActivator _canvasActivator;
+        [Space]
         [SerializeField] private UITimer _uiTimer;
 
         [Inject] private readonly IUpgrader _upgrader;
@@ -23,12 +24,12 @@ namespace Game.Map.Element.Building.UI
 
         private void OnUpgradeStarted()
         {
-            _uiTimer.gameObject.SetActive(true);
+            _canvasActivator.Activate();
         }
 
         private void OnUpgradeFinished()
         {
-            _uiTimer.gameObject.SetActive(false);
+            _canvasActivator.Deactivate();
         }
 
     }

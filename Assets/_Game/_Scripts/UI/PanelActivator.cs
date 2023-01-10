@@ -8,7 +8,8 @@ namespace Game
     {
         private const float DURATION = 0.1f;
 
-        [SerializeField] private GameObject _panelToActivate;
+        [SerializeField] private CanvasActivator _canvasActivator;
+        [Space]
         [SerializeField] private Image _backgroundImage;
         [SerializeField] private CanvasGroup _window;
         [Space]
@@ -38,8 +39,8 @@ namespace Game
                 .SetLink(gameObject);
         }
         private void SetEnable()
-        {           
-            _panelToActivate.SetActive(true);
+        {
+            _canvasActivator.Activate();
         }
         private void SetDisable()
         {
@@ -48,7 +49,7 @@ namespace Game
                 Destroy(gameObject);
                 return;
             }
-            _panelToActivate.SetActive(false);
+            _canvasActivator.Deactivate();
         }
         public void Show()
         {

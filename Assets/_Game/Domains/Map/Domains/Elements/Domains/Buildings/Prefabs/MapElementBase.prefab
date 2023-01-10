@@ -518,7 +518,6 @@ GameObject:
   - component: {fileID: 4349166761248490151}
   - component: {fileID: 3865264469381728188}
   - component: {fileID: 2853982151650862455}
-  - component: {fileID: 4825037053229170483}
   m_Layer: 0
   m_Name: MapElementBase
   m_TagString: Untagged
@@ -623,18 +622,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7df8ce30d86a6f746a9d6a263346ba2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4825037053229170483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8101278497845708780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d3ef02a801c88d4998345cea399646c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &254068733189341796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -715,7 +702,7 @@ PrefabInstance:
     - target: {fileID: 7333189284728144700, guid: c29ed1e56a3615c4f9951af05be8c7b0,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7333189284728144700, guid: c29ed1e56a3615c4f9951af05be8c7b0,
         type: 3}
@@ -760,7 +747,7 @@ PrefabInstance:
     - target: {fileID: 7333189284728144700, guid: c29ed1e56a3615c4f9951af05be8c7b0,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 7333189284728144700, guid: c29ed1e56a3615c4f9951af05be8c7b0,
         type: 3}

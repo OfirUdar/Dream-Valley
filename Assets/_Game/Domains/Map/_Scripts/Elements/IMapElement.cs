@@ -8,6 +8,7 @@ namespace Game.Map
         public IOptionsDisplayer OptionsDisplayer { get; }
         public IInfoDisplayer InfoDisplayer { get; }
         public IUpgradeDisplayer UpgradeDisplayer { get; }
+        public IEventor Eventor { get; }
         public MapElementSO Data { get; }
         public MapElementSaveData SaveData { get; }
 

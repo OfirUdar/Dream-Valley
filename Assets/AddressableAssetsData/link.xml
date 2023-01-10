@@ -1,5 +1,6 @@
 <linker>
   <assembly fullname="Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Game.CanvasActivator" preserve="all" />
     <type fullname="Game.UITimer" preserve="all" />
   </assembly>
   <assembly fullname="Game.Map.Element, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -54,6 +55,7 @@
   <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.UI.Button" preserve="all" />
     <type fullname="UnityEngine.UI.ContentSizeFitter" preserve="all" />
+    <type fullname="UnityEngine.UI.GraphicRaycaster" preserve="all" />
     <type fullname="UnityEngine.UI.HorizontalLayoutGroup" preserve="all" />
     <type fullname="UnityEngine.UI.Image" preserve="all" />
     <type fullname="UnityEngine.UI.Mask" preserve="all" />
@@ -67,6 +69,7 @@
     <type fullname="UnityEngine.UI.SpriteState" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Canvas" preserve="all" />
     <type fullname="UnityEngine.CanvasGroup" preserve="all" />
     <type fullname="UnityEngine.CanvasRenderer" preserve="all" />
   </assembly>

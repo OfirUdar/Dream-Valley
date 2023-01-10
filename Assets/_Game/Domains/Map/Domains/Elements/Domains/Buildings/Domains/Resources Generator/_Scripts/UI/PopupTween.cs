@@ -1,11 +1,12 @@
 ﻿using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Game.Map.Element.Building.Resources.UI
 {
     public class PopupTween : MonoBehaviour
     {
+        [SerializeField] private CanvasActivator _canvasActivator;
+        [Space]
         [SerializeField] private CanvasGroup _popup;
         private Tween _scaleTween;
         private Tween _fadeTween;
@@ -54,11 +55,11 @@ namespace Game.Map.Element.Building.Resources.UI
 
         private void Disable()
         {
-            _popup.gameObject.SetActive(false);
+            _canvasActivator.Deactivate();
         }
         private void Enable()
         {
-            _popup.gameObject.SetActive(true);
+            _canvasActivator.Activate();
         }
     }
 }

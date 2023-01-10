@@ -13,7 +13,9 @@ namespace Game
         }
         public T Create(Object pfb)
         {
-            return _container.InstantiatePrefabForComponent<T>(pfb);
+            //return _container.InstantiatePrefabForComponent<T>(pfb);
+            var context = _container.InstantiatePrefabForComponent<GameObjectContext>(pfb);
+            return context.Container.Resolve<T>();
         }
     }
 

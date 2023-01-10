@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Game.Map.Element
+namespace Game.Map
 {
     public interface IEventor 
     {

@@ -8,9 +8,13 @@ namespace Game.Map.Element
 
         public override void InstallBindings()
         {
+            //Container.BindFactory
+            //  <Object, FacadeBehaviour, FacadeBehaviour.Factory>()
+            //  .FromFactory<PrefabFactory<FacadeBehaviour>>();
+
             Container.BindFactory
-              <Object, FacadeBehaviour, FacadeBehaviour.Factory>()
-              .FromFactory<PrefabFactory<FacadeBehaviour>>();
+              <Object, IMapElement, MapElementFactory>()
+              .FromFactory<PrefabFactory<IMapElement>>();
 
             Container.BindInterfacesTo<ElementSpawner>().AsSingle();
 

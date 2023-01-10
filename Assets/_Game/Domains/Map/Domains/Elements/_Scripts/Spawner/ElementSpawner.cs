@@ -6,7 +6,8 @@ namespace Game.Map.Element
 {
     public class ElementSpawner : IElementSpawner, IInitializable, ILateDisposable
     {
-        private readonly FacadeBehaviour.Factory _factory;
+        //private readonly FacadeBehaviour.Factory _factory;
+        private readonly MapElementFactory _factory;
         private readonly ISelectionManager _selectionManager;
         private readonly IDragManager _dragManager;
         private readonly ICameraPointerUtility _camPointerUtility;
@@ -20,7 +21,7 @@ namespace Game.Map.Element
             IDragManager dragManager,
             ICameraPointerUtility camPointerUtility,
             ICameraController cameraController,
-            FacadeBehaviour.Factory factory)
+            MapElementFactory factory)
         {
             _selectionManager = selectionManager;
             _dragManager = dragManager;
@@ -42,28 +43,28 @@ namespace Game.Map.Element
         {
             var startPosition = _camPointerUtility.CameraRaycast();
             var facadeBehaviour = _factory.Create(gameObject);
-            facadeBehaviour.transform.position = startPosition;
+            facadeBehaviour.Position = startPosition;
 
-            return facadeBehaviour.MapElement;
+            return facadeBehaviour;
         }
         public IMapElement SpawnDefault(GameObject gameObject)
         {
             var startPosition = _camPointerUtility.CameraRaycast();
             var facadeBehaviour = _factory.Create(gameObject);
-            facadeBehaviour.transform.position = startPosition;
+            facadeBehaviour.Position = startPosition;
 
             facadeBehaviour.Eventor.NotifiySpawnedSuccessfully();
 
-            return facadeBehaviour.MapElement;
+            return facadeBehaviour;
         }
 
         public async void SpawnNewAndPlace(GameObject gameObject, Action cancelCallback, Action successCallback)
         {
             var startPosition = _camPointerUtility.CameraRaycast();
             var facadeBehaviour = _factory.Create(gameObject);
-            facadeBehaviour.transform.position = startPosition;
+            facadeBehaviour.Position = startPosition;
 
-            var mapElement = facadeBehaviour.MapElement;
+            var mapElement = facadeBehaviour;
             mapElement.StartDrag();
             mapElement.PlaceApprover.Show();
             mapElement.PlaceApprover.SubscribeForCallbacks(
@@ -79,9 +80,9 @@ namespace Game.Map.Element
             _dragManager.Lock(false);
         }
 
-        private void OnAprroved(FacadeBehaviour facadeBehaviour, Action successCallback)
+        private void OnAprroved(IMapElement facadeBehaviour, Action successCallback)
         {
-            var mapElement = facadeBehaviour.MapElement;
+            var mapElement = facadeBehaviour;
 
             mapElement.PlaceApprover.Hide();
 

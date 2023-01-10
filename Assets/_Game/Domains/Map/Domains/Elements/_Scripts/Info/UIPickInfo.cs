@@ -8,6 +8,7 @@ namespace Game.Map.Element
 {
     public class UIPickInfo : MonoBehaviour
     {
+        [SerializeField] private CanvasActivator _canvasActivator;
         [SerializeField] private CanvasGroup _container;
         [Space]
         [SerializeField] private TextMeshProUGUI _elementNameText;
@@ -39,11 +40,11 @@ namespace Game.Map.Element
 
         private void Enable()
         {
-            _container.gameObject.SetActive(true);
+            _canvasActivator.Activate();
         }
         private void Disable()
         {
-            _container.gameObject.SetActive(false);
+            _canvasActivator.Deactivate();
         }
 
         /// <summary>
