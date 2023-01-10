@@ -44,3 +44,6 @@ TagManager:
   - name: Element_World_UI
     uniqueID: 2529577445
     locked: 0
+  - name: Overlay
+    uniqueID: 3110969539
+    locked: 0

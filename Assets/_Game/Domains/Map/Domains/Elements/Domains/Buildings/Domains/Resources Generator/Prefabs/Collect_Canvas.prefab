@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4b95eda014d74419d3d94544d6738d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _settings: {fileID: 11400000, guid: f31c648934dfe63498cb547735d90aec, type: 2}
   _popup: {fileID: 2961248821636623305}
   _collectButton: {fileID: 7946165795866913040}
   _resourceImage: {fileID: 1214188624307685068}

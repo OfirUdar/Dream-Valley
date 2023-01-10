@@ -12,7 +12,9 @@ namespace Game
         [Inject] private readonly IResourcesCapacityManager _resourcesCapacityManager;
 
         private readonly ISaveManager _saveManager;
+
         public event Action<ResourceDataSO, int> ResourceChanged;
+        public event Action<ResourceDataSO, bool> StorageFullChanged;
 
         public ResourcesInventory(ISaveManager saveManager, ILoadManager loadManager, InitResourceDataListSO initResourceList)
         {
@@ -55,10 +57,14 @@ namespace Game
             else
                 Resources[resource.GUID] += amount;
 
-            var totalAmount = Mathf.Min(Resources[resource.GUID], _resourcesCapacityManager.GetCapacity(resource.GUID));
+            var storageCapacity = _resourcesCapacityManager.GetCapacity(resource.GUID);
+            var totalAmount = Mathf.Min(Resources[resource.GUID], storageCapacity);
             Resources[resource.GUID] = totalAmount;
 
             _saveManager.Save(this);
+
+            if (totalAmount == storageCapacity)
+                StorageFullChanged?.Invoke(resource, true);
 
             ResourceChanged?.Invoke(resource, totalAmount);
         }
@@ -74,6 +80,8 @@ namespace Game
 
             _saveManager.Save(this);
 
+            StorageFullChanged?.Invoke(resource, false);
+
             ResourceChanged?.Invoke(resource, totalAmount);
         }
         public bool CanSubtract(ResourceDataSO resource, int amount)
@@ -83,7 +91,11 @@ namespace Game
 
             return false;
         }
-
+        public bool IsStorageFull(ResourceDataSO resource)
+        {
+            var capacity = _resourcesCapacityManager.GetCapacity(resource.GUID);
+            return Resources[resource.GUID] == capacity;
+        }
 
         #region Save&Load
 
@@ -99,7 +111,6 @@ namespace Game
         {
             var resourcesInventory = JsonUtility.FromJson<ResourcesInventory>(data);
             Resources = resourcesInventory.GetResources();
-
         }
 
         #endregion
@@ -108,11 +119,13 @@ namespace Game
     {
 
         public event Action<ResourceDataSO, int> ResourceChanged;
+        public event Action<ResourceDataSO, bool> StorageFullChanged;
 
         public SerializeDictionary<string, int> GetResources();
         public void AddResource(ResourceDataSO resource, int amount);
         public void SubtractResource(ResourceDataSO resource, int amount);
         public bool CanSubtract(ResourceDataSO resource, int amount);
+        public bool IsStorageFull(ResourceDataSO resource);
 
     }
 
