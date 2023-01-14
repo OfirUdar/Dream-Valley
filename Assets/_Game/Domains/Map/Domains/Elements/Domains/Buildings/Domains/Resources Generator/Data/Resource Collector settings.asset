@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7833ac2bccb709e4eaa2093ea4fe2e2e, type: 3}
   m_Name: Resource Collector settings
   m_EditorClassIdentifier: 
-  <DefaultColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
-  <FullStorageColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <DefaultColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <FullStorageColor>k__BackingField: {r: 1, g: 0, b: 0, a: 1}

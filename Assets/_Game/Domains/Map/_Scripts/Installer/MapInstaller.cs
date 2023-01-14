@@ -6,7 +6,7 @@ namespace Game.Map
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<MapManager>().AsSingle();
+            Container.BindInterfacesTo<MapManager>().AsSingle();
             Container.Bind<IMapSaver>().To<MapSaver>().AsSingle();
         }
     }

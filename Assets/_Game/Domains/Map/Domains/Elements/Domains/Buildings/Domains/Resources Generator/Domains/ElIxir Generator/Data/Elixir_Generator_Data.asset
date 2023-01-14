@@ -20,5 +20,6 @@ MonoBehaviour:
   <Width>k__BackingField: 3
   <Height>k__BackingField: 3
   <Options>k__BackingField: 11
-  <Pfb>k__BackingField: {fileID: 8129032008449172806, guid: 538adcf3168232e42b45f7eeb086d1c7,
+  <Pfb>k__BackingField: {fileID: 2633928994747813309, guid: 27f46fce3df9ec64d8d3f55fe439f386,
     type: 3}
+  <DefaultPosition>k__BackingField: {x: 0, y: 0}

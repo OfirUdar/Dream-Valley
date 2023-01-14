@@ -15,8 +15,11 @@ namespace Game.Map.Element
 
         private Renderer[] _renderers;
 
+        private Tween[] _fadeTweens;
+
         private void Awake()
         {
+            //gameObject.isStatic = true;
             RefreshGFX();
         }
 
@@ -30,37 +33,40 @@ namespace Game.Map.Element
             yield return null;
 
             _renderers = _gfx.GetComponentsInChildren<Renderer>(true);
+
+            _fadeTweens = new Tween[_renderers.Length];
+            for (int i = 0; i < _renderers.Length; i++)
+            {
+                var material = _renderers[i].material;
+
+                _fadeTweens[i] = material
+                    .DOFade(_selectedOpacity, _duration)
+                    .SetLoops(-1, LoopType.Yoyo)
+                    .SetEase(Ease.OutSine)
+                    .SetAutoKill(false)
+                    .SetLink(_renderers[i].gameObject);
+            }
+
         }
 
         public void Select()
         {
             _gfx.transform.DOPunchScale(Vector3.one * 0.1f, 0.1f).Play();
-            foreach (var renderer in _renderers)
+
+            for (int i = 0; i < _fadeTweens.Length; i++)
             {
-                var material = renderer.material;
-
-                material
-                    .DOFade(_selectedOpacity, _duration)
-                    .SetLoops(-1, LoopType.Yoyo)
-                    .SetEase(Ease.OutSine)
-                    .SetLink(renderer.gameObject)
-                    .Play();
+                _fadeTweens[i].Restart();
             }
-
+           // gameObject.isStatic = false;
             SelectionChanged?.Invoke(true);
         }
         public void Unselect()
         {
-            foreach (var renderer in _renderers)
+           // gameObject.isStatic = true;
+            for (int i = 0; i < _fadeTweens.Length; i++)
             {
-                if (renderer == null)
-                    return;
-
-                renderer.material.DOPause();
-                renderer.material.DORewind();
-                renderer.material.DOKill();
+                _fadeTweens[i].Rewind();
             }
-
             SelectionChanged?.Invoke(false);
         }
 

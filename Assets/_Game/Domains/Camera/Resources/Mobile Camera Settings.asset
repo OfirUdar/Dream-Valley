@@ -18,6 +18,6 @@ MonoBehaviour:
     <HorizontalLimits>k__BackingField: {x: -12, y: 12}
     <VerticalLimits>k__BackingField: {x: -6, y: 6}
   _zoomSettings:
-    <Speed>k__BackingField: 80
+    <Speed>k__BackingField: 100
     <Min>k__BackingField: 4
     <Max>k__BackingField: 25

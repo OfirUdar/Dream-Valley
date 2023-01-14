@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,9 @@ namespace Game
         [SerializeField] private CanvasGroup _window;
         [Space]
         [SerializeField] private bool _isDestroyOnHide = false;
+
+        public event Action Activated;
+        public event Action Deactivated;
 
         private Tween _windowFadeTween;
         private Tween _windowScaleTween;
@@ -41,6 +45,7 @@ namespace Game
         private void SetEnable()
         {
             _canvasActivator.Activate();
+            Activated?.Invoke();
         }
         private void SetDisable()
         {
@@ -50,6 +55,7 @@ namespace Game
                 return;
             }
             _canvasActivator.Deactivate();
+            Deactivated?.Invoke();
         }
         public void Show()
         {

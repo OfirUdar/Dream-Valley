@@ -620,6 +620,8 @@ GameObject:
   - component: {fileID: 7553880411937342275}
   - component: {fileID: 7553880411937342273}
   - component: {fileID: 7553880411937342272}
+  - component: {fileID: 783069993789870066}
+  - component: {fileID: 7079869234827585775}
   - component: {fileID: 8491282845890876443}
   m_Layer: 5
   m_Name: ShopCard_Element
@@ -649,7 +651,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 146.19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7553880411937342274
 CanvasRenderer:
@@ -760,6 +762,34 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.15686275}
   m_EffectDistance: {x: 0, y: -5}
   m_UseGraphicAlpha: 1
+--- !u!225 &783069993789870066
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7553880411937342335}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &7079869234827585775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7553880411937342335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9774de790e69dd47a299c1e289eaabe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvasGroup: {fileID: 783069993789870066}
+  _activeAlpha: 1
+  _inActiveAlpha: 0.7
+  _isActive: 1
 --- !u!114 &8491282845890876443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,6 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c72fcc6eb212cf4ea0f5d5ddb1de880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvasGroup: {fileID: 7079869234827585775}
   _titleText: {fileID: 7553880410577087806}
   _amountText: {fileID: 7553880412364973347}
   _mainImage: {fileID: 7553880410570389003}
@@ -968,8 +999,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

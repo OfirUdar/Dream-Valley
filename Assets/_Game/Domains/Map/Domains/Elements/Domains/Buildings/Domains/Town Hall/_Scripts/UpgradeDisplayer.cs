@@ -27,7 +27,8 @@ namespace Game.Map.Element.Building.TownHall
                  .SetElement(_mapElement.Data)
                  .SetNextLevelData(nextElementLevel, canPurchase, StartUpgrade)
                  .SetNextLevelIndex(_levelManager.CurrentIndexLevel + 1)
-                 .SetComparisonLevels( currentLevelData, nextLevelData)
+                 .SetComparisonLevels(currentLevelData, nextLevelData)
+                 .SetRequiredElements(currentLevelData, nextLevelData, _levelsData)
                  .Display();
 
 

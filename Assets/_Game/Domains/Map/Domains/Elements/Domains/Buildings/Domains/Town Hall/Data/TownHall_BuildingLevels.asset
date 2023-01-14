@@ -31,7 +31,7 @@ MonoBehaviour:
       Mintues: 30
       Seconds: 0
     UpgradeAccomplishedXP: 0
-    Pfb: {fileID: 3360071261944867881, guid: d27bc6b9d88196d4fbec8332fa473356, type: 3}
+    Pfb: {fileID: 3360071261944867881, guid: 2855b00d756125a40b0cca2b7dca184c, type: 3}
   - UpgradePrice:
       <Resource>k__BackingField: {fileID: 11400000, guid: 15521e75b7002544396722fce9402d8d,
         type: 2}

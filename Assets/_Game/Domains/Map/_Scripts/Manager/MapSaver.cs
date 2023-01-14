@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Udar;
 using UnityEngine;
@@ -54,16 +55,19 @@ namespace Game.Map
 
 
 
-        public void LoadAll()
+        public Dictionary<MapElementSO, int> LoadAll()
         {
+            var allMapElements = new Dictionary<MapElementSO, int>();
             var elementTypesPathList = _loadManager.LoadFoldersPaths(SaveLoadKeys.Map);
             if (elementTypesPathList.Length > 0)
-                IterateOnElementTypes(elementTypesPathList);
+                IterateOnElementTypes(elementTypesPathList, allMapElements);
             else
-                LoadDefaultMap();
+                LoadDefaultMap(allMapElements);
+
+            return allMapElements;
         }
 
-        private void LoadDefaultMap()
+        private void LoadDefaultMap(Dictionary<MapElementSO, int> allMapElements)
         {
             foreach (var element in _initElementList.ElementsList)
             {
@@ -74,32 +78,43 @@ namespace Game.Map
                 _grid.Place(mapElementInstance);
 
                 SaveElement(mapElementInstance);
+
+                if (allMapElements.ContainsKey(element))
+                    allMapElements[element]++;
+                else
+                    allMapElements.Add(element, 1);
             }
         }
 
-        private void IterateOnElementTypes(string[] elementTypesPathList)
+        private void IterateOnElementTypes(string[] elementTypesPathList, Dictionary<MapElementSO, int> allMapElements)
         {
             foreach (var typePath in elementTypesPathList)
             {
                 string elementTypeGUID = new DirectoryInfo(Path.GetFileName(typePath)).Name;
                 var finalTypePath = Path.Combine(SaveLoadKeys.Map, elementTypeGUID);
 
-                IterateOnInstances(elementTypeGUID, finalTypePath);
+                IterateOnInstances(elementTypeGUID, finalTypePath, allMapElements);
             }
         }
-        private void IterateOnInstances(string elementTypeGUID, string finalTypePath)
+        private void IterateOnInstances(string elementTypeGUID, string finalTypePath, Dictionary<MapElementSO, int> allMapElements)
         {
             var elementInstancesPathList = _loadManager.LoadFoldersPaths(finalTypePath);
+            var elementData = _elementList.GetByGUID(elementTypeGUID);
+
+            if (elementInstancesPathList.Length > 0)
+                allMapElements.Add(elementData, 0);
 
             foreach (var instancePath in elementInstancesPathList)
             {
                 var data = File.ReadAllText(Path.Combine(instancePath, "data"));
-                var elementData = JsonUtility.FromJson<MapElementSaveData>(data);
+                var elementSaveData = JsonUtility.FromJson<MapElementSaveData>(data);
 
-                CreateInstance(elementTypeGUID, elementData);
+                CreateInstance(elementTypeGUID, elementSaveData);
+
+                allMapElements[elementData]++;
             }
         }
-        private void CreateInstance(string elementTypeGUID, MapElementSaveData elementData)
+        private IMapElement CreateInstance(string elementTypeGUID, MapElementSaveData elementData)
         {
             try
             {
@@ -110,10 +125,13 @@ namespace Game.Map
                 mapElementInstance.Position = elementData.Position;
 
                 _grid.Place(mapElementInstance);
+
+                return mapElementInstance;
             }
             catch (Exception exe)
             {
                 Debug.LogException(exe);
+                return null;
             }
 
         }

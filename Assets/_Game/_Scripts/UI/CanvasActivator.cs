@@ -14,11 +14,14 @@ namespace Game
             else
                 Deactivate();
         }
+
+        [ContextMenu(nameof(Activate))]
         public void Activate()
         {
             _root.SetActive(true);
             _canvas.enabled = true;
         }
+        [ContextMenu(nameof(Deactivate))]
         public void Deactivate()
         {
             _canvas.enabled = false;

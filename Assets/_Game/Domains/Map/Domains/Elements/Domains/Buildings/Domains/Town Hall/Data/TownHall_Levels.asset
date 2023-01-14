@@ -15,7 +15,22 @@ MonoBehaviour:
   <DataLevels>k__BackingField:
   - Workers: 1
     StorageCapacity: 1000
+    ElementsAvailableList:
+    - ElementData: {fileID: 11400000, guid: e828c7e5924c61f40bc937740d97c746, type: 2}
+      Amount: 3
+    - ElementData: {fileID: 11400000, guid: 47ed87d33a5c46748af02b1767a39e05, type: 2}
+      Amount: 2
   - Workers: 2
     StorageCapacity: 2000
+    ElementsAvailableList:
+    - ElementData: {fileID: 11400000, guid: e828c7e5924c61f40bc937740d97c746, type: 2}
+      Amount: 2
+    - ElementData: {fileID: 11400000, guid: 47ed87d33a5c46748af02b1767a39e05, type: 2}
+      Amount: 1
   - Workers: 3
     StorageCapacity: 3000
+    ElementsAvailableList:
+    - ElementData: {fileID: 11400000, guid: 47ed87d33a5c46748af02b1767a39e05, type: 2}
+      Amount: 2
+    - ElementData: {fileID: 11400000, guid: e828c7e5924c61f40bc937740d97c746, type: 2}
+      Amount: 3

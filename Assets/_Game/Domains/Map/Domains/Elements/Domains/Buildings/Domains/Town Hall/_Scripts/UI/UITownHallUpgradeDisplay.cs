@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,7 @@ namespace Game.Map.Element.Building.TownHall
         [SerializeField] private TextMeshProUGUI _elementNameText;
         [SerializeField] private Image _elementImage;
         [Space]
+        [SerializeField] private GameObject _okButton;
         [SerializeField] private Button _upgradeButton;
         [SerializeField] private Image _upgradeButtonImage;
         [SerializeField] private TextMeshProUGUI _upgradePriceButtonText;
@@ -25,7 +27,12 @@ namespace Game.Map.Element.Building.TownHall
         [Space]
         [SerializeField] private Sprite _workersSprite;
         [SerializeField] private Sprite _storageCapacitySprite;
+        [Space]
+        [SerializeField] private TextMeshProUGUI _requiredElementText;
+        [SerializeField] private UIElement _uiElementPfb;
+        [SerializeField] private Transform _elementsContainer;
 
+        [Inject] private readonly IMapManager _mapManager;
         [Inject] private readonly IDialog _dialog;
 
         private bool _canPurchase;
@@ -85,7 +92,76 @@ namespace Game.Map.Element.Building.TownHall
 
             return this;
         }
-       
+        public UITownHallUpgradeDisplay SetRequiredElements(TownHallData currentLevelData, TownHallData nextLevelData, TownHallLevelsData townHallLevels)
+        {
+            var elementsAmountDictionaryPreviousLevels = FindAllPreviousLevelsElements(currentLevelData, townHallLevels);
+
+            var hasRequiredElements = TryCreateRequiredElementsUI(currentLevelData, elementsAmountDictionaryPreviousLevels);
+            if (!hasRequiredElements)
+                CreateUnlcokesElementsUI(nextLevelData);
+
+            _requiredElementText.text = hasRequiredElements ? "Required Elements:" : "Unlocks Elements:";
+            _okButton.SetActive(hasRequiredElements);
+            _upgradeButton.gameObject.SetActive(!hasRequiredElements);
+
+            return this;
+        }
+
+
+
+        private static Dictionary<MapElementSO, int> FindAllPreviousLevelsElements(TownHallData currentLevelData, TownHallLevelsData townHallLevels)
+        {
+            var elementsAmountDictionaryPreviousLevels = new Dictionary<MapElementSO, int>();
+            foreach (var level in townHallLevels.DataLevels)
+            {
+                if (level == currentLevelData)
+                    break;
+
+                foreach (var availableElement in level.ElementsAvailableList)
+                {
+                    if (elementsAmountDictionaryPreviousLevels.ContainsKey(availableElement.ElementData))
+                        elementsAmountDictionaryPreviousLevels[availableElement.ElementData] += availableElement.Amount;
+                    else
+                        elementsAmountDictionaryPreviousLevels.Add(availableElement.ElementData, availableElement.Amount);
+                }
+            }
+
+            return elementsAmountDictionaryPreviousLevels;
+        }
+        private bool TryCreateRequiredElementsUI(TownHallData currentLevelData, Dictionary<MapElementSO, int> elementsAmountDictionaryPreviousLevels)
+        {
+            foreach (var element in currentLevelData.ElementsAvailableList)
+            {
+                var previousLevelsAmount = elementsAmountDictionaryPreviousLevels.GetValueOrDefault(element.ElementData);
+                var currentAmount = _mapManager.GetElementInstancesAmount(element.ElementData) - previousLevelsAmount;
+
+                if (currentAmount < element.Amount)
+                {
+                    var uiElementInstance = Instantiate(_uiElementPfb, _elementsContainer);
+                    uiElementInstance
+                        .SetSprite(element.ElementData.Sprite)
+                        .SetAmountRemain(element.Amount - currentAmount);
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        private void CreateUnlcokesElementsUI(TownHallData nextLevelData)
+        {
+            foreach (var element in nextLevelData.ElementsAvailableList)
+            {
+                var uiElementInstance = Instantiate(_uiElementPfb, _elementsContainer);
+                uiElementInstance
+                    .SetSprite(element.ElementData.Sprite)
+                    .SetAmountRemain(element.Amount);
+            }
+        }
+
+
+
+
         public void Display()
         {
             _panelActivator.Show();

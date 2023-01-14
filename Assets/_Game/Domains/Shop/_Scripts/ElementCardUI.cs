@@ -1,4 +1,5 @@
 ﻿using TMPro;
+using Udar;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ namespace Game.Shop.UI
 {
     public class ElementCardUI : MonoBehaviour
     {
+        [SerializeField] private UdarCanvasGroup _canvasGroup;
         [SerializeField] private TextMeshProUGUI _titleText;
         [SerializeField] private TextMeshProUGUI _amountText;
         [SerializeField] private Image _mainImage;
@@ -16,7 +18,7 @@ namespace Game.Shop.UI
         private ShopUI _shop;
         private ElementSO _shopElement;
 
-        public void Setup(ElementSO shopElement, ShopUI shop, bool canPurchase)
+        public ElementCardUI Setup(ElementSO shopElement, ShopUI shop)
         {
             _shop = shop;
             _shopElement = shopElement;
@@ -26,12 +28,24 @@ namespace Game.Shop.UI
 
             _resourceImage.sprite = shopElement.Price.Resource.Sprite;
 
-            SetAvailableForPurchase(canPurchase);
+
+            return this;
         }
-        public void SetAvailableForPurchase(bool canPurchase)
+        public ElementCardUI SetAvailableForPurchase(bool canPurchase)
         {
             var priceText = _shopElement.Price.Amount.ToString();
             _priceText.text = canPurchase ? priceText : "<color=red>" + priceText + "</color>";
+
+            return this;
+        }
+        public ElementCardUI SetAmount(int current, int max)
+        {
+            _amountText.text = current + " / " + max;
+
+            if (current == max)
+                _canvasGroup.Activate(false);
+
+            return this;
         }
         public void OnElementClicked()
         {

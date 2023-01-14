@@ -13,6 +13,10 @@ namespace Game
               .FromInstance(_initResourceDataListSO).AsSingle();
 
             Container.BindInterfacesTo<ResourcesInventory>().AsSingle().NonLazy();
+
+
+            Container.BindInterfacesTo
+                <AvailableElementsManager>().AsSingle();
         }
     }
 }

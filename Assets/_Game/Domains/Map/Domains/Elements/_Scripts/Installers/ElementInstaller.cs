@@ -11,46 +11,19 @@ namespace Game.Map.Element
         [SerializeField] private Transform _idleArea;
         [SerializeField] private MeshRenderer _editAreaRenderer;
         [SerializeField] private BoxCollider _collider;
-        [Space]
-        [SerializeField] private SelectedVisual _selectedVisual;
-        [SerializeField] private EditVisual _editVisual;
-        [SerializeField] private PlaceApprover _placeApprover;
-        [Space]
-        [SerializeField] private PlacerBehaviour _placerBehaviour;
-        [SerializeField] private PointerEvents _pointerEvents;
-       
-        
-
+        [SerializeField] private Transform[] _arrowsArray;
 
         public override void InstallBindings()
         {
-
             Container.Bind<MapElementSO>().FromInstance(_elementSO);
 
             Container.Bind<AreaSizeFitter>().ToSelf().AsSingle()
-                .WithArguments(_idleArea, _editAreaRenderer, _collider).NonLazy();
+                .WithArguments(_idleArea, _editAreaRenderer, _collider, _arrowsArray).NonLazy();
 
             Container.Bind<IMapElement>().To<MapElement>().AsSingle().WithArguments(_elementGameObject);
 
             Container.Bind<IEventor>().To<Eventor>().AsSingle();
-
-
-            InstallInteraction();
         }
-
-        private void InstallInteraction()
-        {
-            Container.Bind<ISelectVisual>().FromInstance(_selectedVisual).AsSingle();
-            Container.Bind<IEditVisual>().FromInstance(_editVisual).AsSingle();
-            Container.Bind<IPlaceApprover>().FromInstance(_placeApprover).AsSingle();
-
-            Container.Bind<IPlaceable>().FromInstance(_placerBehaviour).AsSingle();
-            Container.Bind<IDraggable>().To<Dragger>().AsSingle();
-            Container.Bind<ISelectable>().To<Selector>().AsSingle();
-
-            Container.Bind<PointerEvents>().FromInstance(_pointerEvents).AsSingle();
-
-            Container.BindInterfacesAndSelfTo<InteractionInvoker>().AsSingle().NonLazy();
-        }
+     
     }
 }

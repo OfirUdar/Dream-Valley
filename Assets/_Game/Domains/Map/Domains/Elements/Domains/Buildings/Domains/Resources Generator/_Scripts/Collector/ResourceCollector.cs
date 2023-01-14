@@ -18,6 +18,8 @@ namespace Game.Map.Element.Building.Resources
         private int _collectAmount;
         public event Action<bool> CollectableChanged;
 
+
+     
         public void AddAmountToStorage()
         {
             if (_collectAmount == 0) // if its already shown dont show it again
@@ -82,6 +84,7 @@ namespace Game.Map.Element.Building.Resources
             _collectAmount = collectAmountData.Amount;
             CollectableChanged?.Invoke(_collectAmount > 0);
         }
+
         #endregion
     }
 }

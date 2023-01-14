@@ -4,6 +4,7 @@ namespace Game.Map.Element
 {
     public class InteractionInvoker : IInitializable, ILateDisposable
     {
+
         private readonly IMapElement _mapElement;
         private readonly PointerEvents _pointerEvents;
         private readonly ISelectionManager _selectionManager;
@@ -11,8 +12,14 @@ namespace Game.Map.Element
 
         private readonly IUserInput _input;
 
-        public InteractionInvoker(IMapElement mapElement, PointerEvents pointerEvents,
-            ISelectionManager selectionManager, IDragManager dragManager,IUserInput input)
+        private readonly bool _isDraggable;
+
+        public InteractionInvoker(IMapElement mapElement,
+            PointerEvents pointerEvents,
+            ISelectionManager selectionManager,
+            IDragManager dragManager,
+            IUserInput input,
+            bool isDraggable = true)
         {
             _mapElement = mapElement;
             _pointerEvents = pointerEvents;
@@ -20,6 +27,8 @@ namespace Game.Map.Element
             _dragManager = dragManager;
 
             _input = input;
+
+            _isDraggable = isDraggable;
         }
 
         public void Initialize()
@@ -48,10 +57,10 @@ namespace Game.Map.Element
             _selectionManager.RequestSelect(_mapElement);
         }
 
-     
+
         private void OnPointerStartDrag()
         {
-            if (_input.IsPointerOverUI())
+            if (!_isDraggable || _input.IsPointerOverUI())
                 return;
 
             _dragManager.RequestStartDrag(_mapElement);

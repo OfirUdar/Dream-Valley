@@ -34,6 +34,10 @@ namespace Game.Map.Element.Building.TownHall
 
 
             Container.BindInterfacesTo<TownHallCapacityContainer>().AsSingle().NonLazy();
+
+            //Container.Bind<IAvailableElementsCounter>()
+            //    .To<AvailableElementsCounter>()
+            //    .AsSingle().NonLazy();
         }
     }
 }

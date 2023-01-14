@@ -16,6 +16,7 @@ namespace Game.Map.Element.Building.Resources.UI
         [Inject] private readonly IResourcesInventory _resourcesInventory;
 
 
+
         private void OnEnable()
         {
             _resourceCollector.CollectableChanged += OnCollectableChanged;

@@ -32,7 +32,8 @@ namespace Game.Map.Element
 
         private void OnMouseDown()
         {
-            _startDragPosition = CameraUtils.Main.ScreenToWorldPoint(Input.mousePosition);
+            //_startDragPosition = CameraUtils.Main.ScreenToWorldPoint(Input.mousePosition);
+            _startDragPosition = Input.mousePosition;
         }
         private void OnMouseUp()
         {
@@ -48,7 +49,8 @@ namespace Game.Map.Element
             {
                 if (Application.isMobilePlatform && Input.touchCount > 1) //Need to change it to more clean way :-)
                     return;
-                var currentPosition = CameraUtils.Main.ScreenToWorldPoint(Input.mousePosition);
+                //var currentPosition = CameraUtils.Main.ScreenToWorldPoint(Input.mousePosition);
+                var currentPosition = Input.mousePosition;
                 if ((currentPosition - _startDragPosition).sqrMagnitude > 0.05f) //starting drag after some pointer distance
                 {
                     _isDragging = true;

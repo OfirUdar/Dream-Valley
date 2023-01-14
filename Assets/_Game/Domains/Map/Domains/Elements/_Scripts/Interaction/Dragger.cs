@@ -15,7 +15,6 @@
             _editVisual.SetPlaceAvailbility(false);
         }
 
-
         public void EndDrag(bool hasPlaced)
         {
            if(hasPlaced)
@@ -26,7 +25,6 @@
         {
             _editVisual.SetPlaceAvailbility(canPlace);
         }
-
 
     }
 }
