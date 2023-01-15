@@ -5,10 +5,6 @@ namespace Game.Map.Element.Building.TownHall
 {
     public class TownHallInstaller : MonoInstaller
     {
-        //*** NEED TO BE DONE
-        //Info popup
-        //Upgrade popup
-
         [SerializeField] private TownHallLevelsData _townHallLevels;
         [SerializeField] private UITownHallInfoDisplay _uiInfoDisplayPfb; 
         [SerializeField] private UITownHallUpgradeDisplay _uiUpgradeDisplayPfb; 
@@ -35,9 +31,9 @@ namespace Game.Map.Element.Building.TownHall
 
             Container.BindInterfacesTo<TownHallCapacityContainer>().AsSingle().NonLazy();
 
-            //Container.Bind<IAvailableElementsCounter>()
-            //    .To<AvailableElementsCounter>()
-            //    .AsSingle().NonLazy();
+            Container.Bind<IAvailableElementsCounter>()
+                .To<AvailableElementsCounter>()
+                .AsSingle().NonLazy();
         }
     }
 }

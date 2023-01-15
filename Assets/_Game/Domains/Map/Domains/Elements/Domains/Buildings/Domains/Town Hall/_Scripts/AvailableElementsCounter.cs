@@ -25,11 +25,11 @@
             var currentAmount = _mapManager.GetElementInstancesAmount(element);
             foreach (var level in _levelsData.DataLevels)
             {
-                var availableElementAmount = level.ElementsAvailableList.Find(e => e.ElementData == element).Amount;
-                currentAmount -= availableElementAmount;
-
                 if (level == currentLevel)
                     break;
+
+                var availableElementAmount = level.ElementsAvailableList.Find(e => e.ElementData == element).Amount;
+                currentAmount -= availableElementAmount;
             }
 
             return currentAmount;
@@ -37,7 +37,8 @@
 
         public int GetMaxAmountElement(MapElementSO element)
         {
-            return 100;
+            var currentLevel = _levelsData[_levelManager.CurrentIndexLevel];
+            return currentLevel.ElementsAvailableList.Find(e => e.ElementData == element).Amount;
         }
     }
 }

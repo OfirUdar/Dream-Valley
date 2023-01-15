@@ -18,7 +18,6 @@ namespace Game.Map
             _mapSaver = mapSaver;
             _grid = grid;
             _elementSpawner = elementSpawner;
-            _mapElementsDictionary = _mapSaver.LoadAll();
         }
 
         public int GetElementInstancesAmount(MapElementSO mapElementData)
@@ -41,6 +40,12 @@ namespace Game.Map
             _grid.ElementChanged -= OnElementChanged;
             _grid.ElementRemoved -= OnElementRemoved;
             _elementSpawner.NewSpawned -= OnElementSpawned;
+        }
+
+        public void LoadAll()
+        {
+            _mapElementsDictionary = _mapSaver.LoadAll();
+
         }
 
         private void OnElementChanged(IMapElement element)
@@ -71,6 +76,7 @@ namespace Game.Map
         /// </summary>
         /// <returns></returns>
         public int GetElementInstancesAmount(MapElementSO mapElementData);
+        public void LoadAll();
     }
 
 }

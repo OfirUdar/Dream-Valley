@@ -57,13 +57,13 @@ namespace Game.Shop.UI
 
         private void OnPanelActivated()
         {
-            //foreach (var element in _elementsDictionaryUI)
-            //{
-            //    var currentAmount = _availableElementsCounter.GetCurrentAmountElements(element.Value.Element);
-            //    var maxAmount = _availableElementsCounter.GetMaxAmountElement(element.Value.Element);
-            //    element.Key
-            //        .SetAmount(currentAmount, maxAmount);
-            //}
+            foreach (var element in _elementsDictionaryUI)
+            {
+                var currentAmount = _availableElementsCounter.GetCurrentAmountElements(element.Value.Element);
+                var maxAmount = _availableElementsCounter.GetMaxAmountElement(element.Value.Element);
+                element.Key
+                    .SetAmount(currentAmount, maxAmount);
+            }
         }
         public void OnCardClicked(ElementSO element)
         {

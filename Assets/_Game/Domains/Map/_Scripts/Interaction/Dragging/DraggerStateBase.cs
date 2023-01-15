@@ -68,7 +68,7 @@ namespace Game.Map
 
             var canPlace = _grid.CanPlace(snappedPosition, _currentElement.Width, _currentElement.Height, _currentElement);
 
-            _currentElement.Position = Vector3.Lerp(_currentElement.Position, snappedPosition, 15f * Time.deltaTime);
+            _currentElement.Position = Vector3.Lerp(_currentElement.Position, snappedPosition, 20f * Time.deltaTime);
             _currentElement.OnDrag(canPlace);
         }
 
@@ -99,11 +99,11 @@ namespace Game.Map
             OnCanceled();
             _currentElement = null;
         }
+
         public void Initialize()
         {
             _selectionManager.SelectionChanged += OnSelectionChanged;
         }
-
         public void LateDispose()
         {
             _selectionManager.SelectionChanged -= OnSelectionChanged;

@@ -130,11 +130,12 @@ namespace Game.Map.Element.Building.TownHall
         }
         private bool TryCreateRequiredElementsUI(TownHallData currentLevelData, Dictionary<MapElementSO, int> elementsAmountDictionaryPreviousLevels)
         {
+            var hasRequiredElements = false;
             foreach (var element in currentLevelData.ElementsAvailableList)
             {
                 var previousLevelsAmount = elementsAmountDictionaryPreviousLevels.GetValueOrDefault(element.ElementData);
                 var currentAmount = _mapManager.GetElementInstancesAmount(element.ElementData) - previousLevelsAmount;
-
+               
                 if (currentAmount < element.Amount)
                 {
                     var uiElementInstance = Instantiate(_uiElementPfb, _elementsContainer);
@@ -142,11 +143,11 @@ namespace Game.Map.Element.Building.TownHall
                         .SetSprite(element.ElementData.Sprite)
                         .SetAmountRemain(element.Amount - currentAmount);
 
-                    return true;
+                    hasRequiredElements= true;
                 }
             }
 
-            return false;
+            return hasRequiredElements;
         }
         private void CreateUnlcokesElementsUI(TownHallData nextLevelData)
         {
