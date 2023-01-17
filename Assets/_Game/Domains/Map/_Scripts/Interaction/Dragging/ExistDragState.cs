@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace Game.Map
 {
     public class ExistDragState : DraggerStateBase
     {
-        private Vector3 _startPosition;
+        [Inject] private readonly IVFXFactory _vfxFactory;
 
+        private Vector3 _startPosition;
         public ExistDragState(IMapGrid grid, ICameraController cameraController, ICameraPointerUtility camPointerUtility, ISelectionManager selectionManager) : base(grid, cameraController, camPointerUtility, selectionManager)
         {
         }
@@ -21,8 +23,13 @@ namespace Game.Map
 
             if (canPlace)
             {
-                _grid.Remove(_startPosition, _currentElement.Width, _currentElement.Height); //removing from the old
-                _grid.Place(_currentElement);
+                if (_currentElement.Position != _startPosition)
+                {
+                    _grid.Remove(_startPosition, _currentElement.Width, _currentElement.Height); //removing from the old
+                    _grid.Place(_currentElement);
+                    _vfxFactory.CreateEffect(VFXType.ElementPlaced, _currentElement.Center);
+                }
+
                 _currentElement = null;
             }
 

@@ -21,6 +21,7 @@ namespace Game.Map.Element
                 transform.position = value + _size / 2f;
             }
         }
+        public Vector3 Center { get => transform.position; }
 
         [Inject]
         public void Init(MapElementSO mapElementData, GridSettingsSO gridSettings)

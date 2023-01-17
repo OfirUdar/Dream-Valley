@@ -7,7 +7,8 @@ namespace Game.Map
         public int Width { get; }
         public int Height { get; }
         public Vector3 Position { get; set; }
-       
+        public Vector3 Center { get; }
+
 
     }
 

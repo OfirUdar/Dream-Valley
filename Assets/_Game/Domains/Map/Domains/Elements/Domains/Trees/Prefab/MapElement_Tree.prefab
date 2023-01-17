@@ -7,6 +7,28 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 302030140245139610, guid: e65a42722264d0640b749d48cf10b91b,
+        type: 3}
+      propertyPath: _elementSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 0de6f809f5e1b03408bf3ce0f444a633,
+        type: 2}
+    - target: {fileID: 2087155787209555837, guid: e65a42722264d0640b749d48cf10b91b,
+        type: 3}
+      propertyPath: _levels
+      value: 
+      objectReference: {fileID: 11400000, guid: 280bb2ad4da8a0f4788a5d6cf6f71379,
+        type: 2}
+    - target: {fileID: 2087155787209555837, guid: e65a42722264d0640b749d48cf10b91b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2087155787209555837, guid: e65a42722264d0640b749d48cf10b91b,
+        type: 3}
+      propertyPath: _elementVisualHandler
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3520857174933889916, guid: e65a42722264d0640b749d48cf10b91b,
         type: 3}
       propertyPath: m_RootOrder
@@ -62,6 +84,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3522025919737823366, guid: e65a42722264d0640b749d48cf10b91b,
+        type: 3}
+      propertyPath: _leafInstallers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3522025919737823366, guid: e65a42722264d0640b749d48cf10b91b,
+        type: 3}
+      propertyPath: _leafInstallers.Array.data[2]
+      value: 
+      objectReference: {fileID: 7184042278250226216}
+    - target: {fileID: 3865264469381728188, guid: e65a42722264d0640b749d48cf10b91b,
+        type: 3}
+      propertyPath: SelectionChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7368481522399363416, guid: e65a42722264d0640b749d48cf10b91b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -87,7 +124,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapElement_Tree
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8226035641768785233, guid: e65a42722264d0640b749d48cf10b91b,
+        type: 3}
+      propertyPath: _isDraggable
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2087155787209555837, guid: e65a42722264d0640b749d48cf10b91b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e65a42722264d0640b749d48cf10b91b, type: 3}
 --- !u!4 &3916625179553635350 stripped
 Transform:
@@ -95,6 +138,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3842806918757052948}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7184042278250226216 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6261900053612548156, guid: e65a42722264d0640b749d48cf10b91b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3842806918757052948}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e8f4e7e39e9e54bb53080f1c32842d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4389800680198306933
 PrefabInstance:
   m_ObjectHideFlags: 0

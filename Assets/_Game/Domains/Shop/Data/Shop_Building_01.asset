@@ -15,6 +15,6 @@ MonoBehaviour:
   <Element>k__BackingField: {fileID: 11400000, guid: e828c7e5924c61f40bc937740d97c746,
     type: 2}
   <Price>k__BackingField:
-    <Resource>k__BackingField: {fileID: 11400000, guid: 15521e75b7002544396722fce9402d8d,
+    <Resource>k__BackingField: {fileID: 11400000, guid: 839ca43900cafad4a85f49feccbc05ae,
       type: 2}
     <Amount>k__BackingField: 10

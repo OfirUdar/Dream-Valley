@@ -13,6 +13,7 @@ namespace Game.Map.Grid
         private readonly float _cellSize;
         private readonly Vector3 _offset;
 
+        public IMapElement[,] Cells => _cells;
 
         public event Action<IMapElement> ElementChanged;
         public event Action<IMapElement> ElementRemoved;

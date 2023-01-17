@@ -40,10 +40,11 @@ namespace Game.Map.Element
 
         #region Place
         public int Width => _placer.Width;
-
         public int Height => _placer.Height;
 
         public Vector3 Position { get => _placer.Position; set => _placer.Position = value; }
+        public Vector3 Center { get => _placer.Center; }
+
         #endregion
 
         #region Selection

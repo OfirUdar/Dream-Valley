@@ -7,13 +7,16 @@ namespace Game.Map.Element.Building
     public class OptionsDisplayer : IOptionsDisplayer
     {
         [Inject] private readonly ElementOptionsSO _elementOptionsSO;
-        [Inject] private readonly IBuildingStateMachine _buildingStateMachine;
+        [InjectOptional] private readonly IBuildingStateMachine _buildingStateMachine;
+        [InjectOptional] private readonly ILevelManager _levelManager;
         [Inject] private readonly IMapElement _mapElement;
-        [Inject] private readonly ILevelManager _levelManager;
 
         public string GetDisplayText()
         {
-            return $"{_mapElement.Data.Name} (level {_levelManager.CurrentIndexLevel + 1})";
+            if (_levelManager != null)
+                return $"{_mapElement.Data.Name} (level {_levelManager.CurrentIndexLevel + 1})";
+            else
+                return _mapElement.Data.Name;
         }
 
         public void Show(Transform container)
@@ -32,9 +35,16 @@ namespace Game.Map.Element.Building
         {
             var options = _mapElement.Data.Options;
 
-            if (_buildingStateMachine.GetCurrentState() == StateType.Upgrade
-               || !_levelManager.HasNext())
+            if (_levelManager != null && !_levelManager.HasNext())
+            {
                 options -= ElementOption.Upgrade;
+            }
+            if (_buildingStateMachine != null && _buildingStateMachine.GetCurrentState() == StateType.Upgrade)
+            {
+                options -= ElementOption.Upgrade;
+            }
+
+
             return _elementOptionsSO.GetPrefabsByOptions(options);
         }
     }

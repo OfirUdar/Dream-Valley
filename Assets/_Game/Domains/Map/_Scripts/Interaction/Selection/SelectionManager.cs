@@ -13,7 +13,7 @@ namespace Game.Map
         private bool _isLocked;
 
 
-        private const float SHORT_PRESS = 0.3f;
+        private const float SHORT_PRESS = 0.2f;
         private float _pressingTimer;
 
         public event Action<ISelectable> SelectionChanged;

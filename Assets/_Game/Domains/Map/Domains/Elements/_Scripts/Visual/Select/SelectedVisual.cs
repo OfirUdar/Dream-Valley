@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,7 +20,6 @@ namespace Game.Map.Element
 
         private void Awake()
         {
-            //gameObject.isStatic = true;
             RefreshGFX();
         }
 
@@ -39,14 +39,29 @@ namespace Game.Map.Element
             {
                 var material = _renderers[i].material;
 
-                _fadeTweens[i] = material
-                    .DOFade(_selectedOpacity, _duration)
+                //_fadeTweens[i] = material
+                //    .DOFade(_selectedOpacity, _duration)
+                //    .SetLoops(-1, LoopType.Yoyo)
+                //    .SetEase(Ease.OutSine)
+                //    .SetAutoKill(false)
+                //    .SetLink(_renderers[i].gameObject);
+
+                _fadeTweens[i] = DOVirtual.Float(0, 0.3f, _duration, OnFadeUpdate)
                     .SetLoops(-1, LoopType.Yoyo)
                     .SetEase(Ease.OutSine)
                     .SetAutoKill(false)
                     .SetLink(_renderers[i].gameObject);
             }
 
+        }
+
+        private void OnFadeUpdate(float value)
+        {
+            for (int i = 0; i < _renderers.Length; i++)
+            {
+                var material = _renderers[i].material;
+                material.SetVector("_EmissionColor", Color.white * value);
+            }
         }
 
         public void Select()
@@ -57,12 +72,10 @@ namespace Game.Map.Element
             {
                 _fadeTweens[i].Restart();
             }
-           // gameObject.isStatic = false;
             SelectionChanged?.Invoke(true);
         }
         public void Unselect()
         {
-           // gameObject.isStatic = true;
             for (int i = 0; i < _fadeTweens.Length; i++)
             {
                 _fadeTweens[i].Rewind();

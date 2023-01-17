@@ -4,7 +4,7 @@ namespace Game.Map
 {
     public interface IGrid<T> : IPlacer<T> where T : IPlaceable
     {
-
+        public T[,] Cells { get; }
 
         public bool IsEmpty(int row, int column);
         public bool IsEmpty(Vector3 worldPosition);

@@ -16,7 +16,7 @@ namespace Game.Map.Element
 
 
         [Inject] private readonly IMapElement _mapElement;
-        [Inject] private readonly ILevelManager _levelManager;
+        [InjectOptional] private readonly ILevelManager _levelManager;
 
         private Tween _showTween;
         private StringBuilder _levelNumber;
@@ -33,9 +33,11 @@ namespace Game.Map.Element
                 .OnRewind(Disable)
                 .SetAutoKill(false)
                 .SetLink(gameObject);
-                
+
 
             _elementNameText.text = _mapElement.Data.Name;
+
+            _levelText.gameObject.SetActive(_levelManager != null);
         }
 
         private void Enable()
@@ -55,14 +57,18 @@ namespace Game.Map.Element
         {
             if (isSelected)
             {
-                var currentLevel = _levelManager.CurrentIndexLevel + 1;
-                _levelNumber.Clear();
-                _levelNumber.Append("Level ").Append(currentLevel);
+                if (_levelManager != null)
+                {
+                    var currentLevel = _levelManager.CurrentIndexLevel + 1;
+                    _levelNumber.Clear();
+                    _levelNumber.Append("Level ").Append(currentLevel);
 
-                if (!_levelManager.HasNext())
-                    _levelNumber.Append(" (Max)");
+                    if (!_levelManager.HasNext())
+                        _levelNumber.Append(" (Max)");
 
-                _levelText.text = _levelNumber.ToString();
+                    _levelText.text = _levelNumber.ToString();
+                }
+
                 _showTween.Restart();
             }
             else
