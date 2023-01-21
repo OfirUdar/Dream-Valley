@@ -50,7 +50,13 @@ namespace Game.Map
                 element.SaveData.InstanceGUID));
 
             if (Directory.Exists(elementPath))
-                Directory.Delete(elementPath);
+            {
+                foreach (var file in Directory.GetFiles(elementPath))
+                {
+                    File.Delete(file);
+                }   
+                Directory.Delete(elementPath,true);
+            }
         }
 
 

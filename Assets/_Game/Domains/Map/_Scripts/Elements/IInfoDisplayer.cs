@@ -8,12 +8,18 @@ namespace Game.Map
     }
     public interface IUpgradeDisplayer : IInfoDisplayer
     {
+
     }
     public interface IOptionsDisplayer
     {
         public void Show(Transform container);
         public string GetDisplayText();
+    }
 
+    public interface IRemoveHandler
+    {
+        public ResourcePrice Price { get; }
+        public void Remove();
     }
 
 }

@@ -18,6 +18,7 @@ namespace Game.Map.Element
 
         private Tween[] _fadeTweens;
 
+
         private void Awake()
         {
             RefreshGFX();
@@ -66,7 +67,7 @@ namespace Game.Map.Element
 
         public void Select()
         {
-            _gfx.transform.DOPunchScale(Vector3.one * 0.1f, 0.1f).Play();
+            _gfx.transform.DOPunchScale(Vector3.one * 0.15f, 0.15f).Play();
 
             for (int i = 0; i < _fadeTweens.Length; i++)
             {

@@ -15,6 +15,7 @@ namespace Game.Map.Element
         [InjectOptional] public IOptionsDisplayer OptionsDisplayer { get; private set; }
         [InjectOptional] public IInfoDisplayer InfoDisplayer { get; private set; }
         [InjectOptional] public IUpgradeDisplayer UpgradeDisplayer { get; private set; }
+        [InjectOptional] public IRemoveHandler RemoveHandler { get; private set; }
         [Inject] public IEventor Eventor { get; private set; }
 
         [Inject] public MapElementSO Data { get; private set; }

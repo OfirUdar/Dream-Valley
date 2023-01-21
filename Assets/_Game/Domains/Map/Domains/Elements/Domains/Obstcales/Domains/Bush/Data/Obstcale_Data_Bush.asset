@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d699f41460de541ad7e3852e93c098, type: 3}
+  m_Name: Obstcale_Data_Bush
+  m_EditorClassIdentifier: Game.Map.Element.Trees:Game.Map.Element.Obstcales:ObstacleDataSO
+  Element: {fileID: 11400000, guid: b79e2eca334c93841b92f1350f1d0f68, type: 2}
+  Price:
+    <Resource>k__BackingField: {fileID: 11400000, guid: 15521e75b7002544396722fce9402d8d,
+      type: 2}
+    <Amount>k__BackingField: 100

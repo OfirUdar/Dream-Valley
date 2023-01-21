@@ -1,5 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -8,11 +7,10 @@ namespace Game.Map.Element
     public class OptionButton : MonoBehaviour
     {
         [SerializeField] protected Button _button;
-        [SerializeField] protected Image _image;
-        [SerializeField] protected TextMeshProUGUI _optionText;
 
         protected IMapElement _mapElement;
 
+        public UnityEvent<IMapElement> Initalized;
         public UnityEvent<IMapElement> Clicked;
 
         private void OnEnable()
@@ -28,6 +26,7 @@ namespace Game.Map.Element
         public void Setup(IMapElement mapElement)
         {
             _mapElement = mapElement;
+            Initalized?.Invoke(mapElement);
         }
         private void OnClicked()
         {

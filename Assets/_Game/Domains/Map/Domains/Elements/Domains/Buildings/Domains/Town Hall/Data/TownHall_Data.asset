@@ -17,8 +17,8 @@ MonoBehaviour:
   <Description>k__BackingField: The main townhall in the farm
   <Sprite>k__BackingField: {fileID: 21300000, guid: cacebb931ca944b409afd71b5f35216c,
     type: 3}
-  <Width>k__BackingField: 6
-  <Height>k__BackingField: 6
+  <Width>k__BackingField: 5
+  <Height>k__BackingField: 5
   <Options>k__BackingField: 3
   <Pfb>k__BackingField: {fileID: 8129032008449172806, guid: 3d078500febd54c419bf3de130875ae6,
     type: 3}

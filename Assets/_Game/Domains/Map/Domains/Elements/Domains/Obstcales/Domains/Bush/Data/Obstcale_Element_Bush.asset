@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca92a0f999a921547aa657254dedad3e, type: 3}
+  m_Name: Obstcale_Element_Bush
+  m_EditorClassIdentifier: 
+  <GUID>k__BackingField: 4dd9c93afd24cc84abaaa4d58e3746c0
+  <Name>k__BackingField: Bush
+  <Description>k__BackingField: 
+  <Sprite>k__BackingField: {fileID: 21300000, guid: bdd674017bb6b4807aa77daf5310b898,
+    type: 3}
+  <Width>k__BackingField: 1
+  <Height>k__BackingField: 1
+  <Options>k__BackingField: 4
+  <Pfb>k__BackingField: {fileID: 4988265827250206200, guid: 18da2d150ac0ef8479d3e5664c3f7be0,
+    type: 3}
+  <DefaultPosition>k__BackingField: {x: 0, y: 0}

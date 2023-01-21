@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d7cb9be9251fa44b44a60560027e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lifeTime: 0.8
+  _lifeTime: 0.6
 --- !u!1 &9113874953961657156
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9113874953961657156}
   serializedVersion: 8
-  lengthInSec: 0.8
+  lengthInSec: 0.6
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -162,7 +162,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.8
+      scalar: 0.6
       minScalar: 0.5
       maxCurve:
         serializedVersion: 2
@@ -215,8 +215,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 6
-      minScalar: 5
+      scalar: 10
+      minScalar: 8
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -331,8 +331,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
-      minScalar: 3
+      scalar: 7
+      minScalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -596,8 +596,8 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0
-      minScalar: 0
+      scalar: 0.7853981
+      minScalar: -0.7853981
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -852,7 +852,7 @@ ParticleSystem:
           m_RotationOrder: 4
     arc:
       value: 360
-      mode: 0
+      mode: 3
       spread: 0
       speed:
         serializedVersion: 2
@@ -1023,8 +1023,8 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 30
-        minScalar: 20
+        scalar: 8
+        minScalar: 5
         maxCurve:
           serializedVersion: 2
           m_Curve:
@@ -1421,21 +1421,21 @@ ParticleSystem:
         key0: {r: 1, g: 1, b: 1, a: 1}
         key1: {r: 1, g: 1, b: 1, a: 0.827451}
         key2: {r: 0.754717, g: 0.754717, b: 0.754717, a: 0}
-        key3: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0}
-        key4: {r: 0, g: 0, b: 0, a: 0}
+        key3: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 0}
+        key4: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 34888
-        ctime2: 51850
+        ctime1: 29876
+        ctime2: 40478
         ctime3: 65535
-        ctime4: 0
+        ctime4: 65535
         ctime5: 0
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 62066
+        atime1: 56283
         atime2: 65535
         atime3: 65535
         atime4: 0
@@ -2148,8 +2148,8 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.35560566
-          value: 0.37446088
+          time: 0.30843958
+          value: 0.40077668
           inSlope: -2.6006045
           outSlope: -2.6006045
           tangentMode: 0
