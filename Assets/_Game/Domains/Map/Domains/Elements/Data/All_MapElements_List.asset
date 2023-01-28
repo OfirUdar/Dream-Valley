@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8863dd0979724144be2d50d95615d86, type: 3}
-  m_Name: Elements_List
+  m_Name: All_MapElements_List
   m_EditorClassIdentifier: 
   <ElementsList>k__BackingField:
   - {fileID: 11400000, guid: e828c7e5924c61f40bc937740d97c746, type: 2}
@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 007b990774257474eae2187e647bffd6, type: 2}
   - {fileID: 11400000, guid: 0de6f809f5e1b03408bf3ce0f444a633, type: 2}
   - {fileID: 11400000, guid: b79e2eca334c93841b92f1350f1d0f68, type: 2}
+  - {fileID: 11400000, guid: 3b123e7edc14ead409cb67960f4a910f, type: 2}

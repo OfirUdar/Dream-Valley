@@ -71,7 +71,7 @@ namespace Game.Shop.UI
 
             if (CanPurchase(price))
             {
-                _elementSpawnerAggragator.SpawnNewAndPlace(element.Element.Pfb, null,
+                _elementSpawnerAggragator.SpawnNewAndPlace(element.Element, null,
                     () => OnPlacedSuccessfully(price));
                 _panelActivator.ForceHide();
             }

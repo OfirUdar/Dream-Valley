@@ -8,7 +8,10 @@ namespace Game.Map
         [Inject] private readonly IVFXFactory _vfxFactory;
 
         private Vector3 _startPosition;
-        public ExistDragState(IMapGrid grid, ICameraController cameraController, ICameraPointerUtility camPointerUtility, ISelectionManager selectionManager) : base(grid, cameraController, camPointerUtility, selectionManager)
+        public ExistDragState(IMapGrid grid,
+            ICameraController cameraController,
+            ICameraPointerUtility camPointerUtility,
+            ISelectionManager selectionManager) : base(grid, cameraController, camPointerUtility, selectionManager)
         {
         }
 

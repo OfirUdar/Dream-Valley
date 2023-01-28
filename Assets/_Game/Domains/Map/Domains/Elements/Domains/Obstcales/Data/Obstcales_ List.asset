@@ -15,3 +15,4 @@ MonoBehaviour:
   <ObstaclesList>k__BackingField:
   - {fileID: 11400000, guid: fc385d2ee510a2b45812f2e7ee7a405c, type: 2}
   - {fileID: 11400000, guid: 07f8e9f44c30d0648a8eec3c4227dc49, type: 2}
+  - {fileID: 11400000, guid: 28bfca6b6c517bb4b84326683444aff8, type: 2}

@@ -8,6 +8,7 @@ namespace Game.Map.Element
     {
         //private readonly FacadeBehaviour.Factory _factory;
         private readonly MapElementFactory _factory;
+        private readonly IMapGrid _mapGrid;
         private readonly ISelectionManager _selectionManager;
         private readonly IDragManager _dragManager;
         private readonly ICameraPointerUtility _camPointerUtility;
@@ -17,12 +18,13 @@ namespace Game.Map.Element
 
         public event Action<IMapElement> NewSpawned;
 
-        public ElementSpawner(ISelectionManager selectionManager,
+        public ElementSpawner(IMapGrid mapGrid, ISelectionManager selectionManager,
             IDragManager dragManager,
             ICameraPointerUtility camPointerUtility,
             ICameraController cameraController,
             MapElementFactory factory)
         {
+            _mapGrid = mapGrid;
             _selectionManager = selectionManager;
             _dragManager = dragManager;
             _camPointerUtility = camPointerUtility;
@@ -42,33 +44,33 @@ namespace Game.Map.Element
         public IMapElement Spawn(GameObject gameObject)
         {
             var startPosition = _camPointerUtility.CameraRaycast();
-            var facadeBehaviour = _factory.Create(gameObject);
-            facadeBehaviour.Position = startPosition;
+            var mapElement = _factory.Create(gameObject);
+            mapElement.Position = startPosition;
 
-            return facadeBehaviour;
+            return mapElement;
         }
         public IMapElement SpawnDefault(GameObject gameObject)
         {
             var startPosition = _camPointerUtility.CameraRaycast();
-            var facadeBehaviour = _factory.Create(gameObject);
-            facadeBehaviour.Position = startPosition;
+            var mapElement = _factory.Create(gameObject);
+            mapElement.Position = startPosition;
 
-            facadeBehaviour.Eventor.NotifiySpawnedSuccessfully();
+            mapElement.Eventor.NotifiySpawnedSuccessfully();
 
-            return facadeBehaviour;
+            return mapElement;
         }
 
-        public async void SpawnNewAndPlace(GameObject gameObject, Action cancelCallback, Action successCallback)
+        public async void SpawnNewAndPlace(MapElementSO mapElementSO, Action cancelCallback, Action successCallback)
         {
-            var startPosition = _camPointerUtility.CameraRaycast();
-            var facadeBehaviour = _factory.Create(gameObject);
-            facadeBehaviour.Position = startPosition;
+            //var startPosition = _camPointerUtility.CameraRaycast();
+            _mapGrid.FindAvailablePlace(mapElementSO.Width, mapElementSO.Height, out Vector3 startPosition);
+            var mapElement = _factory.Create(mapElementSO.Pfb);
+            mapElement.Position = startPosition;
 
-            var mapElement = facadeBehaviour;
             mapElement.StartDrag();
             mapElement.PlaceApprover.Show();
             mapElement.PlaceApprover.SubscribeForCallbacks(
-                  () => OnAprroved(facadeBehaviour, successCallback)
+                  () => OnAprroved(mapElement, successCallback)
                 , () => OnCanceled(mapElement, cancelCallback));
 
             _selectionManager.RequestUnselect();
@@ -80,10 +82,8 @@ namespace Game.Map.Element
             _dragManager.Lock(false);
         }
 
-        private void OnAprroved(IMapElement facadeBehaviour, Action successCallback)
+        private void OnAprroved(IMapElement mapElement, Action successCallback)
         {
-            var mapElement = facadeBehaviour;
-
             mapElement.PlaceApprover.Hide();
 
             _selectionManager.Lock(false);
@@ -94,7 +94,7 @@ namespace Game.Map.Element
 
             NewSpawned?.Invoke(mapElement);
 
-            facadeBehaviour.Eventor.NotifiySpawnedSuccessfully();
+            mapElement.Eventor.NotifiySpawnedSuccessfully();
         }
         private void OnCanceled(IMapElement mapElement, Action cancelCallback)
         {

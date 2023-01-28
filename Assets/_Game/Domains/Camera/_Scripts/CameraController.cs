@@ -57,7 +57,7 @@ namespace Game.Camera
             SetActive(false);
 
             if (_moveHandler.IsCurrentPositionFar(position))
-                await _zoomHandler.FocusAsync(20f, 0.3f, Ease.OutSine);
+                await _zoomHandler.FocusAsync(20f, 0.2f, Ease.OutSine);
 
             var tasks = new Task[2];
             tasks[0] = _moveHandler.FocusAsync(position);

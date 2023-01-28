@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca92a0f999a921547aa657254dedad3e, type: 3}
-  m_Name: Obstcale_Element_Bush
+  m_Name: Obstcale_Element_Stone
   m_EditorClassIdentifier: 
-  <GUID>k__BackingField: 4dd9c93afd24cc84abaaa4d58e3746c0
-  <Name>k__BackingField: Bush
+  <GUID>k__BackingField: 210fad2581e927942b2e42b000c18891
+  <Name>k__BackingField: Stone
   <Description>k__BackingField: 
-  <Sprite>k__BackingField: {fileID: 21300000, guid: bdd674017bb6b4807aa77daf5310b898,
+  <Sprite>k__BackingField: {fileID: 21300000, guid: a04ecc9d5e12d5d449077414eb86635e,
     type: 3}
   <Width>k__BackingField: 2
   <Height>k__BackingField: 2
   <Options>k__BackingField: 4
-  <Pfb>k__BackingField: {fileID: 4988265827250206200, guid: 18da2d150ac0ef8479d3e5664c3f7be0,
+  <Pfb>k__BackingField: {fileID: 4988265827250206200, guid: 22a71cc870497b647aaf1ce874571796,
     type: 3}
   <DefaultPosition>k__BackingField: {x: 0, y: 0}

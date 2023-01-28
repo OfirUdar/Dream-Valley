@@ -9,6 +9,7 @@ namespace Game.Map
         public bool IsEmpty(int row, int column);
         public bool IsEmpty(Vector3 worldPosition);
 
+
         #region GET
         public int GetRowsAmount();
         public int GetColumnsAmount();
@@ -41,6 +42,10 @@ namespace Game.Map
         public bool CanPlace(T cell);
         public bool CanPlace(int row, int column, int width, int height, T cell);
         public bool CanPlace(Vector3 worldPosition, int width, int height, T cell);
+
+        public bool FindRandomAvailablePlace(int width, int height, out Vector3 foundPosition);
+        public bool FindAvailablePlace(int width, int height, out Vector3 foundPosition);
+
     }
 }
 

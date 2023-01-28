@@ -1,14 +1,13 @@
 ﻿using System;
-using UnityEngine;
 
 namespace Game
 {
     public class ElementSpawnerAggragator
     {
-        public event Action<GameObject, Action, Action> SpawnNewRequested;
-        public void SpawnNewAndPlace(GameObject gameObject, Action cancelCallback, Action successCallback)
+        public event Action<MapElementSO, Action, Action> SpawnNewRequested;
+        public void SpawnNewAndPlace(MapElementSO mapElementSO, Action cancelCallback, Action successCallback)
         {
-            SpawnNewRequested?.Invoke(gameObject, cancelCallback, successCallback);
+            SpawnNewRequested?.Invoke(mapElementSO, cancelCallback, successCallback);
         }
     }
 

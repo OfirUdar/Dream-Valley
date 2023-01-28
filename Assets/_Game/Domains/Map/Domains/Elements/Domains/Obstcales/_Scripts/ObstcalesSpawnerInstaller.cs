@@ -11,7 +11,7 @@ namespace Game.Map.Element.Obstcales
         {
             Container.Bind<ObstcalesListSO>().FromInstance(_treesListSO);
 
-            Container.BindInterfacesTo<ObstcaleRandomSpawner>().AsSingle();
+            Container.BindInterfacesTo<ObstcalesRandomSpawner>().AsSingle();
         }
     }
 }

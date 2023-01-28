@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Game.Map.Grid
@@ -32,9 +34,6 @@ namespace Game.Map.Grid
 
         public bool IsEmpty(int row, int column)
         {
-            if (!IsOnRange(row, column))
-                return false;
-
             return _cells[row, column] == null;
         }
         public bool IsEmpty(Vector3 worldPosition)
@@ -49,6 +48,9 @@ namespace Game.Map.Grid
             {
                 for (int c = column; c < column + height; c++)
                 {
+                    if (!IsOnRange(r, c))
+                        return false;
+
                     if (!IsEmpty(r, c) && _cells[r, c] != element)
                         return false;
                 }
@@ -191,6 +193,76 @@ namespace Game.Map.Grid
             return row >= 0 && column >= 0 && row < _rows && column < _columns;
         }
 
+        private List<Vector2Int> GetGridEmptyCells()
+        {
+            var emptyCellsList = new List<Vector2Int>();
+
+            for (int r = 0; r < _cells.GetLength(0); r++)
+            {
+                for (int c = 0; c < _cells.GetLength(1); c++)
+                {
+                    if (IsEmpty(r, c))
+                        emptyCellsList.Add(new Vector2Int(r, c));
+                }
+            }
+
+            return emptyCellsList;
+        }
+
+        public bool FindRandomAvailablePlace(int width, int height, out Vector3 foundPosition)
+        {
+            var emptyCellsList = GetGridEmptyCells();
+
+            if (emptyCellsList.Count == 0)
+            {
+                foundPosition = Vector3.zero;
+                return false;
+            }
+
+            var randomIndexCell = UnityEngine.Random.Range(0, emptyCellsList.Count);
+            var randomCell = emptyCellsList[randomIndexCell];
+
+            if (CanPlace(randomCell.x, randomCell.y, width, height, null))
+            {
+                foundPosition = GetWorldPosition(randomCell.x, randomCell.y);
+                return true;
+            }
+
+
+            foundPosition = Vector3.zero;
+            return false;
+        }
+        public bool FindAvailablePlace(int width, int height, out Vector3 foundPosition)
+        {
+            var emptyCellsList = GetGridEmptyCells();
+
+            var middleIndex = emptyCellsList.Count / 2;
+            for (int i = middleIndex; i < emptyCellsList.Count; i++)
+            {
+                var row = emptyCellsList[i].x;
+                var column = emptyCellsList[i].y;
+                if (CanPlace(row, column, width, height, null))
+                {
+                    foundPosition = GetWorldPosition(row, column);
+                    return true;
+                }
+            }
+
+            for (int i = 0; i < middleIndex; i++)
+            {
+                var row = emptyCellsList[i].x;
+                var column = emptyCellsList[i].y;
+                if (CanPlace(row, column, width, height, null))
+                {
+                    foundPosition = GetWorldPosition(row, column);
+                    return true;
+                }
+            }
+
+
+            foundPosition = Vector3.zero;
+            return false;
+        }
     }
 }
 
