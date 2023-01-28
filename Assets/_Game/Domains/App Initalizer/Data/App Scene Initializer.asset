@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011a4270b663aad448b1aa3c6ffefaa9, type: 3}
+  m_Name: App Scene Initializer
+  m_EditorClassIdentifier: 
+  _sceneFields:
+  - _sceneOB: {fileID: 102900000, guid: 13a92b16ad28b3349aa8e806d217560e, type: 3}
+    _name: Camera
+    _path: Assets/_Game/Scenes/Camera.unity
+    _buildIndex: 5
+  - _sceneOB: {fileID: 102900000, guid: 6cea7b92caca8f24b91a7ebd91e2189a, type: 3}
+    _name: ResourcesInventory
+    _path: Assets/_Game/Scenes/ResourcesInventory.unity
+    _buildIndex: 7
+  - _sceneOB: {fileID: 102900000, guid: 177d89024419f4e48a0bf3d13ffd955a, type: 3}
+    _name: Environment
+    _path: Assets/_Game/Scenes/Environment.unity
+    _buildIndex: 6
+  - _sceneOB: {fileID: 102900000, guid: 809355e9a1e02fb44823bce777f57e12, type: 3}
+    _name: UIInitalizer
+    _path: Assets/_Game/Scenes/UIInitalizer.unity
+    _buildIndex: 3

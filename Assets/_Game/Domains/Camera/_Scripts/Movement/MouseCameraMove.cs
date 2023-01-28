@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-
+﻿
 namespace Game.Camera
 {
+    using UnityEngine;
     public class MouseCameraMove : CameraMoveBase
     {
         private const float STOP_PAN_VELOCITY = 0.0008f;
@@ -12,7 +12,7 @@ namespace Game.Camera
         private Vector3 _panVelocity;
         private bool _startInertia;
 
-        public MouseCameraMove(Transform camTran, IUserInput input, MoveSettings moveSettings) : base(camTran, input, moveSettings)
+        public MouseCameraMove(Camera camera, IUserInput input, MoveSettings moveSettings) : base(camera, input, moveSettings)
         {
         }
 
@@ -35,7 +35,7 @@ namespace Game.Camera
 
                 var delta = _dragOrigin - currentPosition;
 
-                var nextPos = _camTran.position + delta;
+                var nextPos = _cameraTransform.position + delta;
                 nextPos = ConvertToValidPosition(nextPos);
                 Move(nextPos);
 
@@ -55,7 +55,7 @@ namespace Game.Camera
                     _startInertia = false;
 
                 _panVelocity = Vector3.Lerp(_panVelocity, Vector3.zero, _settings.InertiaInterpolation);
-                var nextPos = _camTran.position + _panVelocity;
+                var nextPos = _cameraTransform.position + _panVelocity;
                 nextPos = ConvertToValidPosition(nextPos);
                 Move(nextPos);
             }

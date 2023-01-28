@@ -1,15 +1,15 @@
 ﻿using Udar;
-using UnityEngine;
 
 namespace Game.Camera
 {
+    using UnityEngine;
     public class TouchCameraMove : CameraMoveBase
     {
         private const float STOP_PAN_VELOCITY = 0.008f;
         private Vector3 _panVelocity;
         private bool _startInertia;
 
-        public TouchCameraMove(Transform camTran, IUserInput input, MoveSettings moveSettings) : base(camTran, input, moveSettings)
+        public TouchCameraMove(Camera camera, IUserInput input, MoveSettings moveSettings) : base(camera, input, moveSettings)
         {
         }
         public override void SetActive(bool isActive)
@@ -24,7 +24,7 @@ namespace Game.Camera
                 if (touch.phase == TouchPhase.Moved)
                 {
                     var delta = GetTouchDelta(touch);
-                    var nextPos = _camTran.position + delta;
+                    var nextPos = _cameraTransform.position + delta;
                     nextPos = ConvertToValidPosition(nextPos);
                     Move(nextPos);
 
@@ -44,7 +44,7 @@ namespace Game.Camera
                     _startInertia = false;
 
                 _panVelocity = Vector3.Lerp(_panVelocity, Vector3.zero, _settings.InertiaInterpolation);
-                var nextPos = _camTran.position + _panVelocity;
+                var nextPos = _cameraTransform.position + _panVelocity;
                 nextPos = ConvertToValidPosition(nextPos);
                 Move(nextPos);
             }
@@ -57,8 +57,8 @@ namespace Game.Camera
                 return Vector3.zero;
 
             //delta
-            var beforeTouchWorldPos = CameraUtils.Main.ScreenToWorldPoint(touch.position - touch.deltaPosition);
-            var currentTouchWorldPos = CameraUtils.Main.ScreenToWorldPoint(touch.position);
+            var beforeTouchWorldPos = _camera.ScreenToWorldPoint(touch.position - touch.deltaPosition);
+            var currentTouchWorldPos = _camera.ScreenToWorldPoint(touch.position);
 
             return beforeTouchWorldPos - currentTouchWorldPos;
         }

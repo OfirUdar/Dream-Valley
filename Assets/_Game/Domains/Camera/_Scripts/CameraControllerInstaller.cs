@@ -19,18 +19,17 @@ namespace Game.Camera
             Container.Bind(typeof(ICameraController), typeof(ITickable))
                 .To<CameraController>().AsSingle().NonLazy();
 
+            Container.Bind<Camera>().FromInstance(_camera);
         }
 
         private void InstallMobile()
         {
             Container.Bind<CameraMoveBase>().To<TouchCameraMove>()
                    .AsSingle()
-                  .WithArguments(_camera.transform)
                   .NonLazy();
 
             Container.Bind<CameraZoomBase>().To<TouchCameraZoom>()
                .AsSingle()
-               .WithArguments(_camera)
                .NonLazy();
 
             Container.Bind<MoveSettings>().FromInstance(_mobileSettings.MoveSettings).AsSingle();
@@ -40,12 +39,10 @@ namespace Game.Camera
         {
             Container.Bind<CameraMoveBase>().To<MouseCameraMove>()
                      .AsSingle()
-                    .WithArguments(_camera.transform)
                     .NonLazy();
 
             Container.Bind<CameraZoomBase>().To<MouseCameraZoom>()
                .AsSingle()
-               .WithArguments(_camera)
                .NonLazy();
 
             Container.Bind<MoveSettings>().FromInstance(_pcSettings.MoveSettings).AsSingle();

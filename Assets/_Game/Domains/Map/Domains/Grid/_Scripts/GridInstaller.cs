@@ -5,9 +5,9 @@ namespace Game.Map.Grid
 {
     public class GridInstaller : MonoInstaller
     {
-        [Space]
         [SerializeField] private GridSettingsSO _settings;
-
+        [Space]
+        [SerializeField] private GroundGridVisual _groudGridVisual;
         public override void InstallBindings()
         {
             Container.Bind<GridSettingsSO>()
@@ -16,6 +16,7 @@ namespace Game.Map.Grid
             Container.Bind<IMapGrid>().To<MapGrid>()
                 .AsSingle().NonLazy();
 
+            Container.Bind<IGroundGridVisual>().FromInstance(_groudGridVisual);
         }
 
 

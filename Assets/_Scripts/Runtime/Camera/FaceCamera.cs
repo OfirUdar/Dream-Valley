@@ -6,10 +6,11 @@ namespace Udar
     {
         private Transform _camTransform;
 
-        private void Awake()
+        public void SetCamera(Camera camera)
         {
-            _camTransform = CameraUtils.Main.transform;
+            _camTransform = camera.transform;
         }
+
         private void LateUpdate()
         {
             transform.LookAt(transform.position + _camTransform.rotation * Vector3.forward,
@@ -17,13 +18,11 @@ namespace Udar
         }
 
 
-
         [ContextMenu("Face To Camera")]
         public void FaceToCamera()
         {
-            Awake();
-            transform.LookAt(transform.position + _camTransform.rotation * Vector3.forward,
-               _camTransform.rotation * Vector3.up);
+            transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward,
+               Camera.main.transform.rotation * Vector3.up);
         }
     }
 }

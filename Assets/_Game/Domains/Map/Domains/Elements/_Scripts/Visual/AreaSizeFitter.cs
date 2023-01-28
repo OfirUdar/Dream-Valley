@@ -9,7 +9,7 @@ namespace Game.Map.Element
             MeshRenderer editArea,
             BoxCollider collider, Transform[] _arrows)
         {
-            var colliderHeight = .25f;
+            var colliderHeight = .4f;
 
             var scale = editArea.transform.localScale;
             scale.x = gridSettings.CellSize * data.Width;

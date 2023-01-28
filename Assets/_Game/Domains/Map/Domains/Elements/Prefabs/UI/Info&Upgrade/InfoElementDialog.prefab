@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 1062254998875389214}
   - component: {fileID: 1062254998875389215}
   - component: {fileID: 2275837350643349473}
+  - component: {fileID: 451447949400131571}
   m_Layer: 0
   m_Name: InfoElementDialog
   m_TagString: Untagged
@@ -207,6 +208,19 @@ MonoBehaviour:
   _elementImage: {fileID: 1062254999943792640}
   _titleText: {fileID: 1062255000384898544}
   _descriptionText: {fileID: 7922544822611397654}
+--- !u!114 &451447949400131571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062254998875389408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 2
 --- !u!1 &1062254999242626639
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,6 +473,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1062254998875389215}
         m_TargetAssemblyTypeName: Game.PanelActivator, Game
         m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1302257748079118294}
+        m_TargetAssemblyTypeName: Game.PlaySound, Game
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1481,6 +1507,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6f4819889d8e5b42ae90a3741d43ac3, type: 3}
+--- !u!114 &1302257748079118294 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2066993687654733503, guid: c6f4819889d8e5b42ae90a3741d43ac3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1062254998557233513}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b7c7a665eeb09841bab2e9d77d20dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4437330191598282520 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3686604246376511089, guid: c6f4819889d8e5b42ae90a3741d43ac3,

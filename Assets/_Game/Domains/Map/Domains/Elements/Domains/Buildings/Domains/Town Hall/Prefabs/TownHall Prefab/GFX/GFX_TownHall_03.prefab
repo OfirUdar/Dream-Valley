@@ -114,7 +114,7 @@ Transform:
   - {fileID: 4179777218455820130}
   - {fileID: 128012187126757735}
   - {fileID: 6421856710952731324}
-  - {fileID: 971905921538799421}
+  - {fileID: 2068854613181666455}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -284,7 +284,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1001 &789922363001426134
+--- !u!1001 &1962642765189903228
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -299,17 +299,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: bd333fac8afc8744c82461350cb40ade,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 16
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd333fac8afc8744c82461350cb40ade,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 16
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd333fac8afc8744c82461350cb40ade,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 16
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd333fac8afc8744c82461350cb40ade,
         type: 3}
@@ -319,7 +319,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: bd333fac8afc8744c82461350cb40ade,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.142
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd333fac8afc8744c82461350cb40ade,
         type: 3}
@@ -373,9 +373,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd333fac8afc8744c82461350cb40ade, type: 3}
---- !u!4 &971905921538799421 stripped
+--- !u!4 &2068854613181666455 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bd333fac8afc8744c82461350cb40ade,
     type: 3}
-  m_PrefabInstance: {fileID: 789922363001426134}
+  m_PrefabInstance: {fileID: 1962642765189903228}
   m_PrefabAsset: {fileID: 0}

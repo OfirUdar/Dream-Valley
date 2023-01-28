@@ -1,21 +1,22 @@
 ﻿using DG.Tweening;
 using System.Threading.Tasks;
-using Udar;
-using UnityEngine;
 namespace Game.Camera
 {
+    using UnityEngine;
     public abstract class CameraMoveBase
     {
-        protected readonly Transform _camTran;
+        protected readonly Camera _camera;
+        protected readonly Transform _cameraTransform;
         protected readonly IUserInput _input;
         protected readonly MoveSettings _settings;
 
         public abstract void Tick();
         public abstract void SetActive(bool isActive);
 
-        public CameraMoveBase(Transform camTran, IUserInput input, MoveSettings moveSettings)
+        public CameraMoveBase(Camera camera, IUserInput input, MoveSettings moveSettings)
         {
-            _camTran = camTran;
+            _camera = camera;
+            _cameraTransform = _camera.transform;
             _input = input;
             _settings = moveSettings;
         }
@@ -23,7 +24,7 @@ namespace Game.Camera
         protected Vector3 GetWorldPointerPosition()
         {
             var pointerPos = _input.GetPointerPosition();
-            var position = CameraUtils.Main.ScreenToWorldPoint(pointerPos);
+            var position = _camera.ScreenToWorldPoint(pointerPos);
             return position;
         }
         protected Vector3 ConvertToValidPosition(Vector3 position)
@@ -35,17 +36,17 @@ namespace Game.Camera
         }
         protected void Move(Vector3 nextPos)
         {
-            _camTran.position = Vector3.Lerp(_camTran.position, nextPos, _settings.LerpAmount * Time.deltaTime);
+            _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, nextPos, _settings.LerpAmount * Time.deltaTime);
         }
 
         public bool IsCurrentPositionFar(Vector3 targetPosition)
         {
             var distance = 7f;
-            return (_camTran.position - targetPosition).sqrMagnitude >= distance;
+            return (_cameraTransform.position - targetPosition).sqrMagnitude >= distance;
         }
         public async Task FocusAsync(Vector3 nextPosition, float duration = 0.5f, Ease ease = Ease.InOutSine)
         {
-            await _camTran.DOMove(nextPosition, duration).SetEase(ease).Play().AsyncWaitForCompletion();
+            await _cameraTransform.DOMove(nextPosition, duration).SetEase(ease).Play().AsyncWaitForCompletion();
         }
 
     }

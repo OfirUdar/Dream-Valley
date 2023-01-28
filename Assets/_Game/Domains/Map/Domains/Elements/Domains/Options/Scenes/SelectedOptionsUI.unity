@@ -587,7 +587,7 @@ MonoBehaviour:
   _parentNewObjectsUnderSceneContext: 0
   _contractNames: []
   _parentContractNames:
-  - Main
+  - Environment
 --- !u!4 &1711229282
 Transform:
   m_ObjectHideFlags: 0

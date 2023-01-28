@@ -30,6 +30,7 @@
             _grid.Place(_currentElement);
             _currentElement.EndDrag(true);
             _currentElement = null;
+            _soundsManager.PlayOneShot(_dragSounds.PlacedAudioInfo);
 
         }
         private void OnCancelRequested()

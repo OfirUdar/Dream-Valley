@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace Game.Map
@@ -9,6 +10,10 @@ namespace Game.Map
         private readonly ICameraController _cameraController;
         private readonly ICameraPointerUtility _camPointerUtility;
         protected readonly ISelectionManager _selectionManager;
+
+        //TEMP - REMOVE IT AS SOON AS POSSIBLE
+        [Inject] protected readonly ISoundsManager _soundsManager;
+        [Inject] protected readonly DraggingSounds _dragSounds;
 
         private Vector3 _offsetPosition;
 
@@ -66,11 +71,26 @@ namespace Game.Map
 
             var snappedPosition = GetSnappedPosition();
 
+            //TEMP
+            _timer += Time.deltaTime;
+            if ((snappedPosition - _currentElement.Position).sqrMagnitude > 0.1f)
+            {
+                if (_timer >= 0.04f)
+                {
+                    _soundsManager.PlayOneShot(_dragSounds.DraggingAudioInfo);
+                    _timer = 0;
+                }
+            }
+
             var canPlace = _grid.CanPlace(snappedPosition, _currentElement.Width, _currentElement.Height, _currentElement);
 
             _currentElement.Position = Vector3.Lerp(_currentElement.Position, snappedPosition, 20f * Time.deltaTime);
             _currentElement.OnDrag(canPlace);
         }
+
+        //TEMP - REMOVE IT AS SOON AS POSSIBLE
+        private float _timer = 0;
+
 
         private Vector3 GetSnappedPosition()
         {
@@ -119,6 +139,14 @@ namespace Game.Map
                 }
             }
         }
+    }
+
+    [Serializable]
+    public class DraggingSounds
+    {
+        [field: SerializeField] public AudioClipInfo DraggingAudioInfo { get; private set; }
+        [field: SerializeField] public AudioClipInfo PlacedAudioInfo { get; private set; }
+        [field: SerializeField] public AudioClipInfo ErrorPlacedAudioInfo { get; private set; }
     }
 
 }

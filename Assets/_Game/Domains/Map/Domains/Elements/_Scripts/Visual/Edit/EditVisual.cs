@@ -14,7 +14,12 @@ namespace Game.Map.Element
         [SerializeField] private Color _unavailableColor = Color.red;
 
         [Inject] private readonly IPlaceApprover _placeApprover;
+        [Inject] private readonly IGroundGridVisual _groundVisual;
 
+        private void OnDestroy()
+        {
+            _groundVisual.Hide();
+        }
 
         public void SetPlaceAvailbility(bool isAvailable)
         {
@@ -34,6 +39,7 @@ namespace Game.Map.Element
             _editAreaRenderer.transform.localPosition = editAreaPosition;
             _editAreaRenderer.gameObject.SetActive(false);
 
+            _groundVisual.Hide();
             _idleArea.SetActive(true);
         }
         public void ChangeToEditMode()
@@ -49,7 +55,8 @@ namespace Game.Map.Element
             _editAreaRenderer.transform.localPosition = editAreaPosition;
             _editAreaRenderer.gameObject.SetActive(true);
 
-            _idleArea.SetActive(false);
+            _groundVisual.Show();
+             _idleArea.SetActive(false);
         }
 
 

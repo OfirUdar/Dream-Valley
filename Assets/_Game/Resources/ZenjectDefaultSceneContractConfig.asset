@@ -15,3 +15,9 @@ MonoBehaviour:
   DefaultContracts:
   - ContractName: Main
     Scene: {fileID: 102900000, guid: edabdd5b16433eb4e8645c509591e128, type: 3}
+  - ContractName: ResourcesInventory
+    Scene: {fileID: 102900000, guid: 6cea7b92caca8f24b91a7ebd91e2189a, type: 3}
+  - ContractName: Camera
+    Scene: {fileID: 102900000, guid: 13a92b16ad28b3349aa8e806d217560e, type: 3}
+  - ContractName: Environment
+    Scene: {fileID: 102900000, guid: 177d89024419f4e48a0bf3d13ffd955a, type: 3}

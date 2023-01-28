@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 187920612022533232}
   - component: {fileID: 1339931375829418419}
   - component: {fileID: 8837220054264420443}
+  - component: {fileID: 124070696612296241}
   m_Layer: 0
   m_Name: MainCanvas
   m_TagString: Untagged
@@ -101,6 +102,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a644eafdca1c364bb2f3b5e840e9fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &124070696612296241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555217486437426296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19412f035e2a0ea43bd2ab7122ad2aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraDefined:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8837220054264420443}
+        m_TargetAssemblyTypeName: Udar.FaceCamera, Udar
+        m_MethodName: SetCamera
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2249353178892302685
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,8 +358,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3503097563583906630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.001, z: 0}
-  m_LocalScale: {x: 1, y: 0.0001, z: 1}
+  m_LocalPosition: {x: 0, y: 0.05, z: 0}
+  m_LocalScale: {x: 1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3520857174933889916}
@@ -803,6 +831,7 @@ GameObject:
   - component: {fileID: 4349166761248490151}
   - component: {fileID: 3865264469381728188}
   - component: {fileID: 2853982151650862455}
+  - component: {fileID: 3439103244646045498}
   m_Layer: 0
   m_Name: MapElementBase
   m_TagString: Untagged
@@ -908,6 +937,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  SelectedChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3439103244646045498}
+        m_TargetAssemblyTypeName: Game.PlaySound, Game
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  UnselectedChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2853982151650862455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,6 +967,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7df8ce30d86a6f746a9d6a263346ba2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3439103244646045498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8101278497845708780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b7c7a665eeb09841bab2e9d77d20dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClipInfo: {fileID: 11400000, guid: 8b67bf47f0945ee4e8ef00430b62cfee, type: 2}
 --- !u!1 &8851173644870858176
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,8 +1028,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec81fc2b601757b489d80c7dda2277a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scaleStartAmount: 0.95
-  _scaleEndAmount: 1.1
+  _scaleStartAmount: 1.1
+  _scaleEndAmount: 1.2
   _duration: 0.6
 --- !u!1 &8901239525335517287
 GameObject:

@@ -30,8 +30,11 @@ namespace Game.Map
                     _vfxFactory.CreateEffect(VFXType.ElementPlaced, _currentElement.Center);
                 }
 
+                _soundsManager.PlayOneShot(_dragSounds.PlacedAudioInfo);
                 _currentElement = null;
             }
+            else
+                _soundsManager.PlayOneShot(_dragSounds.ErrorPlacedAudioInfo);
 
         }
         public override void OnCanceled()

@@ -47,6 +47,18 @@ namespace Udar
         /// Load one scene addtivly. Awaitable
         /// </summary>
         /// <param name="sceneNames"></param>
+        public static async Task AwaitLoadAddtiveAsync(Action<float> progressCallback = null, params string[] sceneNames)
+        {
+            var tasks = new Task[sceneNames.Length];
+
+            for (int i = 0; i < sceneNames.Length; i++)
+            {
+                Action<float> decoratorProgressCallback = (p) => progressCallback?.Invoke(p / (sceneNames.Length - i + 1));
+
+                tasks[i] = AwaitLoadAddtiveAsync(sceneNames[i], decoratorProgressCallback);
+            }
+            await Task.WhenAll(tasks);
+        }
         public static async Task AwaitLoadAddtiveAsync(params string[] sceneNames)
         {
             var tasks = new Task[sceneNames.Length];
@@ -57,7 +69,6 @@ namespace Udar
             }
             await Task.WhenAll(tasks);
         }
-
         #endregion
 
 
