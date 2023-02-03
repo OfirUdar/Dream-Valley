@@ -8,15 +8,17 @@ namespace Game.Resources.UI
     {
         [SerializeField] private ResourceDataListSO _resourcesList;
         [Space]
-        [SerializeField] private Transform _container;
-        [Space]
-        [SerializeField] private ResourceUI _pfb;
+        //[SerializeField] private Transform _container;
+        // [SerializeField] private ResourceUI _resourceUIPfb;
 
         private IResourcesInventory _resourcesInventory;
         private IResourcesCapacityManager _resourcesCapacityManager;
 
         private readonly Dictionary<ResourceDataSO, ResourceUI> _resourceUIDictionary
             = new Dictionary<ResourceDataSO, ResourceUI>();
+
+
+        [Inject] private readonly ResourceUI.Factory _resourceUIFactory;
 
         [Inject]
         public void Init(IResourcesInventory resourcesInventory, IResourcesCapacityManager resourcesCapacityManager)
@@ -25,8 +27,24 @@ namespace Game.Resources.UI
             _resourcesCapacityManager = resourcesCapacityManager;
 
             _resourcesInventory.ResourceChanged += OnResourceChanged;
+            _resourcesInventory.ResourceChangedWithPosition += OnResourceChangedWithPosition;
+
             _resourcesCapacityManager.Changed += OnResourceCapacityChanged;
 
+            InitilazeResources();
+        }
+
+
+
+        private void OnDestroy()
+        {
+            _resourcesInventory.ResourceChanged -= OnResourceChanged;
+            _resourcesInventory.ResourceChangedWithPosition -= OnResourceChangedWithPosition;
+            _resourcesCapacityManager.Changed -= OnResourceCapacityChanged;
+        }
+
+        private void InitilazeResources()
+        {
             foreach (var resource in _resourcesInventory.GetResources())
             {
                 AddResourceUIElement(resource.Key, resource.Value);
@@ -35,17 +53,10 @@ namespace Game.Resources.UI
                 UpdateCapacityText(resource.Key, capacity);
             }
         }
-       
-        private void OnDestroy()
-        {
-            _resourcesInventory.ResourceChanged -= OnResourceChanged;
-            _resourcesCapacityManager.Changed -= OnResourceCapacityChanged;
-        }
-
 
         private void AddResourceUIElement(string guid, int amount, bool withTweenAmount = false)
         {
-            var uiInstance = Instantiate(_pfb, _container, false);
+            var uiInstance = _resourceUIFactory.Create();
             var resourceData = _resourcesList.GetByGUID(guid);
 
             uiInstance.Setup(resourceData.Sprite, amount, 100);
@@ -78,11 +89,22 @@ namespace Game.Resources.UI
             }
 
         }
+        private void OnResourceChangedWithPosition(ResourceDataSO resource, int amount, Vector3 position)
+        {
+            if (_resourceUIDictionary.TryGetValue(resource, out ResourceUI resourceUI))
+            {
+                resourceUI.SetTweenAmountAsync(amount, position);
+            }
+            else
+            {
+                AddResourceUIElement(resource.GUID, amount, true);
+            }
+        }
         private void OnResourceCapacityChanged(string resourceGuid, int totalCapacity)
         {
             UpdateCapacityText(resourceGuid, totalCapacity);
         }
 
-       
+
     }
 }

@@ -6,8 +6,8 @@ namespace Game.Map.Element.Building.TownHall
     public class TownHallInstaller : MonoInstaller
     {
         [SerializeField] private TownHallLevelsData _townHallLevels;
-        [SerializeField] private UITownHallInfoDisplay _uiInfoDisplayPfb; 
-        [SerializeField] private UITownHallUpgradeDisplay _uiUpgradeDisplayPfb; 
+        [SerializeField] private UITownHallInfoDisplay _uiInfoDisplayPfb;
+        [SerializeField] private UITownHallUpgradeDisplay _uiUpgradeDisplayPfb;
 
         public override void InstallBindings()
         {
@@ -26,7 +26,7 @@ namespace Game.Map.Element.Building.TownHall
 
             Container.Bind<IUpgradeDisplayer>().To<UpgradeDisplayer>()
                .AsSingle()
-               .WithArguments(_uiUpgradeDisplayPfb);
+               .WithArguments(_uiUpgradeDisplayPfb, transform);
 
 
             Container.BindInterfacesTo<TownHallCapacityContainer>().AsSingle().NonLazy();

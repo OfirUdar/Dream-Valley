@@ -19,7 +19,7 @@ namespace Game.Map.Element.Building.Resources
         public event Action<bool> CollectableChanged;
 
 
-     
+
         public void AddAmountToStorage()
         {
             if (_collectAmount == 0) // if its already shown dont show it again
@@ -45,7 +45,20 @@ namespace Game.Map.Element.Building.Resources
 
             _saveManager.Save(this);
         }
+        public void Collect(Vector3 worldPosition)
+        {
+            if (_collectAmount == 0)
+                return;
 
+            _resourcesInventory.AddResource(_generatorData.Resource, _collectAmount, worldPosition);
+
+            _collectAmount = 0;
+
+            CollectableChanged?.Invoke(false);
+
+            _saveManager.Save(this);
+        }
+        
         public bool IsStorageFull()
         {
             var maxAmountCapcity = _generatorData[_levelManager.CurrentIndexLevel].Capacity;

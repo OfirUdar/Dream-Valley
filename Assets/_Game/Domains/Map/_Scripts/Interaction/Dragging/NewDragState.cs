@@ -13,7 +13,7 @@
         }
         public override void OnDragStarted()
         {
-           // _currentElement.PlaceApprover.SubscribeForCallbacks(OnApproveRequested, OnCancelRequested);
+
         }
 
         public override void OnDragEnded(bool canPlace)
@@ -29,8 +29,8 @@
         {
             _grid.Place(_currentElement);
             _currentElement.EndDrag(true);
+            _dragEndPlacedEventCommand.Execute(_currentElement.Center);
             _currentElement = null;
-            _soundsManager.PlayOneShot(_dragSounds.PlacedAudioInfo);
 
         }
         private void OnCancelRequested()

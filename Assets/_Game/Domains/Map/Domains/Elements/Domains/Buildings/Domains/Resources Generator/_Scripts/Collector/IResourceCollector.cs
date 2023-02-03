@@ -1,5 +1,6 @@
 ﻿using System;
 using Udar;
+using UnityEngine;
 
 namespace Game.Map.Element.Building.Resources
 {
@@ -9,6 +10,7 @@ namespace Game.Map.Element.Building.Resources
 
         public void AddAmountToStorage();
         public void Collect();
+        public void Collect(Vector3 worldPosition);
         public bool IsStorageFull();
         public void Exit();
         public ResourceDataSO GetResource();

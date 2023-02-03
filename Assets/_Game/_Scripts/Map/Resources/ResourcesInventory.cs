@@ -14,6 +14,7 @@ namespace Game
         private readonly ISaveManager _saveManager;
 
         public event Action<ResourceDataSO, int> ResourceChanged;
+        public event Action<ResourceDataSO, int, Vector3> ResourceChangedWithPosition;
         public event Action<ResourceDataSO, bool> StorageFullChanged;
 
         public ResourcesInventory(ISaveManager saveManager, ILoadManager loadManager, InitResourceDataListSO initResourceList)
@@ -50,7 +51,9 @@ namespace Game
 
             ResourceChanged?.Invoke(resource, totalAmount);
         }
-        public void AddResource(ResourceDataSO resource, int amount)
+
+ 
+        private int AddResourceWithoutNotify(ResourceDataSO resource, int amount)
         {
             if (!Resources.ContainsKey(resource.GUID))
                 Resources.Add(resource.GUID, amount);
@@ -66,7 +69,24 @@ namespace Game
             if (totalAmount == storageCapacity)
                 StorageFullChanged?.Invoke(resource, true);
 
+            return totalAmount;
+        }
+        public void AddResource(ResourceDataSO resource, int amount)
+        {
+            if (IsStorageFull(resource))
+                return;
+
+            var totalAmount = AddResourceWithoutNotify(resource, amount);
             ResourceChanged?.Invoke(resource, totalAmount);
+        }
+        public void AddResource(ResourceDataSO resource, int amount, Vector3 position)
+        {
+            if (IsStorageFull(resource))
+                return;
+
+            var totalAmount = AddResourceWithoutNotify(resource, amount);
+
+            ResourceChangedWithPosition?.Invoke(resource, totalAmount, position);
         }
         public void SubtractResource(ResourceDataSO resource, int amount)
         {
@@ -114,19 +134,6 @@ namespace Game
         }
 
         #endregion
-    }
-    public interface IResourcesInventory
-    {
-
-        public event Action<ResourceDataSO, int> ResourceChanged;
-        public event Action<ResourceDataSO, bool> StorageFullChanged;
-
-        public SerializeDictionary<string, int> GetResources();
-        public void AddResource(ResourceDataSO resource, int amount);
-        public void SubtractResource(ResourceDataSO resource, int amount);
-        public bool CanSubtract(ResourceDataSO resource, int amount);
-        public bool IsStorageFull(ResourceDataSO resource);
-
     }
 
 }

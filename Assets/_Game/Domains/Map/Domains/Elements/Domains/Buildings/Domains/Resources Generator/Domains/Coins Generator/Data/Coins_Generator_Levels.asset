@@ -16,14 +16,14 @@ MonoBehaviour:
     type: 2}
   <DataLevels>k__BackingField:
   - <AmountPerTime>k__BackingField: 3
-    <Capacity>k__BackingField: 150
+    <Capacity>k__BackingField: 50
     <XpCollectPerAmount>k__BackingField: 2
   - <AmountPerTime>k__BackingField: 5
-    <Capacity>k__BackingField: 200
+    <Capacity>k__BackingField: 70
     <XpCollectPerAmount>k__BackingField: 3
   - <AmountPerTime>k__BackingField: 7
-    <Capacity>k__BackingField: 250
+    <Capacity>k__BackingField: 100
     <XpCollectPerAmount>k__BackingField: 4
   - <AmountPerTime>k__BackingField: 10
-    <Capacity>k__BackingField: 300
+    <Capacity>k__BackingField: 150
     <XpCollectPerAmount>k__BackingField: 4

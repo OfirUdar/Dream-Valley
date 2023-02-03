@@ -12,6 +12,7 @@ namespace Game.Map.Element.Building.TownHall
         [Inject] private readonly IResourcesInventory _resourcesInventory;
         [Inject] private readonly IOptionsAggragetor _optionsUI;
         [Inject] private readonly UITownHallUpgradeDisplay _prefab;
+        [Inject] private readonly Transform _container;
 
         public void Display()
         {
@@ -22,7 +23,7 @@ namespace Game.Map.Element.Building.TownHall
 
             var canPurchase = _resourcesInventory.CanSubtract(nextElementLevel.UpgradePrice.Resource, nextElementLevel.UpgradePrice.Amount);
 
-            var popupDisplay = GameObject.Instantiate(_prefab);
+            var popupDisplay = GameObject.Instantiate(_prefab, _container);
             popupDisplay
                  .SetElement(_mapElement.Data)
                  .SetNextLevelData(nextElementLevel, canPurchase, StartUpgrade)

@@ -62,12 +62,14 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 79b47bb526f2f407ea5a899bf93524fc, type: 3}
     - {fileID: 21300000, guid: ce074144a8f7b47508cffe4445e20fb5, type: 3}
     - {fileID: 2800000, guid: 0e4bad9f6dfd83940a990dd3bb8ec053, type: 3}
+    - {fileID: 2800000, guid: bb686ea4c141046129a10074d93b72fd, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: ce074144a8f7b47508cffe4445e20fb5, type: 3}
+  - {fileID: 21300000, guid: bb686ea4c141046129a10074d93b72fd, type: 3}
   - {fileID: 21300000, guid: 79b47bb526f2f407ea5a899bf93524fc, type: 3}
   - {fileID: 21300000, guid: 4fa022f68ab454db491cecb86166356a, type: 3}
   - {fileID: 21300000, guid: 3fb23bf6552b44aafb168ed0584e1641, type: 3}
@@ -75,6 +77,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 0e4bad9f6dfd83940a990dd3bb8ec053, type: 3}
   m_PackedSpriteNamesToIndex:
   - Frame_ItemFrame06_Yellow
+  - Icon_PictoIcon_Setting
   - Icon_Hammer
   - Icon_Mana
   - Icon_Gold

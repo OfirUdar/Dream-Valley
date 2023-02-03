@@ -54,7 +54,7 @@ namespace Game.Map.Element.Building.Resources.UI
         }
         private void OnCollectClicked()
         {
-            _resourceCollector.Collect();
+            _resourceCollector.Collect(transform.position);
         }
 
 

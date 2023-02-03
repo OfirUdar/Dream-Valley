@@ -1,4 +1,6 @@
-﻿namespace Game.Map
+﻿using System;
+
+namespace Game.Map
 {
     public class DragManager : IDragManager
     {
@@ -8,6 +10,10 @@
 
         private DraggerStateBase _currentState;
         private bool _isLock;
+
+        public event Action Dragging;
+        public event Action<bool> DraggingEnded;
+
 
         public DragManager(ExistDragState existElementDragger,
             NewDragState newElementDragger)

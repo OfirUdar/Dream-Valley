@@ -1,11 +1,9 @@
-using UnityEngine;
 using Zenject;
 
 namespace Game.Map
 {
     public class InteractionManagerInstaller : MonoInstaller
     {
-        [SerializeField] private DraggingSounds _draggingSounds;
         public override void InstallBindings()
         {
             InstallSelection();
@@ -20,8 +18,8 @@ namespace Game.Map
 
         private void InstallDragging()
         {
-            Container.BindInterfacesAndSelfTo<ExistDragState>().AsSingle().WithArguments(_draggingSounds);
-            Container.BindInterfacesAndSelfTo<NewDragState>().AsSingle().WithArguments(_draggingSounds);
+            Container.BindInterfacesAndSelfTo<ExistDragState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<NewDragState>().AsSingle();
 
             Container.Bind<IDragManager>().To<DragManager>().AsSingle();
         }

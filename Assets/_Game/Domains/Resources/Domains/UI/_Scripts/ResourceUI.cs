@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Game.Resources.UI
 {
@@ -11,9 +12,10 @@ namespace Game.Resources.UI
         [SerializeField] private TextMeshProUGUI _amountText;
         [SerializeField] private TextMeshProUGUI _capacityText;
 
+        [Inject] private readonly Camera _camera;
+        [Inject] private readonly ResourceUITween.Pool _resourceUITweenPool;
+
         private int _currentAmount;
-
-
 
         public ResourceUI Setup(Sprite sprite, int amount, int capacity)
         {
@@ -41,9 +43,29 @@ namespace Game.Resources.UI
 
             return this;
         }
+        public async void SetTweenAmountAsync(int amount, Vector3 worldPosition)
+        {
+            //Move resource to the UI
+            var resourceTween = _resourceUITweenPool.Spawn();
+            await resourceTween.MoveAsync(_image.sprite, _camera.WorldToScreenPoint(worldPosition), _image.rectTransform.position);
+            _resourceUITweenPool.Despawn(resourceTween);
+
+            //Add some punch tweening
+            _image.transform.DOPunchScale(Vector3.one * 0.2f, 0.1f).Play();
+
+            //Add the resources
+            DOVirtual.Int(_currentAmount, amount, 2f, OnAmountTweenUpdated)
+               .SetEase(Ease.OutSine).Play();
+
+        }
         private void OnAmountTweenUpdated(int value)
         {
             SetAmount(value);
+        }
+
+        public class Factory : PlaceholderFactory<ResourceUI>
+        {
+
         }
     }
 }

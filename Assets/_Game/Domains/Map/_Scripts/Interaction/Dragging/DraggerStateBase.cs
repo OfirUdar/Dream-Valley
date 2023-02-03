@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 namespace Game.Map
@@ -11,13 +10,13 @@ namespace Game.Map
         private readonly ICameraPointerUtility _camPointerUtility;
         protected readonly ISelectionManager _selectionManager;
 
-        //TEMP - REMOVE IT AS SOON AS POSSIBLE
-        [Inject] protected readonly ISoundsManager _soundsManager;
-        [Inject] protected readonly DraggingSounds _dragSounds;
-
         private Vector3 _offsetPosition;
-
         protected IMapElement _currentElement;
+
+        [Inject(Id = "Dragging")] private readonly IEventCommand _draggingEventCommand;
+        [Inject(Id = "Placed")] protected readonly IEventCommand _dragEndPlacedEventCommand;
+        [Inject(Id = "Placed_Error")] protected readonly IEventCommand _dragEndPlacedErrorEventCommand;
+
 
         protected abstract bool CanStartDrag(IMapElement mapElement);
         public abstract void OnDragStarted();
@@ -71,16 +70,9 @@ namespace Game.Map
 
             var snappedPosition = GetSnappedPosition();
 
-            //TEMP
-            _timer += Time.deltaTime;
             if ((snappedPosition - _currentElement.Position).sqrMagnitude > 0.1f)
-            {
-                if (_timer >= 0.04f)
-                {
-                    _soundsManager.PlayOneShot(_dragSounds.DraggingAudioInfo);
-                    _timer = 0;
-                }
-            }
+                _draggingEventCommand.Execute();
+
 
             var canPlace = _grid.CanPlace(snappedPosition, _currentElement.Width, _currentElement.Height, _currentElement);
 
@@ -88,8 +80,7 @@ namespace Game.Map
             _currentElement.OnDrag(canPlace);
         }
 
-        //TEMP - REMOVE IT AS SOON AS POSSIBLE
-        private float _timer = 0;
+
 
 
         private Vector3 GetSnappedPosition()
@@ -139,14 +130,6 @@ namespace Game.Map
                 }
             }
         }
-    }
-
-    [Serializable]
-    public class DraggingSounds
-    {
-        [field: SerializeField] public AudioClipInfo DraggingAudioInfo { get; private set; }
-        [field: SerializeField] public AudioClipInfo PlacedAudioInfo { get; private set; }
-        [field: SerializeField] public AudioClipInfo ErrorPlacedAudioInfo { get; private set; }
     }
 
 }

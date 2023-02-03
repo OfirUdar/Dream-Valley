@@ -16,6 +16,9 @@ namespace Game.Map.Element
         [Inject] private readonly IPlaceApprover _placeApprover;
         [Inject] private readonly IGroundGridVisual _groundVisual;
 
+
+        private const float UPPER_OFFSET_EDITING = 0.05f;
+
         private void OnDestroy()
         {
             _groundVisual.Hide();
@@ -35,7 +38,7 @@ namespace Game.Map.Element
             _gfx.localPosition = Vector3.zero;
 
             var editAreaPosition = _editAreaRenderer.transform.localPosition;
-            editAreaPosition.y -= 0.025f;
+            editAreaPosition.y -= UPPER_OFFSET_EDITING;
             _editAreaRenderer.transform.localPosition = editAreaPosition;
             _editAreaRenderer.gameObject.SetActive(false);
 
@@ -47,16 +50,16 @@ namespace Game.Map.Element
             _gfx.localScale = Vector3.one * 0.95f;
 
             var gfxPosition = _gfx.localPosition;
-            gfxPosition.y = 0.025f;
+            gfxPosition.y = UPPER_OFFSET_EDITING;
             _gfx.localPosition = gfxPosition;
 
             var editAreaPosition = _editAreaRenderer.transform.localPosition;
-            editAreaPosition.y += 0.025f;
+            editAreaPosition.y += UPPER_OFFSET_EDITING;
             _editAreaRenderer.transform.localPosition = editAreaPosition;
             _editAreaRenderer.gameObject.SetActive(true);
 
             _groundVisual.Show();
-             _idleArea.SetActive(false);
+            _idleArea.SetActive(false);
         }
 
 

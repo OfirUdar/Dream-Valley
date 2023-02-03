@@ -62,7 +62,6 @@ namespace Game.Map.Element
 
         public async void SpawnNewAndPlace(MapElementSO mapElementSO, Action cancelCallback, Action successCallback)
         {
-            //var startPosition = _camPointerUtility.CameraRaycast();
             _mapGrid.FindAvailablePlace(mapElementSO.Width, mapElementSO.Height, out Vector3 startPosition);
             var mapElement = _factory.Create(mapElementSO.Pfb);
             mapElement.Position = startPosition;

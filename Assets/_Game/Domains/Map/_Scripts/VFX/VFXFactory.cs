@@ -22,5 +22,10 @@ namespace Game.Map
             var pfb = _vfxDictionary[type];
             GameObject.Instantiate(pfb, position, Quaternion.identity);
         }
+        public void CreateEffect(VFXData data, Vector3 position)
+        {
+            var pfb = data.EffectPfb;
+            GameObject.Instantiate(pfb, position, Quaternion.identity);
+        }
     }
 }

@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
-using Zenject;
 
 namespace Game.Map
 {
     public class ExistDragState : DraggerStateBase
     {
-        [Inject] private readonly IVFXFactory _vfxFactory;
-
         private Vector3 _startPosition;
         public ExistDragState(IMapGrid grid,
             ICameraController cameraController,
@@ -30,14 +27,12 @@ namespace Game.Map
                 {
                     _grid.Remove(_startPosition, _currentElement.Width, _currentElement.Height); //removing from the old
                     _grid.Place(_currentElement);
-                    _vfxFactory.CreateEffect(VFXType.ElementPlaced, _currentElement.Center);
+                    _dragEndPlacedEventCommand.Execute(_currentElement.Center);
                 }
-
-                _soundsManager.PlayOneShot(_dragSounds.PlacedAudioInfo);
                 _currentElement = null;
             }
             else
-                _soundsManager.PlayOneShot(_dragSounds.ErrorPlacedAudioInfo);
+                _dragEndPlacedErrorEventCommand.Execute();
 
         }
         public override void OnCanceled()
