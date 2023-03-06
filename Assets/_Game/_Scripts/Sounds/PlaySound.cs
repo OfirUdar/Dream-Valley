@@ -5,7 +5,7 @@ namespace Game
 {
     public class PlaySound : MonoBehaviour
     {
-        [SerializeField] private AudioClipInfo _audioClipInfo;
+        [SerializeField] private AudioClipInfoSO _audioClipInfo;
         
         [Inject] private readonly ISoundsManager _soundsManager;
 

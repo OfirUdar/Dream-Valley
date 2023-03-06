@@ -16,12 +16,6 @@ namespace Game.Map
                 _vfxDictionary.Add(vfxData.Type, vfxData.EffectPfb);
             }
         }
-
-        public void CreateEffect(VFXType type, Vector3 position)
-        {
-            var pfb = _vfxDictionary[type];
-            GameObject.Instantiate(pfb, position, Quaternion.identity);
-        }
         public void CreateEffect(VFXData data, Vector3 position)
         {
             var pfb = data.EffectPfb;

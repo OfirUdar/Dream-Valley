@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 8759497181267012901}
   - component: {fileID: 2673546371652626642}
   - component: {fileID: 925474938587894333}
+  - component: {fileID: 6262205054602555475}
   m_Layer: 0
   m_Name: Approve_Button
   m_TagString: Untagged
@@ -245,6 +246,19 @@ MonoBehaviour:
   _activeAlpha: 1
   _inActiveAlpha: 0.45
   _isActive: 1
+--- !u!114 &6262205054602555475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2506700371206303226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ece55d9c48edc48a461fd0dfd597e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioInfo: {fileID: 11400000, guid: 7f545cee5f4941a4490c74586ce848ea, type: 2}
 --- !u!1 &3263142043050393816
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +272,7 @@ GameObject:
   - component: {fileID: 3983953443975672952}
   - component: {fileID: 697156979612159395}
   - component: {fileID: 2242933769343271605}
+  - component: {fileID: 145117797280572481}
   m_Layer: 0
   m_Name: Cancel_Button
   m_TagString: Untagged
@@ -395,6 +410,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.29803923}
   m_EffectDistance: {x: 0, y: -10}
   m_UseGraphicAlpha: 1
+--- !u!114 &145117797280572481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3263142043050393816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ece55d9c48edc48a461fd0dfd597e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioInfo: {fileID: 11400000, guid: 7f545cee5f4941a4490c74586ce848ea, type: 2}
 --- !u!1 &5426321833011366029
 GameObject:
   m_ObjectHideFlags: 0

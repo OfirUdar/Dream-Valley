@@ -22,7 +22,7 @@ namespace Game.Map.Element.Obstcales
             {
                 _resourcesInventory.SubtractResource(Price.Resource, Price.Amount);
                 _grid.Remove(_mapElement);
-                _vfxFactory.CreateEffect(VFXType.ElementPlaced, _mapElement.Center);
+                //_vfxFactory.CreateEffect(VFXType.ElementPlaced, _mapElement.Center);
                 _selectionManager.RequestUnselect();
                 _mapElement.Destroy();
             }

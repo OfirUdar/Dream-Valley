@@ -11,6 +11,7 @@ namespace Game.Map.Element
         [SerializeField] private float _selectedOpacity = 0.5f;
         [SerializeField] private float _duration = 1f;
 
+
         public UnityEvent<bool> SelectionChanged;
         public UnityEvent SelectedChanged;
         public UnityEvent UnselectedChanged;
@@ -25,11 +26,7 @@ namespace Game.Map.Element
             RefreshGFX();
         }
 
-        public void RefreshGFX()
-        {
-            StartCoroutine(RefreshGFXCoroutine());
-        }
-
+       
         private IEnumerator RefreshGFXCoroutine()
         {
             yield return null;
@@ -57,6 +54,10 @@ namespace Game.Map.Element
                 var material = _renderers[i].material;
                 material.SetVector("_EmissionColor", Color.white * value);
             }
+        }
+        public void RefreshGFX()
+        {
+            StartCoroutine(RefreshGFXCoroutine());
         }
 
         public void Select()

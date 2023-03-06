@@ -13,11 +13,18 @@ namespace Game
         [SerializeField] private Image _fillBar;
         [SerializeField] private TextMeshProUGUI _progressText;
 
+        private float _targetProgress;
+
         private void Start()
         {
             LoadMainScene();
         }
 
+        private void Update()
+        {
+            _fillBar.fillAmount = Mathf.Lerp(_fillBar.fillAmount, _targetProgress, 5 * Time.unscaledDeltaTime);
+            _progressText.text = (_fillBar.fillAmount * 100f) + "%";
+        }
         private async void LoadMainScene()
         {
             await SceneChanger.AwaitLoadAddtiveAsync(OnLoadingProgress, _scenes.Names);
@@ -27,9 +34,7 @@ namespace Game
 
         private void OnLoadingProgress(float progress)
         {
-            progress += 0.1f;
-            _fillBar.fillAmount = progress;
-            _progressText.text = (progress * 100f) + "%";
+            _targetProgress = progress + 0.1f;
         }
 
     }

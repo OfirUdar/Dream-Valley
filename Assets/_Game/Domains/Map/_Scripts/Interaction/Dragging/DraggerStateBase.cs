@@ -13,10 +13,17 @@ namespace Game.Map
         private Vector3 _offsetPosition;
         protected IMapElement _currentElement;
 
-        [Inject(Id = "Dragging")] private readonly IEventCommand _draggingEventCommand;
-        [Inject(Id = "Placed")] protected readonly IEventCommand _dragEndPlacedEventCommand;
-        [Inject(Id = "Placed_Error")] protected readonly IEventCommand _dragEndPlacedErrorEventCommand;
 
+        #region Event Commands
+        [Inject(Id = GameEvent.ElementDragging)]
+        private readonly IEventCommand _draggingEventCommand;
+
+        [Inject(Id = GameEvent.ElementPlaced)]
+        protected readonly IEventCommand _dragEndPlacedEventCommand;
+
+        [Inject(Id = GameEvent.ElementPlacedError)]
+        protected readonly IEventCommand _dragEndPlacedErrorEventCommand;
+        #endregion
 
         protected abstract bool CanStartDrag(IMapElement mapElement);
         public abstract void OnDragStarted();

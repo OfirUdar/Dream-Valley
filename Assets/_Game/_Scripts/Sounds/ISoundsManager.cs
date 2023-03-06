@@ -2,7 +2,7 @@ namespace Game
 {
     public interface ISoundsManager
     {
-        public void PlayOneShot(AudioClipInfo audioInfo);
-        public void PlayRandomOneShot(params AudioClipInfo[] audioInfos);
+        public void PlayOneShot(AudioClipInfoSO audioInfo);
+        public void PlayRandomOneShot(params AudioClipInfoSO[] audioInfos);
     }
 }

@@ -6,12 +6,10 @@ namespace Game.Map.Element
 {
     public class ElementSpawner : IElementSpawner, IInitializable, ILateDisposable
     {
-        //private readonly FacadeBehaviour.Factory _factory;
         private readonly MapElementFactory _factory;
         private readonly IMapGrid _mapGrid;
         private readonly ISelectionManager _selectionManager;
         private readonly IDragManager _dragManager;
-        private readonly ICameraPointerUtility _camPointerUtility;
         private readonly ICameraController _cameraController;
 
         [Inject] private readonly ElementSpawnerAggragator _spawnerAggragator;
@@ -20,14 +18,12 @@ namespace Game.Map.Element
 
         public ElementSpawner(IMapGrid mapGrid, ISelectionManager selectionManager,
             IDragManager dragManager,
-            ICameraPointerUtility camPointerUtility,
             ICameraController cameraController,
             MapElementFactory factory)
         {
             _mapGrid = mapGrid;
             _selectionManager = selectionManager;
             _dragManager = dragManager;
-            _camPointerUtility = camPointerUtility;
             _cameraController = cameraController;
             _factory = factory;
         }
@@ -43,17 +39,13 @@ namespace Game.Map.Element
 
         public IMapElement Spawn(GameObject gameObject)
         {
-            var startPosition = _camPointerUtility.CameraRaycast();
             var mapElement = _factory.Create(gameObject);
-            mapElement.Position = startPosition;
 
             return mapElement;
         }
         public IMapElement SpawnDefault(GameObject gameObject)
         {
-            var startPosition = _camPointerUtility.CameraRaycast();
             var mapElement = _factory.Create(gameObject);
-            mapElement.Position = startPosition;
 
             mapElement.Eventor.NotifiySpawnedSuccessfully();
 

@@ -5,12 +5,11 @@ namespace Game.Map
 {
     public class DragEventCommandInstaller : MonoInstaller
     {
-        [SerializeField] private AudioClipInfo _dragAudio;
-        [Space]
-        [SerializeField] private AudioClipInfo _placedAudio;
         [SerializeField] private VFXData _vfxInfo;
-        [Space]
-        [SerializeField] private AudioClipInfo _placeErrorAudio;
+
+        [InjectOptional(Id = GameEvent.ElementDragging)] private readonly AudioClipInfoSO _dragAudio;
+        [InjectOptional(Id = GameEvent.ElementPlaced)] private readonly AudioClipInfoSO _placedAudio;
+        [InjectOptional(Id = GameEvent.ElementPlacedError)] private readonly AudioClipInfoSO _placeErrorAudio;
 
         [Inject] private readonly ISoundsManager _sfxManager;
         [Inject] private readonly IVFXFactory _vfxFactory;
@@ -25,11 +24,11 @@ namespace Game.Map
         {
 
             var placedErrorSFXCommand = new PlaySFXCommand(_sfxManager, _placeErrorAudio);
-            var dragEventCommand = new DragEventCommand(placedErrorSFXCommand);
+           // var dragEventCommand = new CompositeEventCommand(placedErrorSFXCommand);
 
             Container.Bind<IEventCommand>()
-               .WithId("Placed_Error")
-               .FromInstance(dragEventCommand)
+               .WithId(GameEvent.ElementPlacedError)
+               .FromInstance(placedErrorSFXCommand)
                .AsTransient();
         }
 
@@ -38,10 +37,10 @@ namespace Game.Map
             var placedVFXCommand = new PlayVFXCommand(_vfxFactory, _vfxInfo);
             var placedSFXCommand = new PlaySFXCommand(_sfxManager, _placedAudio);
 
-            var dragEventCommand = new DragEventCommand(placedVFXCommand, placedSFXCommand);
+            var dragEventCommand = new CompositeEventCommand(placedVFXCommand, placedSFXCommand);
 
             Container.Bind<IEventCommand>()
-              .WithId("Placed")
+              .WithId(GameEvent.ElementPlaced)
               .FromInstance(dragEventCommand)
               .AsTransient();
 
@@ -49,13 +48,13 @@ namespace Game.Map
         private void InstallDragging()
         {
             var dragSFXCommand = new PlaySFXCommand(_sfxManager, _dragAudio);
-            var dragSFXRateCommand = new PlaySFXWithRateDecoratorCommand(dragSFXCommand);
+            var dragSFXRateCommand = new RateExecuteDecoratorCommand(dragSFXCommand);
 
-            var dragEventCommand = new DragEventCommand(dragSFXRateCommand);
+            //var dragEventCommand = new CompositeEventCommand(dragSFXRateCommand);
 
             Container.Bind<IEventCommand>()
-              .WithId("Dragging")
-              .FromInstance(dragEventCommand)
+              .WithId(GameEvent.ElementDragging)
+              .FromInstance(dragSFXRateCommand)
               .AsTransient();
 
         }

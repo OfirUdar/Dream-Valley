@@ -18,5 +18,4 @@ namespace Game
             return context.Container.Resolve<T>();
         }
     }
-
 }

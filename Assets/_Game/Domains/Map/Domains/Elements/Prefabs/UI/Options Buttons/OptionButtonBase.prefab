@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5770715656037455942}
   - component: {fileID: 5770715656037455941}
   - component: {fileID: -6530994927889890030}
-  - component: {fileID: 8163937146370689589}
+  - component: {fileID: 3822768167337486553}
   - component: {fileID: 3267875186843920324}
   m_Layer: 5
   m_Name: OptionButtonBase
@@ -127,19 +127,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5770715656037455939}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8163937146370689589}
-        m_TargetAssemblyTypeName: Game.PlaySound, Game
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!225 &5770715656037455942
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -187,7 +175,7 @@ MonoBehaviour:
   Clicked:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8163937146370689589
+--- !u!114 &3822768167337486553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,10 +184,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5770715656037455951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b7c7a665eeb09841bab2e9d77d20dc8, type: 3}
+  m_Script: {fileID: 11500000, guid: f0ece55d9c48edc48a461fd0dfd597e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioClipInfo: {fileID: 11400000, guid: 7f545cee5f4941a4490c74586ce848ea, type: 2}
+  _audioInfo: {fileID: 11400000, guid: 7f545cee5f4941a4490c74586ce848ea, type: 2}
 --- !u!114 &3267875186843920324
 MonoBehaviour:
   m_ObjectHideFlags: 0
