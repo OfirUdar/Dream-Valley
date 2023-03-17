@@ -14,6 +14,7 @@ namespace Game.Map.Element.Building.Resources
         [Inject] private readonly IResourcesInventory _resourcesInventory;
 
         [Inject] private readonly ISaveManager _saveManager;
+        [Inject] private readonly ISFXManager _sfxManager;
 
         private int _collectAmount;
         public event Action<bool> CollectableChanged;
@@ -39,11 +40,7 @@ namespace Game.Map.Element.Building.Resources
 
             _resourcesInventory.AddResource(_generatorData.Resource, _collectAmount);
 
-            _collectAmount = 0;
-
-            CollectableChanged?.Invoke(false);
-
-            _saveManager.Save(this);
+            OnCollected();
         }
         public void Collect(Vector3 worldPosition)
         {
@@ -52,13 +49,20 @@ namespace Game.Map.Element.Building.Resources
 
             _resourcesInventory.AddResource(_generatorData.Resource, _collectAmount, worldPosition);
 
+            OnCollected();
+        }
+
+        private void OnCollected()
+        {
             _collectAmount = 0;
 
             CollectableChanged?.Invoke(false);
 
+            _sfxManager.PlayOneShotWithDelay(_generatorData.Resource.CollectAudio, milisecondsDelay: 100);
+
             _saveManager.Save(this);
         }
-        
+
         public bool IsStorageFull()
         {
             var maxAmountCapcity = _generatorData[_levelManager.CurrentIndexLevel].Capacity;

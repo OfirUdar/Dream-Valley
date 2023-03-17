@@ -7,7 +7,7 @@ namespace Game
     {
         [SerializeField] private AudioClipInfoSO _audioClipInfo;
         
-        [Inject] private readonly ISoundsManager _soundsManager;
+        [Inject] private readonly ISFXManager _soundsManager;
 
         public void Play()
         {

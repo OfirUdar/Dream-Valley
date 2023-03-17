@@ -8,8 +8,6 @@ namespace Game.Resources.UI
     {
         [SerializeField] private ResourceDataListSO _resourcesList;
         [Space]
-        //[SerializeField] private Transform _container;
-        // [SerializeField] private ResourceUI _resourceUIPfb;
 
         private IResourcesInventory _resourcesInventory;
         private IResourcesCapacityManager _resourcesCapacityManager;

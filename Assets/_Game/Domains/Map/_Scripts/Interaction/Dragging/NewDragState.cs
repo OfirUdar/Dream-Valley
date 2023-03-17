@@ -29,7 +29,9 @@
         {
             _grid.Place(_currentElement);
             _currentElement.EndDrag(true);
-            _dragEndPlacedEventCommand.Execute(_currentElement.Center);
+
+            FireDragEndPlacedCommand();
+
             _currentElement = null;
 
         }

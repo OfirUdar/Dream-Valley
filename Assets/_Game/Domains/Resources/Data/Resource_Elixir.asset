@@ -16,3 +16,5 @@ MonoBehaviour:
   <Name>k__BackingField: Elixir
   <Sprite>k__BackingField: {fileID: 21300000, guid: 4fa022f68ab454db491cecb86166356a,
     type: 3}
+  <CollectAudio>k__BackingField: {fileID: 11400000, guid: 8914ca4f09e9d1e449cffc8c5ed5f55e,
+    type: 2}

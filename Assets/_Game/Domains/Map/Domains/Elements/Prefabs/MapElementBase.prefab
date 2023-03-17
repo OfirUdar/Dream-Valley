@@ -831,7 +831,6 @@ GameObject:
   - component: {fileID: 4349166761248490151}
   - component: {fileID: 3865264469381728188}
   - component: {fileID: 2853982151650862455}
-  - component: {fileID: 3439103244646045498}
   m_Layer: 0
   m_Name: MapElementBase
   m_TagString: Untagged
@@ -939,19 +938,7 @@ MonoBehaviour:
         m_CallState: 2
   SelectedChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3439103244646045498}
-        m_TargetAssemblyTypeName: Game.PlaySound, Game
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   UnselectedChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -967,19 +954,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7df8ce30d86a6f746a9d6a263346ba2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3439103244646045498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8101278497845708780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b7c7a665eeb09841bab2e9d77d20dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioClipInfo: {fileID: 11400000, guid: 8b67bf47f0945ee4e8ef00430b62cfee, type: 2}
 --- !u!1 &8851173644870858176
 GameObject:
   m_ObjectHideFlags: 0

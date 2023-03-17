@@ -13,14 +13,18 @@ namespace Game.Settings
 
         public override void InstallBindings()
         {
-            Container.Bind<AudioSetting>().WithId("SFX").ToSelf()
-                .AsTransient()
-                .WithArguments(_sfxAudioMixer,_SFX_VOLUME_KEY);
+            Container.Bind<AudioSetting>().WithId("SFX").AsTransient()
+                .WithArguments(_sfxAudioMixer, _SFX_VOLUME_KEY, 1f).NonLazy();
+
+            Container.BindInterfacesAndSelfTo<AudioSetting>().FromResolve("SFX");
+                
 
 
-            Container.Bind<AudioSetting>().WithId("Music").ToSelf()
-                .AsTransient()
-                .WithArguments(_musicAudioMixer, _MUSIC_VOLUME_KEY);
+            Container.Bind<AudioSetting>().WithId("Music").AsTransient()
+                .WithArguments(_musicAudioMixer, _MUSIC_VOLUME_KEY, 0.35f).NonLazy();
+
+            Container.BindInterfacesAndSelfTo<AudioSetting>().FromResolve("Music");
+               
         }
 
     }

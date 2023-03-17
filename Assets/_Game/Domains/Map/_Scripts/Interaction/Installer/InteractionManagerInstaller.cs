@@ -22,6 +22,7 @@ namespace Game.Map
             Container.BindInterfacesAndSelfTo<NewDragState>().AsSingle();
 
             Container.Bind<IDragManager>().To<DragManager>().AsSingle();
+
         }
     }
 

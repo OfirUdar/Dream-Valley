@@ -9,7 +9,7 @@ namespace Game
     {
         [SerializeField] private AudioClipInfoSO _audioInfo;
 
-        private ISoundsManager _sfxManager;
+        private ISFXManager _sfxManager;
 
         private Button _button;
 
@@ -27,7 +27,7 @@ namespace Game
         }
 
         [Inject]
-        public void Init(ISoundsManager sfxManager)
+        public void Init(ISFXManager sfxManager)
         {
             _sfxManager = sfxManager;
         }

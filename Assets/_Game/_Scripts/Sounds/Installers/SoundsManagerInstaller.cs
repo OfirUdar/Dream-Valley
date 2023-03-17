@@ -8,7 +8,7 @@ namespace Game
         [SerializeField] private AudioSource _audioSource;
         public override void InstallBindings()
         {
-            Container.Bind<ISoundsManager>().To<SoundsManager>()
+            Container.Bind<ISFXManager>().To<SFXManager>()
                 .AsSingle().WithArguments(_audioSource);
         }
     }

@@ -27,14 +27,20 @@ namespace Game.Map
                 {
                     _grid.Remove(_startPosition, _currentElement.Width, _currentElement.Height); //removing from the old
                     _grid.Place(_currentElement);
-                    _dragEndPlacedEventCommand.Execute(_currentElement.Center);
+                    FireDragEndPlacedCommand();
                 }
                 _currentElement = null;
             }
             else
-                _dragEndPlacedErrorEventCommand.Execute();
+            {
+                FireDragEndErrorPlacedCommand();
+
+            }
 
         }
+
+       
+
         public override void OnCanceled()
         {
             _currentElement.Position = _startPosition;

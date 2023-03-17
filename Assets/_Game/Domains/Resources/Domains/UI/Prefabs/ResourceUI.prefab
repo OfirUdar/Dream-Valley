@@ -272,6 +272,7 @@ MonoBehaviour:
   _image: {fileID: 6622765437747040041}
   _amountText: {fileID: 6622765437296982519}
   _capacityText: {fileID: 3701283357129873040}
+  _collectedAudio: {fileID: 11400000, guid: 4c6c26b4e1485bb48af1101a868fd877, type: 2}
 --- !u!1 &6622765437747040043
 GameObject:
   m_ObjectHideFlags: 0

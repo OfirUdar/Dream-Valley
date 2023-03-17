@@ -3144,6 +3144,9 @@ MonoBehaviour:
     <Type>k__BackingField: 0
     <EffectPfb>k__BackingField: {fileID: 3698766364927202372, guid: f879cc7371b4f9a42959a04561286cbf,
       type: 3}
+  _dragAudio: {fileID: 11400000, guid: 4c6c26b4e1485bb48af1101a868fd877, type: 2}
+  _placedAudio: {fileID: 11400000, guid: d7624ff0bf3b17349ae6f2ec62507964, type: 2}
+  _placeErrorAudio: {fileID: 11400000, guid: d4225576c8ae9ca4fbaf865fbb94bbc9, type: 2}
 --- !u!1001 &1872335848
 PrefabInstance:
   m_ObjectHideFlags: 0

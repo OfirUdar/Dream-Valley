@@ -1,27 +1,32 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
+using Zenject;
 
 namespace Game.Settings
 {
-    public class AudioSetting
+    public class AudioSetting:IInitializable
     {
         private readonly AudioMixer _audioMixer;
         private readonly string _savedKey;
+        private readonly float _defaultValue;
 
-        public AudioSetting(AudioMixer audioMixer, string savedKey)
+        public AudioSetting(AudioMixer audioMixer, string savedKey,float defaultValue)
         {
             _audioMixer = audioMixer;
             _savedKey = savedKey;
-
-            var loadSavedVolume = PlayerPrefs.GetFloat(_savedKey, 1);
+            _defaultValue = defaultValue;
+        }
+        public void Initialize()
+        {
+            var loadSavedVolume = GetValue();
 
             SetValueWithoutSave(loadSavedVolume);
         }
-
         public float GetValue()
         {
-            return PlayerPrefs.GetFloat(_savedKey, 1);
+            return PlayerPrefs.GetFloat(_savedKey, _defaultValue);
         }
+
         public void SetValue(float value)
         {
             SetValueWithoutSave(value);
@@ -29,7 +34,8 @@ namespace Game.Settings
         }
         public void SetValueWithoutSave(float value)
         {
-            _audioMixer.SetFloat("Volume", -80f + value * 80f);
+            _audioMixer.SetFloat("MasterVolume", Mathf.Log10(value)*20);
         }
+
     }
 }

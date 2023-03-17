@@ -10,20 +10,14 @@ namespace Game.Map
         private readonly ICameraPointerUtility _camPointerUtility;
         protected readonly ISelectionManager _selectionManager;
 
+
         private Vector3 _offsetPosition;
         protected IMapElement _currentElement;
 
 
-        #region Event Commands
-        [Inject(Id = GameEvent.ElementDragging)]
-        private readonly IEventCommand _draggingEventCommand;
-
-        [Inject(Id = GameEvent.ElementPlaced)]
-        protected readonly IEventCommand _dragEndPlacedEventCommand;
-
-        [Inject(Id = GameEvent.ElementPlacedError)]
-        protected readonly IEventCommand _dragEndPlacedErrorEventCommand;
-        #endregion
+        [Inject] protected readonly DraggingCommand.Pool _draggingCommandPool;
+        [Inject] protected readonly DragEndPlacedCommand.Pool _dragEndPlacedCommandPool;
+        [Inject] protected readonly DragEndPlacedErrorCommand.Pool _dragEndPlacedErrorCommandPool;
 
         protected abstract bool CanStartDrag(IMapElement mapElement);
         public abstract void OnDragStarted();
@@ -40,6 +34,14 @@ namespace Game.Map
             _selectionManager = selectionManager;
         }
 
+        public void Initialize()
+        {
+            _selectionManager.SelectionChanged += OnSelectionChanged;
+        }
+        public void LateDispose()
+        {
+            _selectionManager.SelectionChanged -= OnSelectionChanged;
+        }
 
         public virtual void RequestStartDrag(IMapElement mapElement)
         {
@@ -78,7 +80,9 @@ namespace Game.Map
             var snappedPosition = GetSnappedPosition();
 
             if ((snappedPosition - _currentElement.Position).sqrMagnitude > 0.1f)
-                _draggingEventCommand.Execute();
+            {
+                FireDraggingCommand();
+            }
 
 
             var canPlace = _grid.CanPlace(snappedPosition, _currentElement.Width, _currentElement.Height, _currentElement);
@@ -86,8 +90,6 @@ namespace Game.Map
             _currentElement.Position = Vector3.Lerp(_currentElement.Position, snappedPosition, 20f * Time.deltaTime);
             _currentElement.OnDrag(canPlace);
         }
-
-
 
 
         private Vector3 GetSnappedPosition()
@@ -104,27 +106,16 @@ namespace Game.Map
 
             return snapPosition;
         }
-
         private Vector3 CalculateOffsetPosition(Vector3 elementPosition)
         {
             _camPointerUtility.InputRaycast(out Vector3 worldPosition);
 
             return worldPosition - elementPosition;
         }
-
         protected void Cancel()
         {
             OnCanceled();
             _currentElement = null;
-        }
-
-        public void Initialize()
-        {
-            _selectionManager.SelectionChanged += OnSelectionChanged;
-        }
-        public void LateDispose()
-        {
-            _selectionManager.SelectionChanged -= OnSelectionChanged;
         }
 
         private void OnSelectionChanged(ISelectable selection)
@@ -137,6 +128,29 @@ namespace Game.Map
                 }
             }
         }
-    }
 
+
+
+
+        private void FireDraggingCommand()
+        {
+            var draggingCommand = _draggingCommandPool.Spawn();
+            draggingCommand.Execute();
+            _draggingCommandPool.Despawn(draggingCommand);
+        }
+
+        protected void FireDragEndErrorPlacedCommand()
+        {
+            var dragEndPlacedErrorCommand = _dragEndPlacedErrorCommandPool.Spawn();
+            dragEndPlacedErrorCommand.Execute();
+            _dragEndPlacedErrorCommandPool.Despawn(dragEndPlacedErrorCommand);
+        }
+
+        protected void FireDragEndPlacedCommand()
+        {
+            var dragEndPlacedCommand = _dragEndPlacedCommandPool.Spawn();
+            dragEndPlacedCommand.Execute(_currentElement.Center);
+            _dragEndPlacedCommandPool.Despawn(dragEndPlacedCommand);
+        }
+    }
 }

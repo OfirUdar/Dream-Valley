@@ -2,10 +2,10 @@
 {
     public class PlaySFXCommand : IEventCommand
     {
-        private readonly ISoundsManager _sfxManager;
+        private readonly ISFXManager _sfxManager;
         private readonly AudioClipInfoSO _audioInfo;
 
-        public PlaySFXCommand(ISoundsManager soundsManager, AudioClipInfoSO audioInfo)
+        public PlaySFXCommand(ISFXManager soundsManager, AudioClipInfoSO audioInfo)
         {
             _sfxManager = soundsManager;
             _audioInfo = audioInfo;
