@@ -61,7 +61,8 @@ namespace Game.Map.Element.Building.Resources.UI
             var uiResourceCollectors = GameObject.FindObjectsOfType<UIResourceCollector>();
             foreach (var resource in uiResourceCollectors)
             {
-                if(resource._resourceCollector.GetResource()==_resourceCollector.GetResource())
+                if (resource.gameObject.activeSelf && 
+                    resource._resourceCollector.GetResource() == _resourceCollector.GetResource())
                 {
                     resource._resourceCollector.Collect(resource.transform.position);
                     await Task.Delay(120);

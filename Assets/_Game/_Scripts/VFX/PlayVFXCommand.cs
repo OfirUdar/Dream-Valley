@@ -4,17 +4,17 @@ namespace Game
 {
     public class PlayVFXCommand : IEventCommand
     {
-        private readonly IVFXFactory _vfxFactory;
+        private readonly IVFXPool _vfxPool;
         private readonly VFXData _vfxData;
 
-        public PlayVFXCommand(IVFXFactory vfxFactory, VFXData vfxData)
+        public PlayVFXCommand(IVFXPool vfxPool, VFXData vfxData)
         {
-            _vfxFactory = vfxFactory;
+            _vfxPool = vfxPool;
             _vfxData = vfxData;
         }
         public void Execute(object position)
         {
-            _vfxFactory.CreateEffect(_vfxData, (Vector3)position);
+            _vfxPool.Spawn(_vfxData.EffectPfb, (Vector3)position);
         }
     }
 }

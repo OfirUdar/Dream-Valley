@@ -30,14 +30,11 @@ namespace Game.Map
         private void InstallPlaced()
         {
             Container.Bind<IEventCommand>().To<PlaySFXCommand>().AsTransient()
-               .WithArguments(_placedAudio).WhenInjectedInto<CompositeEventCommand>();
+               .WithArguments(_placedAudio).WhenInjectedInto<DragEndPlacedCommand>();
 
             Container.Bind<IEventCommand>().To<PlayVFXCommand>().AsTransient()
-                .WithArguments(_vfxInfo).WhenInjectedInto<CompositeEventCommand>();
+                .WithArguments(_vfxInfo).WhenInjectedInto<DragEndPlacedCommand>();
 
-
-            Container.Bind<IEventCommand>().To<CompositeEventCommand>().AsTransient()
-                .WhenInjectedInto<DragEndPlacedCommand>();
 
             Container.BindMemoryPool<IEventCommand, DragEndPlacedCommand.Pool>()
                 .To<DragEndPlacedCommand>();

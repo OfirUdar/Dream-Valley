@@ -2980,9 +2980,9 @@ GameObject:
   - component: {fileID: 1773615636}
   - component: {fileID: 1773615635}
   - component: {fileID: 1773615634}
-  - component: {fileID: 1773615633}
   - component: {fileID: 1773615632}
   - component: {fileID: 1773615641}
+  - component: {fileID: 1773615642}
   m_Layer: 0
   m_Name: Map Installer
   m_TagString: Untagged
@@ -3009,7 +3009,7 @@ MonoBehaviour:
   - {fileID: 1773615636}
   - {fileID: 1773615635}
   - {fileID: 1773615634}
-  - {fileID: 1773615633}
+  - {fileID: 1773615642}
   - {fileID: 1773615632}
   - {fileID: 1773615641}
 --- !u!114 &1773615632
@@ -3025,18 +3025,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _treesListSO: {fileID: 11400000, guid: edea6f27b2e788c41bcd96efc063064a, type: 2}
---- !u!114 &1773615633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773615630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7682cc68f8e164584441c582482dca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1773615634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3141,12 +3129,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _vfxInfo:
-    <Type>k__BackingField: 0
     <EffectPfb>k__BackingField: {fileID: 3698766364927202372, guid: f879cc7371b4f9a42959a04561286cbf,
       type: 3}
   _dragAudio: {fileID: 11400000, guid: 4c6c26b4e1485bb48af1101a868fd877, type: 2}
   _placedAudio: {fileID: 11400000, guid: d7624ff0bf3b17349ae6f2ec62507964, type: 2}
   _placeErrorAudio: {fileID: 11400000, guid: d4225576c8ae9ca4fbaf865fbb94bbc9, type: 2}
+--- !u!114 &1773615642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773615630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f83e8d72f1beeb439e88fca96a80094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1872335848
 PrefabInstance:
   m_ObjectHideFlags: 0

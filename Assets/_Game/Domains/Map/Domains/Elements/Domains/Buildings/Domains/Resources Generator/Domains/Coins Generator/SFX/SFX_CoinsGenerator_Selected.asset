@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be90f4c3f9952594e929ea6e2b4acdcb, type: 3}
   m_Name: SFX_CoinsGenerator_Selected
   m_EditorClassIdentifier: 
-  <Clip>k__BackingField: {fileID: 8300000, guid: c8a4684f11b90c944a899a4201e2632b,
+  <Clip>k__BackingField: {fileID: 8300000, guid: 67c0aa0103433d944911b8b4df5d8cb8,
     type: 3}
   <Pitch>k__BackingField: 1
   <ScaleVolume>k__BackingField: 0.7

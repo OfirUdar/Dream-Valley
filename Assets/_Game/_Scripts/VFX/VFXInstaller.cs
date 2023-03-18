@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using Zenject;
+﻿using Zenject;
 
 namespace Game
 {
@@ -7,11 +6,7 @@ namespace Game
     {
         public override void InstallBindings()
         {
-            //Container.BindFactory
-            // <Object, VFX, VFX.Factory>()
-            // .FromFactory<PrefabFactory<VFX>>();
-
-            //Container.Bind<AbstractPool>().ToSelf().AsSingle();
+            Container.Bind(typeof(IInitializable), typeof(IVFXPool)).To<VFXPool>().AsSingle();
         }
     }
 }

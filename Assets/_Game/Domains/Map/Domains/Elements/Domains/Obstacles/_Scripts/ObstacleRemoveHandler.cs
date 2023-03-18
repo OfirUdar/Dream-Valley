@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using UnityEngine;
+using Zenject;
 
 namespace Game.Map.Element.Obstcales
 {
@@ -10,7 +11,6 @@ namespace Game.Map.Element.Obstcales
         [Inject] private readonly IMapElement _mapElement;
         [Inject] private readonly ObstacleDataSO _obstacleDataSO;
         [Inject] private readonly RemoveObstacleCommand.Pool _removeObstacleCommandPool;
-        [Inject] private readonly IVFXFactory _vfxFactory;
 
         [Inject] private readonly IDialog _dialog;
         public ResourcePrice Price => _obstacleDataSO.Price;
@@ -23,9 +23,8 @@ namespace Game.Map.Element.Obstcales
             {
                 _resourcesInventory.SubtractResource(Price.Resource, Price.Amount);
                 _grid.Remove(_mapElement);
-                //_vfxFactory.CreateEffect(VFXType.ElementPlaced, _mapElement.Center);
-                _selectionManager.RequestUnselect();
                 FireRemoveEventCommand();
+                _selectionManager.RequestUnselect();
                 _mapElement.Destroy();
             }
             else
@@ -45,11 +44,19 @@ namespace Game.Map.Element.Obstcales
     public class RemoveObstacleCommand : IEventCommand
     {
 
-        [Inject] private readonly IEventCommand _command;
+         private readonly IEventCommand[] _commands;
+
+        public RemoveObstacleCommand(params IEventCommand[] commands)
+        {
+            _commands = commands;
+        }
 
         public void Execute(object value = null)
         {
-            _command.Execute(value);
+            for (int i = 0; i < _commands.Length; i++)
+            {
+                _commands[i].Execute(value);
+            }
         }
 
         public class Pool : MemoryPool<IEventCommand>

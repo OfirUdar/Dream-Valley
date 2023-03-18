@@ -1,14 +1,20 @@
-﻿using Zenject;
-
-namespace Game.Map
+﻿namespace Game.Map
 {
     public abstract class DragCommandBase : IEventCommand
     {
-        [Inject] private readonly IEventCommand _command;
+        private readonly IEventCommand[] _commands;
+
+        public DragCommandBase(params IEventCommand[] commands)
+        {
+            _commands = commands;
+        }
 
         public void Execute(object value = null)
         {
-            _command.Execute(value);
+            for (int i = 0; i < _commands.Length; i++)
+            {
+                _commands[i].Execute(value);
+            }
         }
     }
 
