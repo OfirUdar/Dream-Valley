@@ -15,4 +15,4 @@ MonoBehaviour:
   <Clip>k__BackingField: {fileID: 8300000, guid: a4668132458920745a17cf574619b8ad,
     type: 3}
   <Pitch>k__BackingField: 1
-  <ScaleVolume>k__BackingField: 1
+  <ScaleVolume>k__BackingField: 0.7

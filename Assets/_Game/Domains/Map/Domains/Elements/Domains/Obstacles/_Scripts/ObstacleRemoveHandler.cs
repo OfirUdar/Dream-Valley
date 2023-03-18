@@ -9,6 +9,7 @@ namespace Game.Map.Element.Obstcales
         [Inject] private readonly IMapGrid _grid;
         [Inject] private readonly IMapElement _mapElement;
         [Inject] private readonly ObstacleDataSO _obstacleDataSO;
+        [Inject] private readonly RemoveObstacleCommand.Pool _removeObstacleCommandPool;
         [Inject] private readonly IVFXFactory _vfxFactory;
 
         [Inject] private readonly IDialog _dialog;
@@ -18,12 +19,13 @@ namespace Game.Map.Element.Obstcales
         {
             var canPurchase = _resourcesInventory.CanSubtract(Price.Resource, Price.Amount);
 
-            if(canPurchase)
+            if (canPurchase)
             {
                 _resourcesInventory.SubtractResource(Price.Resource, Price.Amount);
                 _grid.Remove(_mapElement);
                 //_vfxFactory.CreateEffect(VFXType.ElementPlaced, _mapElement.Center);
                 _selectionManager.RequestUnselect();
+                FireRemoveEventCommand();
                 _mapElement.Destroy();
             }
             else
@@ -32,5 +34,27 @@ namespace Game.Map.Element.Obstcales
             }
         }
 
+        private void FireRemoveEventCommand()
+        {
+            var commandInstance = _removeObstacleCommandPool.Spawn();
+            commandInstance.Execute(_mapElement.Center);
+            _removeObstacleCommandPool.Despawn(commandInstance);
+        }
+    }
+
+    public class RemoveObstacleCommand : IEventCommand
+    {
+
+        [Inject] private readonly IEventCommand _command;
+
+        public void Execute(object value = null)
+        {
+            _command.Execute(value);
+        }
+
+        public class Pool : MemoryPool<IEventCommand>
+        {
+
+        }
     }
 }

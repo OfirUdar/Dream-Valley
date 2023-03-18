@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Map.Element.Trees:Game.Map.Element.Obstcales:ObstacleDataSO
   Element: {fileID: 11400000, guid: b79e2eca334c93841b92f1350f1d0f68, type: 2}
   Price:
-    <Resource>k__BackingField: {fileID: 11400000, guid: 15521e75b7002544396722fce9402d8d,
+    <Resource>k__BackingField: {fileID: 11400000, guid: 839ca43900cafad4a85f49feccbc05ae,
       type: 2}
     <Amount>k__BackingField: 100

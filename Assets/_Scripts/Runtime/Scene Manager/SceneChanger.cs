@@ -9,6 +9,18 @@ namespace Udar
 
 
         #region Load
+        /// <summary>
+        /// Load scene. Not awaitable
+        /// </summary>
+        /// <param name="sceneNames"></param>
+        public static async Task LoadSingleAsync(string sceneName)
+        {
+            var operation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+            while (!operation.isDone)
+            {
+                await Task.Yield();
+            }
+        }
 
         /// <summary>
         /// Load multiple scenes addtivly. Not awaitable

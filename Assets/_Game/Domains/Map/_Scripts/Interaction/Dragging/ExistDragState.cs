@@ -27,8 +27,8 @@ namespace Game.Map
                 {
                     _grid.Remove(_startPosition, _currentElement.Width, _currentElement.Height); //removing from the old
                     _grid.Place(_currentElement);
-                    FireDragEndPlacedCommand();
                 }
+                FireDragEndPlacedCommand();
                 _currentElement = null;
             }
             else

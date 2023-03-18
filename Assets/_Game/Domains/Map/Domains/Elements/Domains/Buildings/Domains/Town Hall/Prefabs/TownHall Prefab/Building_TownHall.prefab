@@ -134,6 +134,12 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7593774042737972379, guid: e65a42722264d0640b749d48cf10b91b,
+        type: 3}
+      propertyPath: _audioClipInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: 27b12faf7619f014db6473774903e88c,
+        type: 2}
     - target: {fileID: 8101278497845708780, guid: e65a42722264d0640b749d48cf10b91b,
         type: 3}
       propertyPath: m_Name

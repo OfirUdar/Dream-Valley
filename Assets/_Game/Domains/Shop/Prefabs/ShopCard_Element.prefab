@@ -623,7 +623,6 @@ GameObject:
   - component: {fileID: 783069993789870066}
   - component: {fileID: 7079869234827585775}
   - component: {fileID: 8491282845890876443}
-  - component: {fileID: 8871345776291687065}
   m_Layer: 5
   m_Name: ShopCard_Element
   m_TagString: Untagged
@@ -809,19 +808,6 @@ MonoBehaviour:
   _mainImage: {fileID: 7553880410570389003}
   _priceText: {fileID: 7553880411731990815}
   _resourceImage: {fileID: 7553880412140958391}
---- !u!114 &8871345776291687065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7553880411937342335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0ece55d9c48edc48a461fd0dfd597e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioInfo: {fileID: 11400000, guid: 7f545cee5f4941a4490c74586ce848ea, type: 2}
 --- !u!1 &7553880412140958389
 GameObject:
   m_ObjectHideFlags: 0

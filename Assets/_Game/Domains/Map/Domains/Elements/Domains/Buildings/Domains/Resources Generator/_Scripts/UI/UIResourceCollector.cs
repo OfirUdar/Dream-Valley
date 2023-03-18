@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -14,6 +15,7 @@ namespace Game.Map.Element.Building.Resources.UI
 
         [Inject] private readonly IResourceCollector _resourceCollector;
         [Inject] private readonly IResourcesInventory _resourcesInventory;
+        [Inject] private readonly IMapGrid _grid;
 
 
 
@@ -52,9 +54,19 @@ namespace Game.Map.Element.Building.Resources.UI
             if (resource == _resourceCollector.GetResource())
                 ChangeImageColorByStorageState(isFull);
         }
-        private void OnCollectClicked()
+        private async void OnCollectClicked()
         {
-            _resourceCollector.Collect(transform.position);
+            //_resourceCollector.Collect(transform.position);
+
+            var uiResourceCollectors = GameObject.FindObjectsOfType<UIResourceCollector>();
+            foreach (var resource in uiResourceCollectors)
+            {
+                if(resource._resourceCollector.GetResource()==_resourceCollector.GetResource())
+                {
+                    resource._resourceCollector.Collect(resource.transform.position);
+                    await Task.Delay(120);
+                }
+            }
         }
 
 

@@ -250,6 +250,12 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7593774042737972379, guid: e65a42722264d0640b749d48cf10b91b,
+        type: 3}
+      propertyPath: _audioClipInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: 26a6bccd673e78347816ca506daa959f,
+        type: 2}
     - target: {fileID: 8101278497845708780, guid: e65a42722264d0640b749d48cf10b91b,
         type: 3}
       propertyPath: m_Name
@@ -306,7 +312,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3c7f0185fea94468f600729d966770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _elementVisualHandler: {fileID: 4230168574741741844}
 --- !u!114 &7565727196561149753
 MonoBehaviour:
   m_ObjectHideFlags: 0
