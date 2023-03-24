@@ -5,7 +5,7 @@ namespace Game.Map
 {
     public class DragEventCommandInstaller : MonoInstaller
     {
-        [SerializeField] private VFXData _vfxInfo;
+        [SerializeField] private GameObject _placedVFXPfb;
 
         [SerializeField] private AudioClipInfoSO _dragAudio;
         [SerializeField] private AudioClipInfoSO _placedAudio;
@@ -33,7 +33,7 @@ namespace Game.Map
                .WithArguments(_placedAudio).WhenInjectedInto<DragEndPlacedCommand>();
 
             Container.Bind<IEventCommand>().To<PlayVFXCommand>().AsTransient()
-                .WithArguments(_vfxInfo).WhenInjectedInto<DragEndPlacedCommand>();
+                .WithArguments(_placedVFXPfb).WhenInjectedInto<DragEndPlacedCommand>();
 
 
             Container.BindMemoryPool<IEventCommand, DragEndPlacedCommand.Pool>()

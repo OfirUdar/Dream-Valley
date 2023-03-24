@@ -10,6 +10,8 @@ namespace Game.Map.Element.Building
         [Inject] private readonly IMapElement _mapElement;
         [Inject] private readonly ISaveManager _saveManager;
         [Inject] private readonly ILoadManager _loadManager;
+        [Inject] private readonly UpgradeCompletedCommand.Pool _upgradeCompletedCommandPool;
+        [Inject] private readonly UpgradeStartedCommand.Pool _upgradeStartedCommandPool;
         private readonly IEventor _eventor;
 
         [Inject(Id = StateType.Active)]
@@ -52,6 +54,12 @@ namespace Game.Map.Element.Building
 
         public void ChangeState(StateType stateType)
         {
+            FireStateChangedCommand(stateType);
+            ChangeStateWithoutNotify(stateType);
+        }
+
+        public void ChangeStateWithoutNotify(StateType stateType)
+        {
             _currentStateType = stateType;
             _saveManager.Save(this);
             switch (stateType)
@@ -67,8 +75,25 @@ namespace Game.Map.Element.Building
                         break;
                     }
             }
+
         }
 
+        private void FireStateChangedCommand(StateType stateType)
+        {
+            if (_currentStateType == StateType.Upgrade && stateType == StateType.Active)
+            {
+                var command = _upgradeCompletedCommandPool.Spawn();
+                command.Execute(_mapElement.Center);
+                _upgradeCompletedCommandPool.Despawn(command);
+            }
+
+            if (_currentStateType == StateType.Active && stateType == StateType.Upgrade)
+            {
+                var command = _upgradeStartedCommandPool.Spawn();
+                command.Execute(_mapElement.Center);
+                _upgradeStartedCommandPool.Despawn(command);
+            }
+        }
 
         public StateType GetCurrentState()
         {
@@ -93,7 +118,7 @@ namespace Game.Map.Element.Building
         public void SetSerialized(string data)
         {
             var saveData = JsonUtility.FromJson<StateSaveData>(data);
-            ChangeState(saveData.StateType);
+            ChangeStateWithoutNotify(saveData.StateType);
         }
 
         public string GetSerialized()
@@ -104,6 +129,7 @@ namespace Game.Map.Element.Building
             };
             return JsonUtility.ToJson(saveData);
         }
+
 
         [Serializable]
         public struct StateSaveData

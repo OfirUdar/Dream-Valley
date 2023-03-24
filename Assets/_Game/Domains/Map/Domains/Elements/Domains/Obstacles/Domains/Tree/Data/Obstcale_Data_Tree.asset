@@ -16,4 +16,4 @@ MonoBehaviour:
   Price:
     <Resource>k__BackingField: {fileID: 11400000, guid: 839ca43900cafad4a85f49feccbc05ae,
       type: 2}
-    <Amount>k__BackingField: 10
+    <Amount>k__BackingField: 70

@@ -194,10 +194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obstacleDataSO: {fileID: 11400000, guid: fc385d2ee510a2b45812f2e7ee7a405c, type: 2}
   _removeAudio: {fileID: 11400000, guid: 264cdf11a283f1240868998842a0d79c, type: 2}
-  _vfxData:
-    <Type>k__BackingField: 0
-    <EffectPfb>k__BackingField: {fileID: 3698766364927202372, guid: f879cc7371b4f9a42959a04561286cbf,
-      type: 3}
+  _removeVFXPfb: {fileID: 3698766364927202372, guid: f879cc7371b4f9a42959a04561286cbf,
+    type: 3}
 --- !u!4 &3916625179553635350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 220325989002538498, guid: e65a42722264d0640b749d48cf10b91b,

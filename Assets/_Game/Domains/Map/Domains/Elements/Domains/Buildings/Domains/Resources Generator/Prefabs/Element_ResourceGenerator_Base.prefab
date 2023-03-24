@@ -312,6 +312,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3c7f0185fea94468f600729d966770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _upgradeCompletedAudioClip: {fileID: 11400000, guid: 019d2be08ba23b7488cb02dde74bd77b,
+    type: 2}
+  _upgradeCompletedVFXPfb: {fileID: 3698766364927202372, guid: f20219fc051d35b499c3c12cb26ffb97,
+    type: 3}
+  _upgradeStartedAudioClip: {fileID: 11400000, guid: 8868c676d7804084ab875ca5973e11ec,
+    type: 2}
+  _upgradeStartedVFXPfb: {fileID: 3698766364927202372, guid: 03911ba58bb7d324dbb724ae44e51df4,
+    type: 3}
 --- !u!114 &7565727196561149753
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ namespace Game
         public void Initialize()
         {
             _container = new GameObject("VFX Pool").transform;
+            GameObject.DontDestroyOnLoad(_container.gameObject);
         }
 
         public GameObject Spawn(GameObject prefab, Vector3 position)

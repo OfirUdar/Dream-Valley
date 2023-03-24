@@ -8,7 +8,7 @@ namespace Game.Map.Element.Obstcales
         [SerializeField] private ObstacleDataSO _obstacleDataSO;
         [Space]
         [SerializeField] private AudioClipInfoSO _removeAudio;
-        [SerializeField] private VFXData _vfxData;
+        [SerializeField] private GameObject _removeVFXPfb;
 
         public override void InstallBindings()
         {
@@ -25,7 +25,7 @@ namespace Game.Map.Element.Obstcales
                 .WithArguments(_removeAudio).WhenInjectedInto<RemoveObstacleCommand>();
 
             Container.Bind<IEventCommand>().To<PlayVFXCommand>().AsTransient()
-                .WithArguments(_vfxData).WhenInjectedInto<RemoveObstacleCommand>();
+                .WithArguments(_removeVFXPfb).WhenInjectedInto<RemoveObstacleCommand>();
 
             Container.BindMemoryPool<IEventCommand, RemoveObstacleCommand.Pool>()
                 .To<RemoveObstacleCommand>();

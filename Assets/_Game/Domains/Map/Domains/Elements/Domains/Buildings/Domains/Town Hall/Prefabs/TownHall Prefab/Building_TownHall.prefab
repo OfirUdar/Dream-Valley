@@ -117,12 +117,12 @@ PrefabInstance:
     - target: {fileID: 7368481522399363416, guid: e65a42722264d0640b749d48cf10b91b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7368481522399363416, guid: e65a42722264d0640b749d48cf10b91b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 500
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7368481522399363416, guid: e65a42722264d0640b749d48cf10b91b,
         type: 3}
@@ -193,6 +193,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3c7f0185fea94468f600729d966770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _upgradeCompletedAudioClip: {fileID: 11400000, guid: 242aff64dbd1a334dbe76d2b16751ec9,
+    type: 2}
+  _upgradeCompletedVFXPfb: {fileID: 3698766364927202372, guid: f20219fc051d35b499c3c12cb26ffb97,
+    type: 3}
+  _upgradeStartedAudioClip: {fileID: 11400000, guid: 34347497c05dfbf42a0e49e8f9ec55bd,
+    type: 2}
+  _upgradeStartedVFXPfb: {fileID: 3698766364927202372, guid: 03911ba58bb7d324dbb724ae44e51df4,
+    type: 3}
 --- !u!114 &6236723140801391136 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6210693628039448714, guid: e65a42722264d0640b749d48cf10b91b,
@@ -275,7 +283,7 @@ PrefabInstance:
     - target: {fileID: 709963874496353608, guid: 4f6bc64ada382dd4f89ac5d2017f2627,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 709963874496353608, guid: 4f6bc64ada382dd4f89ac5d2017f2627,
         type: 3}
@@ -320,7 +328,7 @@ PrefabInstance:
     - target: {fileID: 709963874496353608, guid: 4f6bc64ada382dd4f89ac5d2017f2627,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 500
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 709963874496353608, guid: 4f6bc64ada382dd4f89ac5d2017f2627,
         type: 3}

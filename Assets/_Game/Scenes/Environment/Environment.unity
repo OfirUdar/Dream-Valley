@@ -3128,9 +3128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dab609702b33dc488582107178f0c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _vfxInfo:
-    <EffectPfb>k__BackingField: {fileID: 3698766364927202372, guid: f879cc7371b4f9a42959a04561286cbf,
-      type: 3}
+  _placedVFXPfb: {fileID: 3698766364927202372, guid: f879cc7371b4f9a42959a04561286cbf,
+    type: 3}
   _dragAudio: {fileID: 11400000, guid: 4c6c26b4e1485bb48af1101a868fd877, type: 2}
   _placedAudio: {fileID: 11400000, guid: d7624ff0bf3b17349ae6f2ec62507964, type: 2}
   _placeErrorAudio: {fileID: 11400000, guid: d4225576c8ae9ca4fbaf865fbb94bbc9, type: 2}

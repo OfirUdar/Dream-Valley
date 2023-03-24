@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be90f4c3f9952594e929ea6e2b4acdcb, type: 3}
   m_Name: SFX_UI_Button
   m_EditorClassIdentifier: 
-  <Clip>k__BackingField: {fileID: 8300000, guid: 373268f127e63a941ba9fbeedf6d76ff,
+  <Clip>k__BackingField: {fileID: 8300000, guid: f5196bdf67474dc479678bcd98f796bd,
     type: 3}
-  <Pitch>k__BackingField: 2
+  <Pitch>k__BackingField: 1.2
   <ScaleVolume>k__BackingField: 0.7

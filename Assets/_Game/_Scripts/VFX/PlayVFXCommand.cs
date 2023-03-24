@@ -5,16 +5,16 @@ namespace Game
     public class PlayVFXCommand : IEventCommand
     {
         private readonly IVFXPool _vfxPool;
-        private readonly VFXData _vfxData;
+        private readonly GameObject _vfxPfb;
 
-        public PlayVFXCommand(IVFXPool vfxPool, VFXData vfxData)
+        public PlayVFXCommand(IVFXPool vfxPool, GameObject vfxPfb)
         {
             _vfxPool = vfxPool;
-            _vfxData = vfxData;
+            _vfxPfb = vfxPfb;
         }
         public void Execute(object position)
         {
-            _vfxPool.Spawn(_vfxData.EffectPfb, (Vector3)position);
+            _vfxPool.Spawn(_vfxPfb, (Vector3)position);
         }
     }
 }
