@@ -33,6 +33,9 @@ namespace Game.Map
         }
         public void RequestEndDrag()
         {
+            if (_isLock)
+                return;
+
             _currentState.RequestEndDrag();
         }
         public void RequestDrag()

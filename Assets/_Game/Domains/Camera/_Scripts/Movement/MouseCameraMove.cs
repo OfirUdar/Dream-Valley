@@ -19,6 +19,8 @@ namespace Game.Camera
         public override void SetActive(bool isActive)
         {
             _panVelocity = Vector3.zero;
+            _isDragging = false;
+            _startInertia = false;
         }
 
         public override void Tick()

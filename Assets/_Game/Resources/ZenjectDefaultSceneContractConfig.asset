@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: ZenjectDefaultSceneContractConfig
   m_EditorClassIdentifier: 
   DefaultContracts:
-  - ContractName: Main
-    Scene: {fileID: 102900000, guid: edabdd5b16433eb4e8645c509591e128, type: 3}
   - ContractName: ResourcesInventory
     Scene: {fileID: 102900000, guid: 6cea7b92caca8f24b91a7ebd91e2189a, type: 3}
   - ContractName: Camera

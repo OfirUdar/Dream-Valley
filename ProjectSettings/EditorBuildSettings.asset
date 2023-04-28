@@ -20,9 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Game/Scenes/Environment/Environment.unity
     guid: 177d89024419f4e48a0bf3d13ffd955a
-  - enabled: 0
-    path: Assets/_Game/Scenes/MainGame.unity
-    guid: edabdd5b16433eb4e8645c509591e128
   - enabled: 1
     path: Assets/_Game/Scenes/UI/MainUI.unity
     guid: 115d0ae5f06e06945b95210a30fbf342

@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Udar
-  productName: My Farm
+  productName: Dream Valley
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
@@ -276,7 +276,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 3fbd2378634f8403b97c467c5fd40fef, type: 3}
+      m_Icon: {fileID: 2800000, guid: 6f68dc2a1a65e3644a489b819c6f1fbd, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

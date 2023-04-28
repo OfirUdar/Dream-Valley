@@ -54,8 +54,9 @@ namespace Game.Map.Element
 
         public async void SpawnNewAndPlace(MapElementSO mapElementSO, Action cancelCallback, Action successCallback)
         {
-            _mapGrid.FindAvailablePlace(mapElementSO.Width, mapElementSO.Height, out Vector3 startPosition);
-            var mapElement = _factory.Create(mapElementSO.Pfb);
+            //_mapGrid.FindAvailablePlace(mapElementSO.Width, mapElementSO.Height, out Vector3 startPosition);
+            _mapGrid.FindRandomAvailablePlace(mapElementSO.Width, mapElementSO.Height, out Vector3 startPosition);
+            var mapElement = Spawn(mapElementSO.Pfb);
             mapElement.Position = startPosition;
 
             mapElement.StartDrag();
@@ -69,7 +70,7 @@ namespace Game.Map.Element
             _dragManager.Lock(true);
             _dragManager.ChangeToNewElementDragger(mapElement);
             MainUIEventAggregator.Hide();
-            await _cameraController.FocusAsync(startPosition, 15f);
+            await _cameraController.FocusAsync(startPosition, zoom: 15f);
             _dragManager.Lock(false);
         }
 

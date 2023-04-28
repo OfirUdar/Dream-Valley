@@ -209,28 +209,59 @@ namespace Game.Map.Grid
             return emptyCellsList;
         }
 
+        //public bool FindRandomAvailablePlace(int width, int height, out Vector3 foundPosition)
+        //{
+        //    var emptyCellsList = GetGridEmptyCells();
+
+        //    if (emptyCellsList.Count == 0)
+        //    {
+        //        foundPosition = Vector3.zero;
+        //        return false;
+        //    }
+
+        //    var randomIndexCell = UnityEngine.Random.Range(0, emptyCellsList.Count);
+        //    var randomCell = emptyCellsList[randomIndexCell];
+
+        //    if (CanPlace(randomCell.x, randomCell.y, width, height, null))
+        //    {
+        //        foundPosition = GetWorldPosition(randomCell.x, randomCell.y);
+        //        return true;
+        //    }
+
+
+        //    foundPosition = Vector3.zero;
+        //    return false;
+        //}
+        
         public bool FindRandomAvailablePlace(int width, int height, out Vector3 foundPosition)
         {
+            var foundPositionsList = new List<Vector3>();
+
             var emptyCellsList = GetGridEmptyCells();
 
-            if (emptyCellsList.Count == 0)
+            for(int i=0;i<emptyCellsList.Count;i++)
+            {
+                var row = emptyCellsList[i].x;
+                var column = emptyCellsList[i].y;
+                if (CanPlace(row, column, width, height, null))
+                {
+                    foundPosition = GetWorldPosition(row, column);
+                    foundPositionsList.Add(foundPosition);
+                }
+            }         
+
+            if(foundPositionsList.Count==0)
             {
                 foundPosition = Vector3.zero;
                 return false;
             }
-
-            var randomIndexCell = UnityEngine.Random.Range(0, emptyCellsList.Count);
-            var randomCell = emptyCellsList[randomIndexCell];
-
-            if (CanPlace(randomCell.x, randomCell.y, width, height, null))
+            else
             {
-                foundPosition = GetWorldPosition(randomCell.x, randomCell.y);
+                var randomIndex = UnityEngine.Random.Range(0, foundPositionsList.Count);
+                foundPosition = foundPositionsList[randomIndex];
                 return true;
             }
-
-
-            foundPosition = Vector3.zero;
-            return false;
+            
         }
         public bool FindAvailablePlace(int width, int height, out Vector3 foundPosition)
         {

@@ -7,6 +7,7 @@ namespace Game
         private readonly IEventCommand _parentCommand;
         private readonly int _executeRateTime;
         private bool _canExecute = true;
+
         public RateExecuteDecoratorCommand(IEventCommand parentCommand, int executeRateTimeMiliseconds = 50)
         {
             _parentCommand = parentCommand;

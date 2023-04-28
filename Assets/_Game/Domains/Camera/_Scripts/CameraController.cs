@@ -38,8 +38,8 @@ namespace Game.Camera
         }
         public void SetCanMove(bool isCanMove)
         {
-            _moveHandler.SetActive(isCanMove);
             _canMove = isCanMove;
+            _moveHandler.SetActive(isCanMove);
         }
         public void SetCanZoom(bool isCanZoom)
         {

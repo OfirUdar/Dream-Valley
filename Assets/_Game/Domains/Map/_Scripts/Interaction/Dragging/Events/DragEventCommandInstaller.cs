@@ -39,6 +39,7 @@ namespace Game.Map
             Container.BindMemoryPool<IEventCommand, DragEndPlacedCommand.Pool>()
                 .To<DragEndPlacedCommand>();
         }
+
         private void InstallDragging()
         {
             Container.Bind<IEventCommand>().To<PlaySFXCommand>().AsTransient()

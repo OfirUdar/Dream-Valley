@@ -1,6 +1,4 @@
-﻿using Udar;
-
-namespace Game.Camera
+﻿namespace Game.Camera
 {
     using UnityEngine;
     public class TouchCameraMove : CameraMoveBase
@@ -15,6 +13,7 @@ namespace Game.Camera
         public override void SetActive(bool isActive)
         {
             _panVelocity = Vector3.zero;
+            _startInertia = false;
         }
         public override void Tick()
         {

@@ -2,7 +2,7 @@
 
 namespace Game.Map
 {
-    public class DragEndPlacedErrorCommand : DragCommandBase
+    public class DragEndPlacedErrorCommand : CompositeEventCommand
     {
         public DragEndPlacedErrorCommand(params IEventCommand[] commands) : base(commands)
         {

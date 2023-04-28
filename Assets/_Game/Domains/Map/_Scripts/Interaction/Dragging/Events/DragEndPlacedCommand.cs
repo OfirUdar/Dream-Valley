@@ -2,7 +2,7 @@
 
 namespace Game.Map
 {
-    public class DragEndPlacedCommand : DragCommandBase
+    public class DragEndPlacedCommand : CompositeEventCommand
     {
         public DragEndPlacedCommand(params IEventCommand[] commands) : base(commands)
         {
