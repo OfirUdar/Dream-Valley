@@ -5,13 +5,13 @@ namespace Game
     public class RateExecuteDecoratorCommand : IEventCommand
     {
         private readonly IEventCommand _parentCommand;
-        private readonly int _executeRateTime;
+        private readonly int _executeTimeRate;
         private bool _canExecute = true;
 
-        public RateExecuteDecoratorCommand(IEventCommand parentCommand, int executeRateTimeMiliseconds = 50)
+        public RateExecuteDecoratorCommand(IEventCommand parentCommand, int executeTimeRateMiliseconds = 50)
         {
             _parentCommand = parentCommand;
-            _executeRateTime = executeRateTimeMiliseconds;
+            _executeTimeRate = executeTimeRateMiliseconds;
         }
         public void Execute(object value)
         {
@@ -24,7 +24,7 @@ namespace Game
         }
         private async Task RestFlag()
         {
-            await Task.Delay(_executeRateTime);
+            await Task.Delay(_executeTimeRate);
             _canExecute = true;
         }
     }

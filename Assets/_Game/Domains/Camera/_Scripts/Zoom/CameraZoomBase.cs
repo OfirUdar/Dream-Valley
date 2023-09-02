@@ -6,7 +6,7 @@
     using UnityEngine.Rendering.Universal;
     public abstract class CameraZoomBase
     {
-        private readonly Camera _cam;
+        protected readonly Camera _cam;
         private readonly UniversalAdditionalCameraData _camData;
         private readonly ZoomSettings _settings;
 

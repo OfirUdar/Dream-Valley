@@ -17,7 +17,10 @@
 
             if (scroll != Vector2.zero && !_input.IsPointerOverUI())
             {
+                var mouseWorldStart = _cam.ScreenToWorldPoint(_input.GetPointerPosition());
                 Zoom(Mathf.Sign(scroll.y));
+                var mouseWorldPosDiff = mouseWorldStart - _cam.ScreenToWorldPoint(_input.GetPointerPosition());
+                _cam.transform.position += mouseWorldPosDiff;
             }
         }
 
